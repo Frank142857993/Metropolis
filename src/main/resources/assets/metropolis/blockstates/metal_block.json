@@ -1,0 +1,34 @@
+{
+  "forge_marker": 1,
+  "defaults": {"model": "minecraft:cube_all"},
+  "variants": {
+    "variant": {
+      "steel": {
+        "textures": {
+          "all": "metropolis:blocks/metal_blocks/steel"
+        }
+      },
+      "black_steel": {
+        "textures": {
+          "all": "metropolis:blocks/metal_blocks/black_steel"
+        }
+      },
+      "blue_steel": {
+        "textures": {
+          "all": "metropolis:blocks/metal_blocks/blue_steel"
+        }
+      },
+      "argentum": {
+        "textures": {
+          "all": "metropolis:blocks/metal_blocks/argentum"
+        }
+      },
+      "dynamite": {
+        "textures": {
+          "all": "metropolis:blocks/metal_blocks/dynamite"
+        }
+      }
+    },
+    "inventory": [{"transform":  "forge:default-block"}]
+  }
+}

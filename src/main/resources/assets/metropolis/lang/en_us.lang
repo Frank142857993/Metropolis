@@ -1,0 +1,24 @@
+item.metal_ingot_steel.name=Ingot of Steel
+item.metal_ingot_black_steel.name=Ingot of Black Steel [Add texture plz]
+item.metal_ingot_blue_steel.name=Ingot of Blue Steel
+item.metal_ingot_argentum.name=Ingot of Argentum
+item.metal_ingot_dynamite.name=Ingot of Dynamite [Add texture plz]
+
+item.teleportation_rod.name=Rod of Teleportation
+
+tile.ore_argentum.name=Argentum Ore
+tile.ore_mtr_quartz.name=Quartz Ore
+
+tile.metal_block_steel.name=Block of Steel
+tile.metal_block_black_steel.name=Block of Black Steel [Add texture plz]
+tile.metal_block_blue_steel.name=Block of Blue Steel
+tile.metal_block_argentum.name=Block of Argentum
+tile.metal_block_dynamite.name=Block of Dynamite [Add texture plz]
+
+tile.mtr_portal.name=Metropolis Portal
+
+fluid.crude=Crude
+
+subtitles.block.mtr_portal.ambient=What's that noise?
+
+itemGroup.metropolis=Metropolis

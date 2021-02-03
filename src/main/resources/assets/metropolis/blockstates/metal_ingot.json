@@ -1,0 +1,34 @@
+{
+  "forge_marker": 1,
+  "defaults": {"model": "minecraft:builtin/generated"},
+  "variants": {
+    "variant": {
+      "steel": {
+        "textures": {
+          "layer0": "metropolis:items/ingots/steel"
+        }
+      },
+      "black_steel": {
+        "textures": {
+          "layer0": "metropolis:items/ingots/black_steel"
+        }
+      },
+      "blue_steel": {
+        "textures": {
+          "layer0": "metropolis:items/ingots/blue_steel"
+        }
+      },
+      "argentum": {
+        "textures": {
+          "layer0": "metropolis:items/ingots/argentum"
+        }
+      },
+      "dynamite": {
+        "textures": {
+          "layer0": "metropolis:items/ingots/dynamite"
+        }
+      }
+    },
+    "inventory": [{"transform":  "forge:default-item"}]
+  }
+}
