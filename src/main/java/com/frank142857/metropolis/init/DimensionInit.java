@@ -6,7 +6,7 @@ import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
 public class DimensionInit {
-    public static DimensionType dimensionType;
+    public static DimensionType metropolis;
 
     public static void init(){
         registerDimensionTypes();
@@ -14,10 +14,10 @@ public class DimensionInit {
     }
 
     public static void registerDimensionTypes(){
-        dimensionType = DimensionType.register("Metropolis", "_metropolis", ConfigHandler.METROPOLIS, WorldProviderMetropolis.class, false);
+        metropolis = DimensionType.register("Metropolis", "_metropolis", ConfigHandler.METROPOLIS, WorldProviderMetropolis.class, false);
     }
 
     public static void registerDimensions(){
-        DimensionManager.registerDimension(ConfigHandler.METROPOLIS, dimensionType);
+        DimensionManager.registerDimension(ConfigHandler.METROPOLIS, metropolis);
     }
 }

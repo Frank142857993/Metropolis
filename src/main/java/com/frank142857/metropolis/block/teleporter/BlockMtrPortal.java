@@ -191,9 +191,9 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
             player.setPortal(pos);
             if(player.timeUntilPortal > 0) {
                 player.timeUntilPortal = player.getPortalCooldown();
-            } else if (player.dimension != DimensionInit.dimensionType.getId()) {
+            } else if (player.dimension != DimensionInit.metropolis.getId()) {
                 player.timeUntilPortal = 300;
-                player.changeDimension(DimensionInit.dimensionType.getId(), new MtrTeleporter(player.mcServer.getWorld(DimensionInit.dimensionType.getId())));
+                player.changeDimension(DimensionInit.metropolis.getId(), new MtrTeleporter(player.mcServer.getWorld(DimensionInit.metropolis.getId())));
             } else {
                 player.timeUntilPortal = 300;
                 player.changeDimension(0, new MtrTeleporter(player.mcServer.getWorld(0)));

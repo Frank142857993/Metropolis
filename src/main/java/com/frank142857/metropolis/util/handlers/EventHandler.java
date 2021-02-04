@@ -36,7 +36,7 @@ public class EventHandler {
             case 0:
                 break;
             case 1:
-                b1 = worldIn.provider.getDimension() == DimensionInit.dimensionType.getId();
+                b1 = worldIn.provider.getDimension() == DimensionInit.metropolis.getId();
                 break;
             case 2:
                 b1 = true;

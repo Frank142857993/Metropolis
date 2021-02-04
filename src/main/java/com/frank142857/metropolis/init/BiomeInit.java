@@ -22,7 +22,7 @@ public class BiomeInit {
         BiomeManager.addSpawnBiome(biome);
 
         if(ConfigHandler.DO_CITIES_GENERATE){
-            BiomeManager.addBiome(biomeType, new BiomeManager.BiomeEntry(biome, 100)); //也许和主世界是否生成此群系有关？
+            BiomeManager.addBiome(biomeType, new BiomeManager.BiomeEntry(biome, 100));
         }
 
         System.out.println("Biome City of Present added");

@@ -53,7 +53,7 @@ public class WorldGenMtrOres implements IWorldGenerator {
                 }
                 break;
         }
-        if(world.provider.getDimension() == DimensionInit.dimensionType.getId()){
+        if(world.provider.getDimension() == DimensionInit.metropolis.getId()){
             runGenerator(ore_argentum, world, random, chunkX, chunkZ, 2, 0, 32);
             runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 0, 54);
         }

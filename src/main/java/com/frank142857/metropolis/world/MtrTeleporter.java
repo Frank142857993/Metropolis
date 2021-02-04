@@ -60,13 +60,6 @@ public class MtrTeleporter extends Teleporter {
 
     }
 
-    /**
-     *
-     * @param entity entity
-     * @param rotationYaw rotationYaw
-     * @return
-     */
-
     @Override
     public boolean placeInExistingPortal(Entity entity, float rotationYaw) {
         int i = 128;

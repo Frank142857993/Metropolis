@@ -22,7 +22,7 @@ public class WorldProviderMetropolis extends WorldProvider {
 
     @Override
     public DimensionType getDimensionType(){
-        return DimensionInit.dimensionType;
+        return DimensionInit.metropolis;
     }
 
     @Override
@@ -90,6 +90,7 @@ public class WorldProviderMetropolis extends WorldProvider {
         return false;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public double getVoidFogYFactor(){
         return 0.03125D;

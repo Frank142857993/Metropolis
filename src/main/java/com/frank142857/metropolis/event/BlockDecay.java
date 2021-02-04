@@ -72,7 +72,7 @@ public class BlockDecay {
             case 0:
                 return;
             case 1:
-                state = entity.world.provider.getDimension() == DimensionInit.dimensionType.getId();
+                state = entity.world.provider.getDimension() == DimensionInit.metropolis.getId();
                 break;
             case 2:
                 state = true;
