@@ -3,6 +3,7 @@ package com.frank142857.metropolis.world.dimension.metropolis;
 import java.util.List;
 import java.util.Random;
 
+import com.frank142857.metropolis.init.BlockInit;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,14 +19,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 
-
 public class ChunkGeneratorMetropolis implements IChunkGenerator {
-    protected static final IBlockState STONE = Blocks.STONE.getDefaultState();
+    protected static final IBlockState STONE = BlockInit.HARDENED_STONE.getDefaultState();
     protected static final IBlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
     protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
     protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
@@ -51,8 +49,6 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     double[] field_185989_h;
     private final NoiseGeneratorOctaves noiseGen4;
     private double stoneNoise[];
-    // private MapGenBase caveGenerator;
-    // private MapGenBaseMeta bigCaveGenerator;
 
     public ChunkGeneratorMetropolis(World worldIn, long seed) {
 
@@ -70,11 +66,6 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         this.field_185985_d = new NoiseGeneratorOctaves(this.rand, 8);
         this.heightMap = new double[825];
         this.field_185999_r = new float[25];
-
-        //enable caves
-        /*
-        caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(new MapGenCaves(),
-                net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);*/
 
         for (int i = -2; i <= 2; ++i) {
             for (int j = -2; j <= 2; ++j) {
@@ -103,13 +94,10 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.setBlocksInChunk(x, z, chunkprimer);
 
-        // addIceForestTop(x, z, chunkprimer);
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16,
                 16);
         this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
 
-        //enable caves
-        //this.caveGenerator.generate(this.world, x, z, chunkprimer);
 
         Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 

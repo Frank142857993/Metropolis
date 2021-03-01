@@ -4,6 +4,7 @@ import com.frank142857.metropolis.init.BiomeInit;
 import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.DimensionInit;
 import com.frank142857.metropolis.util.handlers.ConfigHandler;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -17,11 +18,14 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import java.util.Random;
 
 public class WorldGenMtrOres implements IWorldGenerator {
-    private WorldGenerator ore_argentum, ore_mtr_quartz;
+    private WorldGenerator ore_argentum, ore_mtr_quartz, stone, block_slimy_brick;
 
     public WorldGenMtrOres(){
-        ore_argentum = new WorldGenMinable(BlockInit.ORE_ARGENTUM.getDefaultState(), 9, BlockMatcher.forBlock(Blocks.STONE));
-        ore_mtr_quartz = new WorldGenMinable(BlockInit.ORE_MTR_QUARTZ.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.STONE));
+        ore_argentum = new WorldGenMinable(BlockInit.ORES_MTR.getStateFromMeta(5), 9, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        ore_mtr_quartz = new WorldGenMinable(BlockInit.ORES_MTR.getStateFromMeta(4), 14, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+
+        stone = new WorldGenMinable(Blocks.STONE.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        block_slimy_brick = new WorldGenMinable(BlockInit.SLIMY_BRICK.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
     }
 
     private void runGenerator(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, int minHeight, int maxHeight){
@@ -45,17 +49,11 @@ public class WorldGenMtrOres implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider){
-        switch(world.provider.getDimension()){
-            case 0:
-                if(ConfigHandler.DO_MTR_ORES_GENERATE){
-                    runGenerator(ore_argentum, world, random, chunkX, chunkZ, 2, 0, 32);
-                    runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 0, 54);
-                }
-                break;
-        }
         if(world.provider.getDimension() == DimensionInit.metropolis.getId()){
             runGenerator(ore_argentum, world, random, chunkX, chunkZ, 2, 0, 32);
             runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 0, 54);
+            runGenerator(stone, world, random, chunkX, chunkZ, 10, 32, 64);
+            runGenerator(block_slimy_brick, world, random, chunkX, chunkZ, 10, 16, 60);
         }
     }
 }

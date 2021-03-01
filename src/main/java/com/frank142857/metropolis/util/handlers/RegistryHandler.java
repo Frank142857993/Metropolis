@@ -19,27 +19,27 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class RegistryHandler {
 
     @SubscribeEvent
+    public static void onBlockRegistry(Register<Block> event){
+        event.getRegistry().registerAll(BlockInit.REGISTER_BLOCKS.toArray(new Block[0]));
+    }
+
+    @SubscribeEvent
     public static void onItemRegistry(Register<Item> event){
         event.getRegistry().register(new ItemBlock(BlockInit.BLOCK_MTR_PORTAL).setRegistryName(BlockMtrPortal.name));
         event.getRegistry().registerAll(ItemInit.REGISTER_ITEMS.toArray(new Item[0]));
     }
 
     @SubscribeEvent
-    public static void onBlockRegistry(Register<Block> event){
-        event.getRegistry().registerAll(BlockInit.REGISTER_BLOCKS.toArray(new Block[0]));
-    }
-
-    @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event){
-        for(Item item : ItemInit.REGISTER_ITEMS){
-            if(item instanceof IHasModel){
-                ((IHasModel)item).registerModel();
-            }
-        }
-
         for(Block block : BlockInit.REGISTER_BLOCKS){
             if(block instanceof IHasModel){
                 ((IHasModel) block).registerModel();
+            }
+        }
+
+        for(Item item : ItemInit.REGISTER_ITEMS){
+            if(item instanceof IHasModel){
+                ((IHasModel)item).registerModel();
             }
         }
     }

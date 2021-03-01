@@ -1,0 +1,39 @@
+{
+  "forge_marker": 1,
+  "defaults": {"model": "minecraft:cube_all"},
+  "variants": {
+    "variant": {
+      "iron": {
+        "textures": {
+          "all": "metropolis:blocks/ores/hardened_stone_ore_iron"
+        }
+      },
+      "gold": {
+        "textures": {
+          "all": "metropolis:blocks/ores/hardened_stone_ore_gold"
+        }
+      },
+      "diamond": {
+        "textures": {
+          "all": "metropolis:blocks/ores/hardened_stone_ore_diamond"
+        }
+      },
+      "redstone": {
+        "textures": {
+          "all": "metropolis:blocks/ores/hardened_stone_ore_redstone"
+        }
+      },
+      "quartz": {
+        "textures": {
+          "all": "metropolis:blocks/ores/hardened_stone_ore_quartz"
+        }
+      },
+      "argentum": {
+        "textures": {
+          "all": "metropolis:blocks/ores/hardened_stone_ore_argentum"
+        }
+      }
+    },
+    "inventory": [{"transform":  "forge:default-block"}]
+  }
+}

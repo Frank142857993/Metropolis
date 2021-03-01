@@ -8,11 +8,6 @@
           "layer0": "metropolis:items/ingots/steel"
         }
       },
-      "black_steel": {
-        "textures": {
-          "layer0": "metropolis:items/ingots/black_steel"
-        }
-      },
       "blue_steel": {
         "textures": {
           "layer0": "metropolis:items/ingots/blue_steel"

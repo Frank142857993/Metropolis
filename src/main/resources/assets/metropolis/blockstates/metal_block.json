@@ -8,11 +8,6 @@
           "all": "metropolis:blocks/metal_blocks/steel"
         }
       },
-      "black_steel": {
-        "textures": {
-          "all": "metropolis:blocks/metal_blocks/black_steel"
-        }
-      },
       "blue_steel": {
         "textures": {
           "all": "metropolis:blocks/metal_blocks/blue_steel"

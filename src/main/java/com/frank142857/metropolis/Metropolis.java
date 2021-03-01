@@ -54,6 +54,10 @@ public class Metropolis
         proxy.postInit(event);
     }
 
+    public void sop(Object obj){
+        System.out.println(obj);
+    }
+
     static {
         FluidRegistry.enableUniversalBucket();
     }

@@ -5,19 +5,15 @@ import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.CreativeTabInit;
 import com.frank142857.metropolis.init.ItemInit;
 import com.frank142857.metropolis.item.variants.ItemBlockVariants;
-import com.frank142857.metropolis.util.interfaces.IBlockDecay;
 import com.frank142857.metropolis.util.interfaces.IHasModel;
 import com.frank142857.metropolis.util.interfaces.IMetaName;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.BlockOre;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -27,42 +23,62 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class MetalBlocks extends Block implements IHasModel, IMetaName {
+import javax.annotation.Nullable;
 
-    private final String name = "metal_block";
+public class OresMTR extends BlockOre implements IHasModel, IMetaName {
+    
+    private final String name = "ore";
 
-    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<MetalBlocks.EnumType>create("variant", EnumType.class);
-
-    public MetalBlocks(){
-        super(Material.IRON, MapColor.IRON);
+    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("variant", OresMTR.EnumType.class);
+    
+    public OresMTR(){
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.STEEL));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.ARGENTUM));
         this.setCreativeTab(CreativeTabInit.TAB_METROPOLIS);
-        this.setHarvestLevel("pickaxe", 1);
-        this.setHardness(6.0F);
+        this.setHardness(4.5F);
         BlockInit.REGISTER_BLOCKS.add(this);
         ItemInit.REGISTER_ITEMS.add(new ItemBlockVariants(this).setRegistryName(name));
     }
 
     @Override
-    public int getLightValue(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        if(worldIn.getBlockState(pos).equals(this.getStateFromMeta(2))) return 4;
-        else return 0;
-    }
-
-    @Override
     public void registerModel(){
         for(int i = 0; i < EnumType.values().length; i++){
-            Metropolis.proxy.registerItemRenderer(Item.getItemFromBlock(this), i, "metal_block_" + EnumType.values()[i].getName(), "inventory");
+            Metropolis.proxy.registerItemRenderer(Item.getItemFromBlock(this), i, "ore_" + EnumType.values()[i].getName(), "inventory");
         }
     }
 
+    @Nullable
+    @Override
+    public String getHarvestTool(IBlockState state) {
+        return "pickaxe";
+    }
+
+    @Override
+    public int getHarvestLevel(IBlockState state) {
+        switch(this.getMetaFromState(state)){
+            case 0:
+            case 3:
+            case 4:
+                return 1;
+            default:
+                return 2;
+        }
+    }
+
+    @Override
+    public int getLightValue(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        if(worldIn.getBlockState(pos).equals(this.getStateFromMeta(5))) return 4;
+        else return 0;
+    }
+
     public static enum EnumType implements IStringSerializable {
-        STEEL(0, "steel", "steel"),
-        BLUE_STEEL(1, "blue_steel", "blue_steel"),
-        ARGENTUM(2, "argentum", "argentum"),
-        DYNAMITE(3, "dynamite", "dynamite");
+        IRON(0, "iron", "iron"),
+        GOLD(1, "gold", "gold"),
+        DIAMOND(2, "diamond", "diamond"),
+        REDSTONE(3, "redstone", "redstone"),
+        QUARTZ(4, "quartz", "quartz"),
+        ARGENTUM(5, "argentum", "argentum");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         private final int meta;
@@ -138,15 +154,5 @@ public class MetalBlocks extends Block implements IHasModel, IMetaName {
     @Override
     public String getSpecialName(ItemStack stack){
         return EnumType.values()[stack.getItemDamage()].getName();
-    }
-
-    @Override
-    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
-        return false;
-    }
-
-    @Override
-    public boolean isBeaconBase(IBlockAccess access, BlockPos pos1, BlockPos pos2) {
-        return true;
     }
 }

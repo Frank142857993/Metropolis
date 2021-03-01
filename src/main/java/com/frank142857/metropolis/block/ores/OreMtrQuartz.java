@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class OreMtrQuartz extends BlockOre implements IHasModel {
 
-    private final String name = "ore_mtr_quartz";
+    private final String name = "ore_overworld_quartz";
 
     public OreMtrQuartz() {
         this.setUnlocalizedName(name);

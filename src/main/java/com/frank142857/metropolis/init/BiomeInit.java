@@ -1,6 +1,5 @@
 package com.frank142857.metropolis.init;
 
-import com.frank142857.metropolis.util.handlers.ConfigHandler;
 import com.frank142857.metropolis.world.biomes.BiomeCityOfPresent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -20,10 +19,6 @@ public class BiomeInit {
         System.out.println("Biome City of Present registered");
         BiomeDictionary.addTypes(biome, types);
         BiomeManager.addSpawnBiome(biome);
-
-        if(ConfigHandler.DO_CITIES_GENERATE){
-            BiomeManager.addBiome(biomeType, new BiomeManager.BiomeEntry(biome, 100));
-        }
 
         System.out.println("Biome City of Present added");
         return biome;

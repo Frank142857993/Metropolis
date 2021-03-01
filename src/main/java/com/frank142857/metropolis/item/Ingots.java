@@ -49,10 +49,9 @@ public class Ingots extends Item implements IHasModel {
 
     public static enum EnumType implements IStringSerializable {
         STEEL(0, "steel", "steel"),
-        BLACK_STEEL(1, "black_steel", "black_steel"),
-        BLUE_STEEL(2, "blue_steel", "blue_steel"),
-        ARGENTUM(3, "argentum", "argentum"),
-        DYNAMITE(4, "dynamite", "dynamite");
+        BLUE_STEEL(1, "blue_steel", "blue_steel"),
+        ARGENTUM(2, "argentum", "argentum"),
+        DYNAMITE(3, "dynamite", "dynamite");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         private final int meta;

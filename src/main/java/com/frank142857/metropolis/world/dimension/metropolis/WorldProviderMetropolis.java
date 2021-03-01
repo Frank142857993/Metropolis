@@ -60,9 +60,14 @@ public class WorldProviderMetropolis extends WorldProvider {
         return WorldSleepResult.ALLOW;
     }
 
-    @Override
-    public boolean canRespawnHere(){
-        return false;
+    public boolean canCoordinateBeSpawn(int x, int z)
+    {
+        return true;
+    }
+
+    public boolean canRespawnHere()
+    {
+        return true;
     }
 
     @Override

@@ -1,0 +1,10 @@
+{
+  "parent": "block/grass",
+  "textures": {
+    "particle": "metropolis:blocks/surface_grass_top",
+    "bottom": "metropolis:blocks/heavy_dirt",
+    "top": "metropolis:blocks/surface_grass_top",
+    "side": "metropolis:blocks/surface_grass_side",
+    "overlay": "metropolis:blocks/surface_grass_side_overlay"
+  }
+}

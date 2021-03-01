@@ -1,19 +1,27 @@
 item.metal_ingot_steel.name=Ingot of Steel
-item.metal_ingot_black_steel.name=Ingot of Black Steel [Add texture plz]
 item.metal_ingot_blue_steel.name=Ingot of Blue Steel
 item.metal_ingot_argentum.name=Ingot of Argentum
-item.metal_ingot_dynamite.name=Ingot of Dynamite [Add texture plz]
+item.metal_ingot_dynamite.name=Ingot of Dynamite
 
 item.teleportation_rod.name=Rod of Teleportation
 
-tile.ore_argentum.name=Argentum Ore
-tile.ore_mtr_quartz.name=Quartz Ore
+tile.ore_iron.name=Iron Plated Hardened Stone
+tile.ore_gold.name=Gold Plated Hardened Stone
+tile.ore_diamond.name=Hardened Stone Diamond Ore
+tile.ore_redstone.name=Hardened Stone Redstone Ore
+tile.ore_quartz.name=Hardened Stone Quartz Ore
+tile.ore_argentum.name=Hardened Stone Argentum Ore
+tile.ore_overworld_argentum.name=Argentum Ore
+tile.ore_overworld_quartz.name=Quartz Ore
 
+tile.surface_grass.name=Surface Grass
+tile.heavy_dirt.name=Heavy Dirt
+tile.hardened_stone.name=Hardened Stone
 tile.metal_block_steel.name=Block of Steel
-tile.metal_block_black_steel.name=Block of Black Steel [Add texture plz]
 tile.metal_block_blue_steel.name=Block of Blue Steel
 tile.metal_block_argentum.name=Block of Argentum
 tile.metal_block_dynamite.name=Block of Dynamite [Add texture plz]
+tile.slimy_brick.name=Slimy Brick
 
 tile.mtr_portal.name=Metropolis Portal
 

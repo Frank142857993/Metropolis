@@ -1,19 +1,27 @@
 item.metal_ingot_steel.name=钢锭
-item.metal_ingot_black_steel.name=黑钢锭【请补充材质】
 item.metal_ingot_blue_steel.name=蓝钢锭
 item.metal_ingot_argentum.name=闪银锭
-item.metal_ingot_dynamite.name=生长合金锭【请补充材质】
+item.metal_ingot_dynamite.name=Dynamite 锭
 
 item.teleportation_rod.name=传送棒
 
+tile.ore_iron.name=镶铁顽石
+tile.ore_gold.name=镶金顽石
+tile.ore_diamond.name=钻石矿石
+tile.ore_redstone.name=红石矿石
+tile.ore_quartz.name=石英矿石
+tile.ore_overworld_quartz.name=石英矿石 I
 tile.ore_argentum.name=闪银矿石
-tile.ore_mtr_quartz.name=石英矿石
+tile.ore_overworld_argentum.name=闪银矿石 I
 
+tile.surface_grass.name=表层草
+tile.heavy_dirt.name=硬化土
+tile.hardened_stone.name=顽石
 tile.metal_block_steel.name=钢块
-tile.metal_block_black_steel.name=黑钢块【请补充材质】
 tile.metal_block_blue_steel.name=蓝钢块
 tile.metal_block_argentum.name=闪银块
-tile.metal_block_dynamite.name=生长合金块【请补充材质】
+tile.metal_block_dynamite.name=Dynamite 块【请补充材质】
+tile.slimy_brick.name=粘滑地下砖
 
 tile.mtr_portal.name=大都会传送门
 

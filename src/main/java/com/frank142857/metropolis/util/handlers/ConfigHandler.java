@@ -14,14 +14,6 @@ public class ConfigHandler {
     //Dimension IDs
     public static int METROPOLIS = 8;
 
-    @Config.RequiresWorldRestart
-    //If urban biomes generate in the Overworld
-    public static boolean DO_CITIES_GENERATE = false;
-
-    @Config.RequiresWorldRestart
-    //If mtr ores generate in the Overworld
-    public static boolean DO_MTR_ORES_GENERATE = false;
-
     //Is portal enabled
     public static boolean ENABLE_PORTAL = true;
 
@@ -37,14 +29,6 @@ public class ConfigHandler {
         category = "DIM_ID";
         config.addCustomCategoryComment(category, "Set the dimension ID for dimension Metropolis, default:8");
         METROPOLIS = config.getInt("Dimension Metropolis", category, 8, 2, 255, "Dim ID for Dimension Metropolis", "set_dim_id");
-
-        category = "BIOME";
-        config.addCustomCategoryComment(category, "Decide if MTR areas generate in the Overworld, default:false");
-        DO_CITIES_GENERATE = config.getBoolean("City areas generating", category, false, "MTR biomes generate in the Overworld", "do_cities_generate");
-
-        category = "ORES";
-        config.addCustomCategoryComment(category, "Decide if MTR ores generate in the Overworld, default:false");
-        DO_MTR_ORES_GENERATE = config.getBoolean("Mtr ores generating", category, false, "Mtr ores generate in the Overworld", "do_mtr_ores_generate");
 
         category = "PORTAL";
         config.addCustomCategoryComment(category, "Decide if MTR portal is enabled, default:true");

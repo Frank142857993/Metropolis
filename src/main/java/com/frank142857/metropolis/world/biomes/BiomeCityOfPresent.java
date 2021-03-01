@@ -1,5 +1,6 @@
 package com.frank142857.metropolis.world.biomes;
 
+import com.frank142857.metropolis.init.BlockInit;
 import net.minecraft.entity.passive.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -14,10 +15,11 @@ public class BiomeCityOfPresent extends Biome {
                 .setTemperature(0.8F)
                 .setRainfall(0.4F)
                 .setSnowEnabled()
-                .setWaterColor(0x669966));
+                .setWaterColor(6723942));
 
-        topBlock = Blocks.GRASS.getDefaultState();
-        fillerBlock = Blocks.DIRT.getDefaultState();
+        //TODO change back to SURFACE_GRASS after the texture prob is fixed
+        topBlock = BlockInit.SURFACE_GRASS.getDefaultState();
+        fillerBlock = BlockInit.HEAVY_DIRT.getDefaultState();
         this.decorator.treesPerChunk = 0;
         this.decorator.extraTreeChance = 0.03F;
         this.addSpawnables();

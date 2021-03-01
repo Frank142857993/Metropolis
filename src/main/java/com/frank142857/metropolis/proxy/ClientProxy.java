@@ -1,8 +1,14 @@
 package com.frank142857.metropolis.proxy;
 
 import com.frank142857.metropolis.Metropolis;
+import com.frank142857.metropolis.init.BlockInit;
+import com.frank142857.metropolis.util.interfaces.IPlantColor;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -23,6 +29,16 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void postInit(FMLPostInitializationEvent event){
+        for (Block block : BlockInit.REGISTER_BLOCKS) {
+            if (block instanceof IPlantColor) {
+                final IPlantColor i = (IPlantColor) block;
+                if (Item.getItemFromBlock(block) != Items.AIR) {
+                    Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> i.getColorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex), block);
+                }
+                Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(i::getColorMultiplier, block);
+            }
+        }
+
         super.postInit(event);
     }
 

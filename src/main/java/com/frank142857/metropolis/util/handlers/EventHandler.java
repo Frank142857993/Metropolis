@@ -35,11 +35,11 @@ public class EventHandler {
         switch(ConfigHandler.DEATH_CHEST){
             case 0:
                 break;
-            case 1:
-                b1 = worldIn.provider.getDimension() == DimensionInit.metropolis.getId();
-                break;
             case 2:
                 b1 = true;
+                break;
+            default:
+                b1 = worldIn.provider.getDimension() == DimensionInit.metropolis.getId();
                 break;
         }
 
