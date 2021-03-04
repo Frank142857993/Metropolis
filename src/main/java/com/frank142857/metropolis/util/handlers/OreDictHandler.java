@@ -8,21 +8,18 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class OreDictHandler {
     @SubscribeEvent
-    public static void onOreDictRegistry(){
+    public static void registerOreDict(){
         OreDictionary.registerOre("ingotSteel", new ItemStack(ItemInit.INGOTS, 1, 0));
         OreDictionary.registerOre("ingotBlueSteel", new ItemStack(ItemInit.INGOTS, 1, 1));
         OreDictionary.registerOre("ingotArgentum", new ItemStack(ItemInit.INGOTS, 1, 2));
         OreDictionary.registerOre("ingotDynamite", new ItemStack(ItemInit.INGOTS, 1, 3));
 
-        OreDictionary.registerOre("oreDiamond", new ItemStack(BlockInit.ORES_MTR, 1, 2));
-        OreDictionary.registerOre("oreRedstone", new ItemStack(BlockInit.ORES_MTR, 1, 3));
-        OreDictionary.registerOre("oreQuartz", new ItemStack(BlockInit.ORES_MTR, 1, 4));
         OreDictionary.registerOre("oreQuartz", BlockInit.ORE_MTR_QUARTZ);
-        OreDictionary.registerOre("oreArgentum", new ItemStack(BlockInit.ORES_MTR, 1, 5));
         OreDictionary.registerOre("oreArgentum", BlockInit.ORE_ARGENTUM);
 
         OreDictionary.registerOre("dirt", BlockInit.HEAVY_DIRT);
         OreDictionary.registerOre("stone", BlockInit.HARDENED_STONE);
+        OreDictionary.registerOre("cobblestone", BlockInit.HARDENED_STONE);
         OreDictionary.registerOre("grass", BlockInit.SURFACE_GRASS);
 
         OreDictionary.registerOre("blockSteel", new ItemStack(BlockInit.METAL_BLOCKS, 1, 0));

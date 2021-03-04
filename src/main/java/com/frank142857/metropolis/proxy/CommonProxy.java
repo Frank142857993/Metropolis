@@ -17,7 +17,7 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event){
         SoundsHandler.registerSounds();
-        OreDictHandler.onOreDictRegistry();
+        OreDictHandler.registerOreDict();
         RegistryHandler.registerSmeltingRecipe();
     }
 

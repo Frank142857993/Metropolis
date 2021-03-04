@@ -5,14 +5,15 @@ item.metal_ingot_dynamite.name=Dynamite 锭
 
 item.teleportation_rod.name=传送棒
 
-tile.ore_iron.name=镶铁顽石
-tile.ore_gold.name=镶金顽石
-tile.ore_diamond.name=钻石矿石
-tile.ore_redstone.name=红石矿石
-tile.ore_quartz.name=石英矿石
+tile.iron_ore.name=镶铁顽石
+tile.gold_ore.name=镶金顽石
+tile.diamond_ore.name=钻石矿石
+tile.redstone_ore.name=红石矿石
+tile.quartz_ore.name=石英矿石
 tile.ore_overworld_quartz.name=石英矿石 I
-tile.ore_argentum.name=闪银矿石
+tile.argentum_ore.name=闪银矿石
 tile.ore_overworld_argentum.name=闪银矿石 I
+tile.dynamite_ore.name=Dynamite 矿石
 
 tile.surface_grass.name=表层草
 tile.heavy_dirt.name=硬化土
@@ -20,7 +21,18 @@ tile.hardened_stone.name=顽石
 tile.metal_block_steel.name=钢块
 tile.metal_block_blue_steel.name=蓝钢块
 tile.metal_block_argentum.name=闪银块
-tile.metal_block_dynamite.name=Dynamite 块【请补充材质】
+tile.metal_block_dynamite.name=Dynamite 块
+
+tile.iron_block_slightly_rusted.name=轻微锈蚀的铁块
+tile.iron_block_partly_rusted.name=部分锈蚀的铁块
+tile.iron_block_severely_rusted.name=严重锈蚀的铁块
+tile.iron_block_rusted.name=全部锈蚀的铁块
+
+tile.white_marble.name=白色大理石
+tile.white_marble_slightly_cracked.name=轻微损坏的白色大理石
+tile.white_marble_severely_cracked.name=部分损坏的白色大理石
+tile.white_marble_cracked.name=严重损坏的白色大理石
+
 tile.slimy_brick.name=粘滑地下砖
 
 tile.mtr_portal.name=大都会传送门

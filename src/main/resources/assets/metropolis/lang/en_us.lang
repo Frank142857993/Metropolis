@@ -5,14 +5,15 @@ item.metal_ingot_dynamite.name=Ingot of Dynamite
 
 item.teleportation_rod.name=Rod of Teleportation
 
-tile.ore_iron.name=Iron Plated Hardened Stone
-tile.ore_gold.name=Gold Plated Hardened Stone
-tile.ore_diamond.name=Hardened Stone Diamond Ore
-tile.ore_redstone.name=Hardened Stone Redstone Ore
-tile.ore_quartz.name=Hardened Stone Quartz Ore
-tile.ore_argentum.name=Hardened Stone Argentum Ore
-tile.ore_overworld_argentum.name=Argentum Ore
+tile.iron_ore.name=Iron Plated Hardened Stone
+tile.gold_ore.name=Gold Plated Hardened Stone
+tile.diamond_ore.name=Hardened Stone Diamond Ore
+tile.redstone_ore.name=Hardened Stone Redstone Ore
+tile.quartz_ore.name=Hardened Stone Quartz Ore
 tile.ore_overworld_quartz.name=Quartz Ore
+tile.argentum_ore.name=Hardened Stone Argentum Ore
+tile.ore_overworld_argentum.name=Argentum Ore
+tile.dynamite_ore.name=Dynamite Ore
 
 tile.surface_grass.name=Surface Grass
 tile.heavy_dirt.name=Heavy Dirt
@@ -20,7 +21,18 @@ tile.hardened_stone.name=Hardened Stone
 tile.metal_block_steel.name=Block of Steel
 tile.metal_block_blue_steel.name=Block of Blue Steel
 tile.metal_block_argentum.name=Block of Argentum
-tile.metal_block_dynamite.name=Block of Dynamite [Add texture plz]
+tile.metal_block_dynamite.name=Block of Dynamite
+
+tile.iron_block_slightly_rusted.name=Slightly Rusted Block of Iron
+tile.iron_block_partly_rusted.name=Partly Rusted Block of Iron
+tile.iron_block_severely_rusted.name=Severely Rusted Block of Iron
+tile.iron_block_rusted.name=Rusted Block of Iron
+
+tile.white_marble.name=White Marble
+tile.white_marble_slightly_cracked.name=Slightly Cracked White Marble
+tile.white_marble_severely_cracked.name=Severely Cracked White Marble
+tile.white_marble_cracked.name=Cracked White Marble
+
 tile.slimy_brick.name=Slimy Brick
 
 tile.mtr_portal.name=Metropolis Portal

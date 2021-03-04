@@ -65,7 +65,7 @@ public class OreMtrQuartz extends BlockOre implements IHasModel {
     }
 
     @Override
-    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos metadata, int fortune) { //掉落经验数量，2~5之间随机
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos metadata, int fortune) {
         Random rand = world instanceof World ? ((World)world).rand : new Random();
         if (this.getItemDropped(state, rand, fortune) != Item.getItemFromBlock(this)) {
             int i = 0;

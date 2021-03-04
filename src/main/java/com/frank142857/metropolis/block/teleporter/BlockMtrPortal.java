@@ -253,11 +253,7 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
                 d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
             }
 
-            /*
-            TODO add particle
-            */
             ParticleSpawner.spawnParticle(MtrEnumParticleTypes.MTR_PORTAL, d0, d1, d2, d3, d4, d5);
-            //worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
         }
     }
 

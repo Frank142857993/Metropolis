@@ -1,6 +1,7 @@
 package com.frank142857.metropolis.event;
 
 import com.frank142857.metropolis.Metropolis;
+import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.util.interfaces.IBlockDecay;
 import com.frank142857.metropolis.init.DimensionInit;
 import com.frank142857.metropolis.util.handlers.ConfigHandler;
@@ -40,40 +41,17 @@ public class BlockDecay {
                 Blocks.STONEBRICK.getDefaultState(),
                 Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY),
                 Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED),
-                /*
-                TODO add marble to decaying blocks
-                BlockRegistryHandler.BLOCK_MARBLE.getDefaultState(),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK.getDefaultState(),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK.getDefaultState().withProperty(BlockMarbleBrick.VARIANT, BlockMarbleBrick.EnumType.PATTERN_B),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK.getDefaultState().withProperty(BlockMarbleBrick.VARIANT, BlockMarbleBrick.EnumType.PATTERN_C),
-                BlockRegistryHandler.BLOCK_MARBLE_CRACKED.getDefaultState(),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK_CRACKED.getDefaultState(),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK_CRACKED.getDefaultState().withProperty(BlockMarbleBrickCracked.VARIANT, BlockMarbleBrickCracked.EnumType.PATTERN_B),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK_CRACKED.getDefaultState().withProperty(BlockMarbleBrickCracked.VARIANT, BlockMarbleBrickCracked.EnumType.PATTERN_C),
-
-                 */
-
+                Blocks.IRON_BLOCK.getDefaultState()
         };
 
         IBlockState[] after = new IBlockState[]{
                 Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY),
                 Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED),
                 Blocks.AIR.getDefaultState(),
-                /*
-                BlockRegistryHandler.BLOCK_MARBLE_CRACKED.getDefaultState(),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK_CRACKED.getDefaultState(),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK_CRACKED.getDefaultState().withProperty(BlockMarbleBrickCracked.VARIANT, BlockMarbleBrickCracked.EnumType.PATTERN_B),
-                BlockRegistryHandler.BLOCK_MARBLE_BRICK_CRACKED.getDefaultState().withProperty(BlockMarbleBrickCracked.VARIANT, BlockMarbleBrickCracked.EnumType.PATTERN_C),
-                Blocks.AIR.getDefaultState(),
-                Blocks.AIR.getDefaultState(),
-                Blocks.AIR.getDefaultState(),
-                Blocks.AIR.getDefaultState()
-
-                 */
+                BlockInit.SLIGHTLY_RUSTED_IRON_BLOCK.getDefaultState()
         };
 
-        //int[] chances = new int[]{250000, 10000, 5000, 400000, 300000, 299999, 299998, 8000, 6000, 5999, 5998};
-        int[] chances = new int[]{50, 50, 50};
+        int[] chances = new int[]{3000, 1500, 1000, 9000};
 
         boolean state = false;
 

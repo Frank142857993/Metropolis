@@ -21,8 +21,8 @@ public class WorldGenMtrOres implements IWorldGenerator {
     private WorldGenerator ore_argentum, ore_mtr_quartz, stone, block_slimy_brick;
 
     public WorldGenMtrOres(){
-        ore_argentum = new WorldGenMinable(BlockInit.ORES_MTR.getStateFromMeta(5), 9, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
-        ore_mtr_quartz = new WorldGenMinable(BlockInit.ORES_MTR.getStateFromMeta(4), 14, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        ore_argentum = new WorldGenMinable(BlockInit.ARGENTUM_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        ore_mtr_quartz = new WorldGenMinable(BlockInit.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
 
         stone = new WorldGenMinable(Blocks.STONE.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
         block_slimy_brick = new WorldGenMinable(BlockInit.SLIMY_BRICK.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
