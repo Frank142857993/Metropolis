@@ -1,7 +1,6 @@
 package com.frank142857.metropolis.util.handlers;
 
 import com.frank142857.metropolis.init.*;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;

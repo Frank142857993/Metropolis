@@ -18,6 +18,7 @@ tile.dynamite_ore.name=Dynamite 矿石
 tile.surface_grass.name=表层草
 tile.heavy_dirt.name=硬化土
 tile.hardened_stone.name=顽石
+tile.polished_hardened_stone.name=平滑顽石
 tile.metal_block_steel.name=钢块
 tile.metal_block_blue_steel.name=蓝钢块
 tile.metal_block_argentum.name=闪银块
@@ -33,7 +34,9 @@ tile.white_marble_slightly_cracked.name=轻微损坏的白色大理石
 tile.white_marble_severely_cracked.name=部分损坏的白色大理石
 tile.white_marble_cracked.name=严重损坏的白色大理石
 
-tile.slimy_brick.name=粘滑地下砖
+tile.under_brick.name=地下砖
+tile.slimy_under_brick.name=粘滑地下砖
+tile.hardened_under_brick.name=硬化地下砖
 
 tile.mtr_portal.name=大都会传送门
 
