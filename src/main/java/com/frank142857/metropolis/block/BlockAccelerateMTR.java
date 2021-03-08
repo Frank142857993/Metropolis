@@ -19,18 +19,22 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockSlimyBrick extends Block implements IHasModel {
-    protected static final AxisAlignedBB SLIMY_BRICK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
+public class BlockAccelerateMTR extends Block implements IHasModel {
+    protected static final AxisAlignedBB MTR_BASE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 
-    private final String name = "slimy_brick";
+    private double motion = 1.0D;
 
-    public BlockSlimyBrick(){
-        super(Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY);
-        this.setUnlocalizedName(name);
+    public BlockAccelerateMTR(
+            String name, Material material, MapColor color, String harvestTool, int harvestLevel, float hardness, float lightValue, double motion)
+    {
+        super(material, color);
+        this.motion = motion;
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+        this.setHarvestLevel(harvestTool, harvestLevel);
+        this.setHardness(hardness);
+        this.setLightLevel(lightValue);
         this.setCreativeTab(CreativeTabInit.TAB_METROPOLIS);
-        this.setHarvestLevel("pickaxe", 0);
-        this.setHardness(3.0F);
         BlockInit.REGISTER_BLOCKS.add(this);
         ItemInit.REGISTER_ITEMS.add(new ItemBlock(this).setRegistryName(name));
     }
@@ -47,11 +51,20 @@ public class BlockSlimyBrick extends Block implements IHasModel {
 
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox(IBlockState p_getCollisionBoundingBox_1_, IBlockAccess p_getCollisionBoundingBox_2_, BlockPos p_getCollisionBoundingBox_3_) {
-        return SLIMY_BRICK_AABB;
+        return MTR_BASE_AABB;
     }
 
     public void onEntityCollidedWithBlock(World p_onEntityCollidedWithBlock_1_, BlockPos p_onEntityCollidedWithBlock_2_, IBlockState p_onEntityCollidedWithBlock_3_, Entity p_onEntityCollidedWithBlock_4_) {
-        p_onEntityCollidedWithBlock_4_.motionX *= 0.6D;
-        p_onEntityCollidedWithBlock_4_.motionZ *= 0.6D;
+        p_onEntityCollidedWithBlock_4_.motionX *= motion;
+        p_onEntityCollidedWithBlock_4_.motionZ *= motion;
+    }
+
+    public double getMotionFactor() {
+        return motion;
+    }
+
+    public Block setMotionFactor(double motion){
+        this.motion = motion;
+        return this;
     }
 }
