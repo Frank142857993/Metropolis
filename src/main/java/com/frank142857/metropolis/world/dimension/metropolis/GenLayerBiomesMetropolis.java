@@ -8,8 +8,14 @@ import net.minecraft.world.gen.layer.IntCache;
 
 public class GenLayerBiomesMetropolis extends GenLayer {
 
-    //TODO add more MTR biomes
-    private Biome[] allowedBiomes = {BiomeInit.CITY_OF_PRESENT, Biomes.DEEP_OCEAN};
+    private Biome[] allowedBiomes = {
+            BiomeInit.CITY_OF_PRESENT,
+            BiomeInit.LAND_OF_PAST,
+            BiomeInit.FOREST_OF_CRANE,
+            BiomeInit.OVERGROUND_GARDEN,
+            BiomeInit.WHITE_DESERT,
+            BiomeInit.LAKE_OF_SILENCE
+    };
 
     public GenLayerBiomesMetropolis(long seed)
     {

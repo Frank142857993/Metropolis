@@ -1,17 +1,13 @@
 package com.frank142857.metropolis.init;
 
 import com.frank142857.metropolis.block.*;
-import com.frank142857.metropolis.block.base.BlockDirtMTR;
-import com.frank142857.metropolis.block.base.BlockGrassMTR;
-import com.frank142857.metropolis.block.base.BlockStoneMTR;
-import com.frank142857.metropolis.block.decay.BlockRustedIron;
-import com.frank142857.metropolis.block.decay.BlockWhiteMarble;
+import com.frank142857.metropolis.block.base.*;
+import com.frank142857.metropolis.block.decay.*;
 import com.frank142857.metropolis.block.fluids.*;
 import com.frank142857.metropolis.block.ores.*;
-import com.frank142857.metropolis.block.teleporter.BlockMtrPortal;
+import com.frank142857.metropolis.block.teleporter.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.material.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +32,7 @@ public class BlockInit {
     public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
     public static final OreMtrQuartz ORE_MTR_QUARTZ = new OreMtrQuartz();
     public static final OreArgentum ORE_ARGENTUM = new OreArgentum();
-    public static final MetalBlocks METAL_BLOCKS = new MetalBlocks();
+    public static final MetalBlockMTR METAL_BLOCKS = new MetalBlockMTR();
     public static final BlockRustedIron SLIGHTLY_RUSTED_IRON_BLOCK = new BlockRustedIron("_slightly_rusted", 5.0F);
     public static final BlockRustedIron PARTLY_RUSTED_IRON_BLOCK = new BlockRustedIron("_partly_rusted", 4.0F);
     public static final BlockRustedIron SEVERELY_RUSTED_IRON_BLOCK = new BlockRustedIron("_severely_rusted", 3.0F);
@@ -54,5 +50,7 @@ public class BlockInit {
     public static final BlockMTR HARDENED_UNDER_BRICK = new BlockMTR(
             "hardened_under_brick", Material.ROCK, MapColor.SILVER, "pickaxe", 0, 5.0F, 0
     );
+
+    public static final Block BLOCK_WASTED_WATER = new BlockWastedWater();
     public static final Block BLOCK_CRUDE = new BlockCrude();
 }

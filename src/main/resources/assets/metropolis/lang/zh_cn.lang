@@ -41,6 +41,9 @@ tile.hardened_under_brick.name=硬化地下砖
 tile.mtr_portal.name=大都会传送门
 
 fluid.crude=原油
+fluid.wasted_water=废水
+
+message.metropolis.food_not_suitable=%s发现自己的嘴巴变得挑剔。
 
 subtitles.block.mtr_portal.ambient=那是什么声音?
 

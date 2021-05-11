@@ -26,6 +26,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     protected static final IBlockState STONE = BlockInit.HARDENED_STONE.getDefaultState();
     protected static final IBlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
     protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
+    //TODO wasted water / 0x497400 (city) + 0x344b0e (past)
     protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
     protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
     private final Random rand;
@@ -281,8 +282,10 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         int i1 = z & 15;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
         for (int j1 = 255; j1 >= 0; --j1) {
-            if (j1 == 0) {
-                chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+            Random random = new Random();
+            if (j1 == 0) chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+            else if (j1 < random.nextInt(9)) {
+                chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);//TODO
             } else {
                 IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
                 if (iblockstate2.getMaterial() == Material.AIR) {

@@ -53,9 +53,15 @@ public class RegistryHandler {
     }
 
     public static void registerSmeltingRecipe(){
-        addSmelting(Item.getItemFromBlock(BlockInit.ORE_ARGENTUM), new ItemStack(ItemInit.INGOTS, 1, 3), 0.7F);
+        addSmelting(Item.getItemFromBlock(BlockInit.ORE_ARGENTUM), new ItemStack(ItemInit.INGOTS, 1, 2), 0.4F);
         addSmelting(Item.getItemFromBlock(BlockInit.ORE_MTR_QUARTZ), Items.QUARTZ, 0.2F);
-        //addSmelting(Items.IRON_INGOT, ItemInit.NUGGET_STEEL, 0.15F);
+        addSmelting(Item.getItemFromBlock(BlockInit.IRON_ORE), Items.IRON_INGOT, 0.15F);
+        addSmelting(Item.getItemFromBlock(BlockInit.GOLD_ORE), Items.GOLD_INGOT, 0.2F);
+        addSmelting(Item.getItemFromBlock(BlockInit.DIAMOND_ORE), Items.DIAMOND, 0.3F);
+        addSmelting(Item.getItemFromBlock(BlockInit.REDSTONE_ORE), Items.REDSTONE, 0.15F);
+        addSmelting(Item.getItemFromBlock(BlockInit.QUARTZ_ORE), Items.QUARTZ, 0.15F);
+        addSmelting(Item.getItemFromBlock(BlockInit.ARGENTUM_ORE), new ItemStack(ItemInit.INGOTS, 1, 2), 0.4F);
+        addSmelting(Item.getItemFromBlock(BlockInit.DYNAMITE_ORE), new ItemStack(ItemInit.INGOTS, 1, 3), 0.55F);
     }
 
     public static void worldGenRegistries(){

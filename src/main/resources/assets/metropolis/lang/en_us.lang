@@ -41,6 +41,9 @@ tile.hardened_under_brick.name=Hardened Under Brick
 tile.mtr_portal.name=Metropolis Portal
 
 fluid.crude=Crude
+fluid.wasted_water=Wasted Water
+
+message.metropolis.food_not_suitable=%s found itself a picky eater.
 
 subtitles.block.mtr_portal.ambient=What's that noise?
 

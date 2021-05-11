@@ -3,8 +3,11 @@ package com.frank142857.metropolis.world.dimension.metropolis;
 import com.frank142857.metropolis.init.DimensionInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.storage.DerivedWorldInfo;
 import net.minecraft.world.storage.WorldInfo;
@@ -82,7 +85,7 @@ public class WorldProviderMetropolis extends WorldProvider {
 
     @Override
     public float getCloudHeight(){
-        return 255.0F;
+        return 133F;
     }
 
     @Override
@@ -99,6 +102,24 @@ public class WorldProviderMetropolis extends WorldProvider {
     @SideOnly(Side.CLIENT)
     public double getVoidFogYFactor(){
         return 0.03125D;
+    }
+
+    @Override
+    public Vec3d getFogColor(float f, float f1) {
+        float bright = MathHelper.cos(0.25f * 3.141593F * 2.0F) * 2.0F + 0.5F;
+        if (bright < 0.0F) {
+            bright = 0.0F;
+        }
+        if (bright > 1.0F) {
+            bright = 1.0F;
+        }
+        float red = 0.8945312F;
+        float green = 0.8945312F;
+        float blue = 0.8945312F;
+        red *= bright * 0.94F + 0.06F;
+        green *= bright * 0.94F + 0.06F;
+        blue *= bright * 0.91F + 0.09F;
+        return new Vec3d(red, green, blue);
     }
 
 }

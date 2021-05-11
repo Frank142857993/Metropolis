@@ -16,12 +16,18 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import java.util.Random;
 
 public class WorldGenMtrOres implements IWorldGenerator {
-    private WorldGenerator ore_argentum, ore_mtr_quartz, stone, block_under_brick, block_slimy_brick;
+    private WorldGenerator iron, gold, diamond, redstone, ore_argentum, ore_mtr_quartz, dynamite, dirt, stone, block_under_brick, block_slimy_brick;
 
     public WorldGenMtrOres(){
+        iron = new WorldGenMinable(BlockInit.IRON_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        gold = new WorldGenMinable(BlockInit.GOLD_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        diamond = new WorldGenMinable(BlockInit.DIAMOND_ORE.getDefaultState(), 8, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        redstone = new WorldGenMinable(BlockInit.REDSTONE_ORE.getDefaultState(), 8, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
         ore_argentum = new WorldGenMinable(BlockInit.ARGENTUM_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
+        dynamite = new WorldGenMinable(BlockInit.DYNAMITE_ORE.getDefaultState(), 4, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
         ore_mtr_quartz = new WorldGenMinable(BlockInit.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
 
+        dirt = new WorldGenMinable(BlockInit.HEAVY_DIRT.getDefaultState(), 45, BlockMatcher.forBlock(Blocks.DIRT));
         stone = new WorldGenMinable(Blocks.STONE.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
         block_under_brick = new WorldGenMinable(BlockInit.UNDER_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
         block_slimy_brick = new WorldGenMinable(BlockInit.SLIMY_UNDER_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.HARDENED_STONE));
@@ -39,18 +45,21 @@ public class WorldGenMtrOres implements IWorldGenerator {
 
             int y = minHeight + random.nextInt(heightDiff);
 
-            if(world.getBiome(new BlockPos(x, y, z)).equals(BiomeInit.CITY_OF_PRESENT)){
-                //TODO add more MTR biomes
-                generator.generate(world, random, new BlockPos(x, y, z));
-            }
+            generator.generate(world, random, new BlockPos(x, y, z));
         }
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider){
         if(world.provider.getDimension() == DimensionInit.metropolis.getId()){
+            runGenerator(iron, world, random, chunkX, chunkZ, 6, 0, 60);
+            runGenerator(gold, world, random, chunkX, chunkZ, 2, 0, 32);
+            runGenerator(diamond, world, random, chunkX, chunkZ, 1, 0, 16);
+            runGenerator(redstone, world, random, chunkX, chunkZ, 8, 0, 16);
             runGenerator(ore_argentum, world, random, chunkX, chunkZ, 2, 0, 32);
+            runGenerator(dynamite, world, random, chunkX, chunkZ, 1, 0, 8);
             runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 0, 54);
+            runGenerator(dirt, world, random, chunkX, chunkZ, 5, 60, 256);
             runGenerator(stone, world, random, chunkX, chunkZ, 10, 32, 64);
             runGenerator(block_under_brick, world, random, chunkX, chunkZ, 5, 28, 60);
             runGenerator(block_slimy_brick, world, random, chunkX, chunkZ, 5, 16, 40);

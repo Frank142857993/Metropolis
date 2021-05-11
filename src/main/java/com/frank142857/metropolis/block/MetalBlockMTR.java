@@ -5,7 +5,6 @@ import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.CreativeTabInit;
 import com.frank142857.metropolis.init.ItemInit;
 import com.frank142857.metropolis.item.variants.ItemBlockVariants;
-import com.frank142857.metropolis.util.interfaces.IBlockDecay;
 import com.frank142857.metropolis.util.interfaces.IHasModel;
 import com.frank142857.metropolis.util.interfaces.IMetaName;
 import net.minecraft.block.Block;
@@ -17,7 +16,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -27,13 +25,15 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class MetalBlocks extends Block implements IHasModel, IMetaName {
+import java.util.Random;
+
+public class MetalBlockMTR extends Block implements IHasModel, IMetaName {
 
     private final String name = "metal_block";
 
-    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<MetalBlocks.EnumType>create("variant", EnumType.class);
+    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<MetalBlockMTR.EnumType>create("variant", EnumType.class);
 
-    public MetalBlocks(){
+    public MetalBlockMTR(){
         super(Material.IRON, MapColor.IRON);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
@@ -56,6 +56,11 @@ public class MetalBlocks extends Block implements IHasModel, IMetaName {
         for(int i = 0; i < EnumType.values().length; i++){
             Metropolis.proxy.registerItemRenderer(Item.getItemFromBlock(this), i, "metal_block_" + EnumType.values()[i].getName(), "inventory");
         }
+    }
+
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random) {
+        return 0;
     }
 
     public static enum EnumType implements IStringSerializable {

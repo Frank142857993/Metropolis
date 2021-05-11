@@ -22,8 +22,21 @@ public class FluidInit {
             .setTemperature(400)
             .setViscosity(25000);
 
+    public static final FluidBaseMTR WASTED_WATER = (FluidBaseMTR) new FluidBaseMTR("wasted_water",
+            new ResourceLocation(Metropolis.MODID, "blocks/wasted_water_still"),
+            new ResourceLocation(Metropolis.MODID, "blocks/wasted_water_flow"))
+            .setMaterial(Material.WATER)
+            .setHasBucket(true)
+            .setColor(Color.LIGHT_GRAY)
+            .setDensity(1000)
+            .setLuminosity(4)
+            .setGaseous(false)
+            .setTemperature(25)
+            .setViscosity(1200);
+
     public static void registerFluids(){
         registerFluid(CRUDE);
+        registerFluid(WASTED_WATER);
     }
 
     public static void registerFluid(FluidBaseMTR fluid){

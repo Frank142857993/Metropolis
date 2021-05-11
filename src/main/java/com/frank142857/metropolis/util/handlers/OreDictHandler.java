@@ -13,6 +13,11 @@ public class OreDictHandler {
         OreDictionary.registerOre("ingotArgentum", new ItemStack(ItemInit.INGOTS, 1, 2));
         OreDictionary.registerOre("ingotDynamite", new ItemStack(ItemInit.INGOTS, 1, 3));
 
+        OreDictionary.registerOre("oreDiamond", BlockInit.DIAMOND_ORE);
+        OreDictionary.registerOre("oreRedstone", BlockInit.REDSTONE_ORE);
+        OreDictionary.registerOre("oreQuartz", BlockInit.QUARTZ_ORE);
+        OreDictionary.registerOre("oreArgentum", BlockInit.ARGENTUM_ORE);
+        OreDictionary.registerOre("oreDynamite", BlockInit.DYNAMITE_ORE);
         OreDictionary.registerOre("oreQuartz", BlockInit.ORE_MTR_QUARTZ);
         OreDictionary.registerOre("oreArgentum", BlockInit.ORE_ARGENTUM);
 

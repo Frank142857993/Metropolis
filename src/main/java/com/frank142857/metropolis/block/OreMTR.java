@@ -13,7 +13,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -47,6 +49,10 @@ public class OreMTR extends BlockOre implements IHasModel {
             return Items.REDSTONE;
         } else if (this == BlockInit.QUARTZ_ORE) {
             return Items.QUARTZ;
+        } else if (this == BlockInit.IRON_ORE) {
+            return Items.IRON_NUGGET;
+        } else if (this == BlockInit.GOLD_ORE) {
+            return Items.GOLD_NUGGET;
         } else {
             return Item.getItemFromBlock(this);
         }
@@ -54,24 +60,37 @@ public class OreMTR extends BlockOre implements IHasModel {
 
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess worldIn, BlockPos pos, int chance) {
-        if (this == BlockInit.DIAMOND_ORE) {
-            return Blocks.DIAMOND_ORE.getExpDrop(state, worldIn, pos, chance);
-        } else if (this == BlockInit.REDSTONE_ORE) {
-            return Blocks.REDSTONE_ORE.getExpDrop(state, worldIn, pos, chance);
-        } else if (this == BlockInit.QUARTZ_ORE) {
-            return Blocks.QUARTZ_ORE.getExpDrop(state, worldIn, pos, chance);
+        Random rand = new Random();
+
+        if (this.getItemDropped(state, rand, chance) != Item.getItemFromBlock(this)) {
+            if (this == BlockInit.DIAMOND_ORE) {
+                return Blocks.DIAMOND_ORE.getExpDrop(state, worldIn, pos, chance);
+            } else if (this == BlockInit.REDSTONE_ORE) {
+                return Blocks.REDSTONE_ORE.getExpDrop(state, worldIn, pos, chance);
+            } else if (this == BlockInit.QUARTZ_ORE) {
+                return Blocks.QUARTZ_ORE.getExpDrop(state, worldIn, pos, chance);
+            } else if (this == BlockInit.IRON_ORE) {
+                return MathHelper.getInt(rand, 1, 3);
+            } else if (this == BlockInit.GOLD_ORE) {
+                return MathHelper.getInt(rand, 2, 3);
+            }
         }
         return 0;
     }
 
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random rand) {
+
         if (this == BlockInit.DIAMOND_ORE) {
             return Blocks.DIAMOND_ORE.quantityDropped(state, fortune, rand);
         } else if (this == BlockInit.REDSTONE_ORE) {
             return Blocks.REDSTONE_ORE.quantityDropped(state, fortune, rand);
         } else if (this == BlockInit.QUARTZ_ORE) {
             return Blocks.QUARTZ_ORE.quantityDropped(state, fortune, rand);
+        } else if (this == BlockInit.IRON_ORE) {
+            return MathHelper.getInt(rand, 3, 5);
+        } else if (this == BlockInit.GOLD_ORE) {
+            return MathHelper.getInt(rand, 2, 3);
         }
         return 1;
     }
@@ -84,7 +103,18 @@ public class OreMTR extends BlockOre implements IHasModel {
             return Blocks.REDSTONE_ORE.quantityDroppedWithBonus(fortune, rand);
         } else if (this == BlockInit.QUARTZ_ORE) {
             return Blocks.QUARTZ_ORE.quantityDroppedWithBonus(fortune, rand);
+        } else {
+            if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(this.getDefaultState(), rand, fortune))
+            {
+                int i = rand.nextInt(fortune + 2) - 1;
+                if (i < 0)
+                {
+                    i = 0;
+                }
+                return this.quantityDropped(rand) * (i + 1);
+            } else {
+                return this.quantityDropped(rand);
+            }
         }
-        return 1;
     }
 }
