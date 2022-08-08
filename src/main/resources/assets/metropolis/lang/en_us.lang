@@ -1,0 +1,33 @@
+item.dynamite_ingot.name=Ingot of Dynamite
+
+item.teleportation_rod.name=Rod of Teleportation
+
+tile.iron_ore.name=Iron Plated Foundation Stone
+tile.gold_ore.name=Gold Plated Foundation Stone
+tile.diamond_ore.name=Foundation Stone Diamond Ore
+tile.redstone_ore.name=Foundation Stone Redstone Ore
+tile.quartz_ore.name=Foundation Stone Quartz Ore
+tile.dynamite_ore.name=Dynamite Ore
+
+tile.dynamite_block.name=Block of Dynamite
+
+tile.surface_grass.name=Surface Grass
+tile.heavy_dirt.name=Heavy Dirt
+tile.foundation_stone.name=Foundation Stone
+tile.polished_foundation_stone.name=Polished Foundation Stone
+
+tile.under_brick.name=Under Brick
+tile.slimy_under_brick.name=Slimy Under Brick
+tile.hardened_under_brick.name=Hardened Under Brick
+
+tile.mtr_portal.name=Metropolis Portal
+
+subtitles.block.mtr_portal.ambient=What's that noise?
+
+advancements.metropolis.root.title=Metropolis
+advancements.metropolis.root.description=A new era!
+
+title.loading.enter=Next Station, Bloxtropolis...
+title.loading.leave=Welcome to Bloxtropolis Next Time...
+
+itemGroup.metropolis=Metropolis

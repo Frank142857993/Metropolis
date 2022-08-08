@@ -1,0 +1,16 @@
+[
+{
+  "modid": "metropolis",
+  "name": "Metropolis",
+  "description": "An adventure mod contains future cities, mines, machines and more!",
+  "version": "0.0.1",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Frank142857"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

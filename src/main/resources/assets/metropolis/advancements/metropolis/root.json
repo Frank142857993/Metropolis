@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "metropolis:mtr_portal"
+    },
+    "title": {
+      "translate": "advancements.metropolis.root.title"
+    },
+    "description": {
+      "translate": "advancements.metropolis.root.description"
+    },
+    "background": "metropolis:textures/blocks/foundation_stone.png",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "entered_mtr": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "Metropolis"
+      }
+    }
+  }
+}
