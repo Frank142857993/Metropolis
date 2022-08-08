@@ -24,7 +24,7 @@ public class Building {
         this.fillerBlock = type.getFillerBlocks()[(int) (Math.random() * type.getFillerBlocks().length)];
         this.floor = (int)(Math.random() * type.getFloorVariation()) + type.getMinFloor();
         this.slices = new String[type.getFloor().length * floor + 1][16];
-        setupSlices();
+        setupSlices(); //test
     }
 
     public int getHeight() {
