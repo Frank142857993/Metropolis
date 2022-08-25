@@ -50,13 +50,13 @@ public class Building {
         IBlockState[][] blocks = new IBlockState[pattern.length][pattern[0].length];
         for(int i1 = 0; i1 < pattern.length; i1++){
             for(int i2 = 0; i2 < pattern[0].length; i2++){
-                blocks[i1][i2] = getActualBlockState(pattern[i1][i2]);
+                blocks[i1][i2] = getBlockFromKey(pattern[i1][i2]);
             }
         }
         return blocks;
     }
 
-    public IBlockState getActualBlockState(char val) {
+    public IBlockState getBlockFromKey(char val) {
         switch (val) {
             case 'K':
                 return this.baseBlock;
