@@ -87,7 +87,9 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     }
 
     public void setupArchitectures(int chunkX, int chunkZ, ChunkPrimer primer){
-        Building b = new Building(chunkX, chunkZ, BuildingType.NORMAL);
+        Building b = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NORMAL);
+        if(this.rand.nextInt(16) == 0) b = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.TOWER);
+        /*
         for(int i = 0; i < b.getHeight(); i++){
             IBlockState[][] buildingBlocks = b.prepareForGen(i);
             int y = this.world.getSeaLevel();
@@ -98,6 +100,11 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
                 }
             }
         }
+        */
+        BuildingType type = b.getBuildingType();
+        b.setFillerBlock(type.getFillerBlocks()[this.rand.nextInt(type.getFillerBlocks().length)]);
+        b.setFloor(type.getMinFloor() + this.rand.nextInt(type.getFloorVariation()));
+        b.generate(primer);
     }
 
     @Override
