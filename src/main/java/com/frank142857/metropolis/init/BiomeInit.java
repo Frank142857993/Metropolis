@@ -11,7 +11,7 @@ public class BiomeInit {
 
     public static void registerBiomes(){
         initBiome(METROPOLIS, "Metropolis",
-                BiomeManager.BiomeType.WARM,
+                BiomeManager.BiomeType.COOL,
                 BiomeDictionary.Type.PLAINS
         );
     }

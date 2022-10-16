@@ -1,5 +1,6 @@
 package com.frank142857.metropolis.world;
 
+import com.frank142857.metropolis.block.teleporter.BlockMtrPortal;
 import com.frank142857.metropolis.init.BlockInit;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -27,16 +28,16 @@ public class MtrTeleporter extends Teleporter {
     }
 
     @Override
-    public void placeInPortal(Entity p_placeInPortal_1_, float p_placeInPortal_2_) {
+    public void placeInPortal(Entity entityIn, float rotationYaw) {
         if (this.world.provider.getDimensionType().getId() != 1) {
-            if (!this.placeInExistingPortal(p_placeInPortal_1_, p_placeInPortal_2_)) {
-                this.makePortal(p_placeInPortal_1_);
-                this.placeInExistingPortal(p_placeInPortal_1_, p_placeInPortal_2_);
+            if (!this.placeInExistingPortal(entityIn, rotationYaw)) {
+                this.makePortal(entityIn);
+                this.placeInExistingPortal(entityIn, rotationYaw);
             }
         } else {
-            int i = MathHelper.floor(p_placeInPortal_1_.posX);
-            int j = MathHelper.floor(p_placeInPortal_1_.posY) - 1;
-            int k = MathHelper.floor(p_placeInPortal_1_.posZ);
+            int i = MathHelper.floor(entityIn.posX);
+            int j = MathHelper.floor(entityIn.posY) - 1;
+            int k = MathHelper.floor(entityIn.posZ);
             int l = 1;
             int i1 = 0;
 
@@ -47,15 +48,15 @@ public class MtrTeleporter extends Teleporter {
                         int j2 = j + l1;
                         int k2 = k + k1 * 0 - j1 * 1;
                         boolean flag = l1 < 0;
-                        this.world.setBlockState(new BlockPos(i2, j2, k2), flag ? Blocks.IRON_BLOCK.getDefaultState() : Blocks.AIR.getDefaultState());
+                        this.world.setBlockState(new BlockPos(i2, j2, k2), flag ? BlockMtrPortal.FRAME.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
 
-            p_placeInPortal_1_.setLocationAndAngles((double)i, (double)j, (double)k, p_placeInPortal_1_.rotationYaw, 0.0F);
-            p_placeInPortal_1_.motionX = 0.0D;
-            p_placeInPortal_1_.motionY = 0.0D;
-            p_placeInPortal_1_.motionZ = 0.0D;
+            entityIn.setLocationAndAngles((double)i, (double)j, (double)k, entityIn.rotationYaw, 0.0F);
+            entityIn.motionX = 0.0D;
+            entityIn.motionY = 0.0D;
+            entityIn.motionZ = 0.0D;
         }
 
     }
@@ -162,12 +163,12 @@ public class MtrTeleporter extends Teleporter {
     }
 
     @Override
-    public boolean makePortal(Entity p_makePortal_1_) {
+    public boolean makePortal(Entity entityIn) {
         int i = 1;
         double d0 = -1.0D;
-        int j = MathHelper.floor(p_makePortal_1_.posX);
-        int k = MathHelper.floor(p_makePortal_1_.posY);
-        int l = MathHelper.floor(p_makePortal_1_.posZ);
+        int j = MathHelper.floor(entityIn.posX);
+        int k = MathHelper.floor(entityIn.posY);
+        int l = MathHelper.floor(entityIn.posZ);
         int i1 = j;
         int j1 = k;
         int k1 = l;
@@ -191,12 +192,12 @@ public class MtrTeleporter extends Teleporter {
         double d6;
         double d8;
         for(l5 = j - 16; l5 <= j + 16; ++l5) {
-            d3 = (double)l5 + 0.5D - p_makePortal_1_.posX;
+            d3 = (double)l5 + 0.5D - entityIn.posX;
 
             for(j6 = l - 16; j6 <= l + 16; ++j6) {
-                d4 = (double)j6 + 0.5D - p_makePortal_1_.posZ;
+                d4 = (double)j6 + 0.5D - entityIn.posZ;
 
-                label291:
+                label293:
                 for(i7 = this.world.getActualHeight() - 1; i7 >= 0; --i7) {
                     if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(l5, i7, j6))) {
                         while(i7 > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(l5, i7 - 1, j6))) {
@@ -219,13 +220,13 @@ public class MtrTeleporter extends Teleporter {
                                         int k5 = j6 + (j11 - 1) * j9 - j10 * j8;
                                         blockpos$mutableblockpos.setPos(i13, j13, k5);
                                         if (j12 < 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || j12 >= 0 && !this.world.isAirBlock(blockpos$mutableblockpos)) {
-                                            continue label291;
+                                            continue label293;
                                         }
                                     }
                                 }
                             }
 
-                            d6 = (double)i7 + 0.5D - p_makePortal_1_.posY;
+                            d6 = (double)i7 + 0.5D - entityIn.posY;
                             d8 = d3 * d3 + d6 * d6 + d4 * d4;
                             if (d0 < 0.0D || d8 < d0) {
                                 d0 = d8;
@@ -242,10 +243,10 @@ public class MtrTeleporter extends Teleporter {
 
         if (d0 < 0.0D) {
             for(l5 = j - 16; l5 <= j + 16; ++l5) {
-                d3 = (double)l5 + 0.5D - p_makePortal_1_.posX;
+                d3 = (double)l5 + 0.5D - entityIn.posX;
 
                 for(j6 = l - 16; j6 <= l + 16; ++j6) {
-                    d4 = (double)j6 + 0.5D - p_makePortal_1_.posZ;
+                    d4 = (double)j6 + 0.5D - entityIn.posZ;
 
                     label229:
                     for(i7 = this.world.getActualHeight() - 1; i7 >= 0; --i7) {
@@ -270,7 +271,7 @@ public class MtrTeleporter extends Teleporter {
                                     }
                                 }
 
-                                d6 = (double)i7 + 0.5D - p_makePortal_1_.posY;
+                                d6 = (double)i7 + 0.5D - entityIn.posY;
                                 d8 = d3 * d3 + d6 * d6 + d4 * d4;
                                 if (d0 < 0.0D || d8 < d0) {
                                     d0 = d8;
@@ -307,7 +308,7 @@ public class MtrTeleporter extends Teleporter {
                         j9 = k2 + k7;
                         j10 = k6 + (i7 - 1) * i3 - j7 * j6;
                         boolean flag = k7 < 0;
-                        this.world.setBlockState(new BlockPos(j8, j9, j10), flag ? Blocks.IRON_BLOCK.getDefaultState() : Blocks.AIR.getDefaultState());
+                        this.world.setBlockState(new BlockPos(j8, j9, j10), flag ? BlockMtrPortal.FRAME.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -322,7 +323,7 @@ public class MtrTeleporter extends Teleporter {
                     j10 = k2 + j8;
                     j11 = k6 + (k7 - 1) * i3;
                     boolean flag1 = k7 == 0 || k7 == 3 || j8 == -1 || j8 == 3;
-                    this.world.setBlockState(new BlockPos(j9, j10, j11), flag1 ? Blocks.IRON_BLOCK.getDefaultState() : iblockstate, 2);
+                    this.world.setBlockState(new BlockPos(j9, j10, j11), flag1 ? BlockMtrPortal.FRAME.getDefaultState() : iblockstate, 2);
                 }
             }
 
@@ -341,9 +342,9 @@ public class MtrTeleporter extends Teleporter {
     }
 
     @Override
-    public void removeStalePortalLocations(long p_removeStalePortalLocations_1_) {
-        if (p_removeStalePortalLocations_1_ % 100L == 0L) {
-            long i = p_removeStalePortalLocations_1_ - 300L;
+    public void removeStalePortalLocations(long worldTime) {
+        if (worldTime % 100L == 0L) {
+            long i = worldTime - 300L;
             ObjectIterator objectiterator = this.destinationCoordinateCache.values().iterator();
 
             while(true) {

@@ -26,6 +26,9 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     private final WorldType terrainType;
     private Biome[] biomesForGeneration;
 
+    private Road roadIn;
+    private Building buildingIn;
+
     protected static final IBlockState STONE = BlockInit.FOUNDATION_STONE.getDefaultState();
 
     public ChunkGeneratorMetropolis(World worldIn, long seed) {
@@ -51,44 +54,15 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         return chunk;
     }
 
-    public void generateQuadraticRoadNetwork(int chunkX, int chunkZ, ChunkPrimer primer){
-        Road r = new Road(chunkX, chunkZ);
-        int y = this.world.getSeaLevel();
-        if(r.getRoadType().equals(RoadType.CROSS)){
-            for (int x = 0; x < 16; ++x)
-            {
-                if(4 <= x && x < 12) continue;
-                for (int z = 4; z < 12; ++z)
-                {
-                    primer.setBlockState(x, y, z, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
-                }
-            }
-            for(int x = 4; x < 12; ++x){
-                for (int z = 0; z < 16; ++z)
-                {
-                    primer.setBlockState(x, y, z, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
-                }
-            }
-        } else if (r.getRoadType().equals(RoadType.EW)){
-            for(int x = 4; x < 12; ++x){
-                for (int z = 0; z < 16; ++z)
-                {
-                    primer.setBlockState(x, y, z, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
-                }
-            }
-        } else if (r.getRoadType().equals(RoadType.SN)){
-            for(int z = 4; z < 12; ++z){
-                for (int x = 0; x < 16; ++x)
-                {
-                    primer.setBlockState(x, y, z, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
-                }
-            }
-        }
+    public void setupNetworks(int chunkX, int chunkZ, ChunkPrimer primer){
+        roadIn = new Road(chunkX, chunkZ);
+        roadIn.setBaseHeight(world.getSeaLevel());
+        roadIn.generate(primer);
     }
 
     public void setupArchitectures(int chunkX, int chunkZ, ChunkPrimer primer){
-        Building b = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NORMAL);
-        if(this.rand.nextInt(16) == 0) b = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.TOWER);
+        buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NORMAL);
+        if(this.rand.nextInt(16) == 0) buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.TOWER);
         /*
         for(int i = 0; i < b.getHeight(); i++){
             IBlockState[][] buildingBlocks = b.prepareForGen(i);
@@ -101,10 +75,10 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
             }
         }
         */
-        BuildingType type = b.getBuildingType();
-        b.setFillerBlock(type.getFillerBlocks()[this.rand.nextInt(type.getFillerBlocks().length)]);
-        b.setFloor(type.getMinFloor() + this.rand.nextInt(type.getFloorVariation()));
-        b.generate(primer);
+        BuildingType type = buildingIn.getBuildingType();
+        buildingIn.setFillerBlock(type.getFillerBlocks()[this.rand.nextInt(type.getFillerBlocks().length)]);
+        buildingIn.setFloor(type.getMinFloor() + this.rand.nextInt(type.getFloorVariation()));
+        buildingIn.generate(primer);
     }
 
     @Override
@@ -137,7 +111,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         }
         if(biomesIn[120] instanceof IBiomeCity){
             if(new ChunkInfoMetropolis(chunkX, chunkZ).isRoad()) {
-                generateQuadraticRoadNetwork(chunkX, chunkZ, primer);
+                setupNetworks(chunkX, chunkZ, primer);
             }
             else {
                 setupArchitectures(chunkX, chunkZ, primer);

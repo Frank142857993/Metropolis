@@ -9,8 +9,8 @@ import net.minecraft.world.gen.layer.IntCache;
 public class GenLayerBiomesMetropolis extends GenLayer {
 
     private Biome[] allowedBiomes = {
-            BiomeInit.METROPOLIS,
-            Biomes.PLAINS
+            BiomeInit.METROPOLIS
+            //Biomes.PLAINS //TODO More modified biomes
     };
 
     public GenLayerBiomesMetropolis(long seed)

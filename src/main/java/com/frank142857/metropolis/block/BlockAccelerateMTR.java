@@ -50,13 +50,13 @@ public class BlockAccelerateMTR extends Block implements IHasModel {
     }
 
     @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState p_getCollisionBoundingBox_1_, IBlockAccess p_getCollisionBoundingBox_2_, BlockPos p_getCollisionBoundingBox_3_) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return MTR_BASE_AABB;
     }
 
-    public void onEntityCollidedWithBlock(World p_onEntityCollidedWithBlock_1_, BlockPos p_onEntityCollidedWithBlock_2_, IBlockState p_onEntityCollidedWithBlock_3_, Entity p_onEntityCollidedWithBlock_4_) {
-        p_onEntityCollidedWithBlock_4_.motionX *= motion;
-        p_onEntityCollidedWithBlock_4_.motionZ *= motion;
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        entityIn.motionX *= motion;
+        entityIn.motionZ *= motion;
     }
 
     public double getMotionFactor() {

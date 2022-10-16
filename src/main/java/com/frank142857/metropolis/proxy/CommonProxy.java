@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event){
-        ConfigHandler.registerConfig(event);
+        ConfigInit.registerConfig(event);
         DimensionInit.registerDimensionTypes();
         DimensionInit.registerDimensions();
         BiomeInit.registerBiomes();

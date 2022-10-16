@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
+import static com.frank142857.metropolis.world.city.ChunkGenUtil.*;
 import static net.minecraft.block.BlockSlab.HALF;
 
 public class Building {
@@ -61,17 +62,18 @@ public class Building {
                 fillWalls(primer, 1, y + 1, 1, 14, y + type.getFloorHeight() - 1, 14, this.fillerBlock);
                 fillLayer(primer, 1, 1, 14, 14, y + type.getFloorHeight(), this.fillerBlock);
 
-                fill(primer, 3, y + 2, 1, 5, y + 4, 1, Blocks.GLASS_PANE.getDefaultState());
-                fill(primer, 10, y + 2, 1, 12, y + 4, 1, Blocks.GLASS_PANE.getDefaultState());
-                fill(primer, 3, y + 2, 14, 5, y + 4, 14, Blocks.GLASS_PANE.getDefaultState());
-                fill(primer, 10, y + 2, 14, 12, y + 4, 14, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 3, y + 2, 1, 5, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 10, y + 2, 1, 12, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 3, y + 2, 14, 5, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 10, y + 2, 14, 12, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
 
-                fill(primer, 1, y + 2, 3, 1, y + 4, 5, Blocks.GLASS_PANE.getDefaultState());
-                fill(primer, 1, y + 2, 10, 1, y + 4, 12, Blocks.GLASS_PANE.getDefaultState());
-                fill(primer, 14, y + 2, 3, 14, y + 4, 5, Blocks.GLASS_PANE.getDefaultState());
-                fill(primer, 14, y + 2, 10, 14, y + 4, 12, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 1, y + 2, 3, 1, y + type.getFloorHeight() - 2, 5, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 1, y + 2, 10, 1, y + type.getFloorHeight() - 2, 12, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 14, y + 2, 3, 14, y + type.getFloorHeight() - 2, 5, Blocks.GLASS_PANE.getDefaultState());
+                fill(primer, 14, y + 2, 10, 14, y + type.getFloorHeight() - 2, 12, Blocks.GLASS_PANE.getDefaultState());
             }
 
+            /*
             int x1 = 8 - type.getFloorHeight() / 2;
 
             fillLayer(primer,
@@ -87,38 +89,40 @@ public class Building {
                 primer.setBlockState(x1 + 1, y1, 8, this.fillerBlock);
                 x1++;
             }
+            */
 
-            y += this.type.getFloorHeight();
-        }
-    }
+            int x1 = 6;
+            int z1 = 6;
+            int y1 = y;
+            int j = 1;
 
-    public void fill(ChunkPrimer primer, int x0, int y0, int z0, int xt, int yt, int zt, IBlockState block){
-        for(int y = y0; y <= yt; y++){
-            fillLayer(primer, x0, z0, xt, zt, y, block);
-        }
-    }
+            fillLayer(primer,
+                    8, 6, 9, 9,
+                    y + type.getFloorHeight(),
+                    Blocks.AIR.getDefaultState());
 
-    public void fillLayer(ChunkPrimer primer, int x0, int z0, int xt, int zt, int y, IBlockState block){
-        for(int x = x0; x <= xt; x++){
-            for(int z = z0; z <= zt; z++){
-                primer.setBlockState(x, y, z, block);
-            }
-        }
-    }
+            fill(primer,
+                    7, y + 1, 7,
+                    8, y + type.getFloorHeight(), 8,
+                    this.fillerBlock);
 
-    public void fillMargin(ChunkPrimer primer, int x0, int z0, int xt, int zt, int y, IBlockState block){
-        for(int x = x0; x <= xt; x++){
-            for(int z = z0; z <= zt; z++){
-                if ((x == x0 || x == xt) || (z == z0 || z == zt)) {
-                    primer.setBlockState(x, y, z, block);
+            for(int i1 = 0; i1 < 12; i1++){
+                if(i1 >= 6) j = -1;
+                if(i1 % 2 == 0) {
+                    y1++;
+                    primer.setBlockState(x1, y1, z1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                } else {
+                    primer.setBlockState(x1, y1, z1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                }
+
+                if(i1 % 6 < 3){
+                    z1 += j;
+                } else {
+                    x1 += j;
                 }
             }
-        }
-    }
 
-    public void fillWalls(ChunkPrimer primer, int x0, int y0, int z0, int xt, int yt, int zt, IBlockState block){
-        for(int y = y0; y <= yt; y++){
-            fillMargin(primer, x0, z0, xt, zt, y, block);
+            y += this.type.getFloorHeight();
         }
     }
 }

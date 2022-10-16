@@ -2,9 +2,9 @@ package com.frank142857.metropolis.block.teleporter;
 
 import com.frank142857.metropolis.Metropolis;
 import com.frank142857.metropolis.init.BlockInit;
+import com.frank142857.metropolis.init.ConfigInit;
 import com.frank142857.metropolis.init.CreativeTabInit;
 import com.frank142857.metropolis.init.DimensionInit;
-import com.frank142857.metropolis.util.handlers.ConfigHandler;
 import com.frank142857.metropolis.util.handlers.SoundsHandler;
 import com.frank142857.metropolis.util.interfaces.IHasModel;
 import com.frank142857.metropolis.util.particle.MtrEnumParticleTypes;
@@ -51,6 +51,9 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
     protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 
     public static final String name = "mtr_portal";
+    
+    public static final Block FRAME = Blocks.QUARTZ_BLOCK;
+    //public static final Block FRAME = Blocks.IRONw_BLOCK;
 
     public BlockMtrPortal(){
         super(Material.PORTAL, false);
@@ -102,7 +105,7 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
     public boolean trySpawnPortal(World world, BlockPos pos) {
         Size size = new Size(world, pos, EnumFacing.Axis.X);
 
-        if(ConfigHandler.PORTAL_ENABLED){
+        if(ConfigInit.PORTAL_ENABLED){
             if(size.isValid() && size.portalBlockCount == 0) {
                 size.placePortalBlocks();
                 return true;
@@ -193,6 +196,7 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
             } else if (player.dimension != DimensionInit.metropolis.getId()) {
                 player.timeUntilPortal = 300;
                 player.changeDimension(DimensionInit.metropolis.getId(), new MtrTeleporter(player.mcServer.getWorld(DimensionInit.metropolis.getId())));
+                player.setSpawnChunk(player.getPosition(), true, DimensionInit.metropolis.getId());
             } else {
                 player.timeUntilPortal = 300;
                 player.changeDimension(0, new MtrTeleporter(player.mcServer.getWorld(0)));
@@ -374,13 +378,13 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
             for(i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.offset(facing, i);
 
-                if(!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.IRON_BLOCK) {
+                if(!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != FRAME) {
                     break;
                 }
             }
 
             Block block = this.world.getBlockState(pos.offset(facing, i)).getBlock();
-            return block == Blocks.IRON_BLOCK ? i : 0;
+            return block == FRAME ? i : 0;
         }
 
         public int getHeight() {
@@ -409,12 +413,12 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
 
                     if(i == 0) {
                         block = this.world.getBlockState(pos.offset(leftDir)).getBlock();
-                        if(block != Blocks.IRON_BLOCK) {
+                        if(block != FRAME) {
                             break label56;
                         }
                     } else if(i == this.width - 1) {
                         block = this.world.getBlockState(pos.offset(rightDir)).getBlock();
-                        if(block != Blocks.IRON_BLOCK) {
+                        if(block != FRAME) {
                             break label56;
                         }
                     }
@@ -422,7 +426,7 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
             }
 
             for(int j = 0; j < this.width; ++j) {
-                if(this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != Blocks.IRON_BLOCK) {
+                if(this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != FRAME) {
                     this.height = 0;
                     break;
                 }

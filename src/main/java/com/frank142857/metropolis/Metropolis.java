@@ -17,6 +17,7 @@ import java.io.File;
         name = Metropolis.NAME,
         version = Metropolis.VERSION,
         acceptedMinecraftVersions = Metropolis.ACCEPTED_MINECRAFT_VERSIONS,
+        guiFactory = "com.frank142857." + Metropolis.MODID + ".client.gui.GuiFactory",
         dependencies = Metropolis.DEPENDENCIES)
 
 public class Metropolis

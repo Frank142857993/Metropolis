@@ -1,8 +1,8 @@
 package com.frank142857.metropolis.event;
 
 import com.frank142857.metropolis.Metropolis;
+import com.frank142857.metropolis.init.ConfigInit;
 import com.frank142857.metropolis.init.DimensionInit;
-import com.frank142857.metropolis.util.handlers.ConfigHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +32,7 @@ public class PlayerDeath {
         Entity entity = event.getEntity();
         World worldIn = entity.getEntityWorld();
         BlockPos deadPos = new BlockPos(entity.getPosition().getX(), entity.getPosition().getY(), entity.getPosition().getZ());
-        ItemStack[] playerStacks = new ItemStack[36], chestStacks = new ItemStack[36];
+        ItemStack[] playerStacks = new ItemStack[36], chestStacks = new ItemStack[27];
 
         for(int i = 0; i < chestStacks.length; i++){
             chestStacks[i] = ItemStack.EMPTY;
@@ -41,7 +41,7 @@ public class PlayerDeath {
         boolean b1 = false;
         int size;
 
-        switch(ConfigHandler.DEATH_CHEST){
+        switch(ConfigInit.DEATH_CHEST){
             case 0:
                 break;
             case 2:
@@ -83,13 +83,14 @@ public class PlayerDeath {
 
                     for(int i1 = 0, i2 = 0; i1 < size; i1++){
                         playerStacks[i1] = ((EntityPlayer) entity).inventory.getStackInSlot(i1);
-                        if (!playerStacks[i1].isEmpty()){
+                        if (!playerStacks[i1].isEmpty() && i2 < chestStacks.length){
                             chestStacks[i2] = playerStacks[i1];
+                            ((EntityPlayer) entity).inventory.setInventorySlotContents(i1, ItemStack.EMPTY);
                             i2++;
                         }
                     }
 
-                    ((EntityPlayer) entity).inventory.clear();
+                    ((EntityPlayer) entity).inventory.dropAllItems();
 
 
                     for(int slot = 0; slot < ((TileEntityChest) chest).getSizeInventory(); slot++){

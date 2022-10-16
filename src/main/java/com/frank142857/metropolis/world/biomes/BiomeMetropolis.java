@@ -1,9 +1,8 @@
 package com.frank142857.metropolis.world.biomes;
 
 import com.frank142857.metropolis.init.BlockInit;
-import com.frank142857.metropolis.util.handlers.ConfigHandler;
+import com.frank142857.metropolis.init.ConfigInit;
 import com.frank142857.metropolis.util.interfaces.IBiomeCity;
-import com.frank142857.metropolis.world.gen.feature.WorldGenDevBuildings;
 import net.minecraft.entity.passive.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,7 +17,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
         super(new BiomeProperties("Metropolis")
                 .setBaseHeight(2.0F)
                 .setHeightVariation(0.0F)
-                .setTemperature(0.8F)
+                .setTemperature(0.205F) //0.21
                 .setRainfall(0.4F));
 
         topBlock = BlockInit.SURFACE_GRASS.getDefaultState();
@@ -27,6 +26,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
         this.decorator.extraTreeChance = 0.03F;
         this.addSpawnables();
     }
+
 
     @Override
     public int getGrassColorAtPos(BlockPos pos){
@@ -40,7 +40,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
 
     @Override
     public int getSkyColorByTemp(float temp){
-        if (ConfigHandler.USING_FOG_COLOR) return 0xf3f3f3;
+        if (ConfigInit.USING_FOG_COLOR) return 0xf3f3f3;
         else return super.getSkyColorByTemp(temp);
     }
 
@@ -52,7 +52,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
                 int i = rand.nextInt(16) + 8;
                 int j = rand.nextInt(16) + 8;
                 BlockPos blockpos = worldIn.getHeight(pos.add(i, 0, j)).up();
-                (new WorldGenDevBuildings()).generate(worldIn, rand, blockpos);
+                //(new WorldGenDevBuildings()).generate(worldIn, rand, blockpos);
             }
         }
     }

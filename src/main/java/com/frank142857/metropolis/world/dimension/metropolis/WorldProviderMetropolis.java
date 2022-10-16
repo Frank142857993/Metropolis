@@ -1,14 +1,13 @@
 package com.frank142857.metropolis.world.dimension.metropolis;
 
+import com.frank142857.metropolis.init.ConfigInit;
 import com.frank142857.metropolis.init.DimensionInit;
-import com.frank142857.metropolis.util.handlers.ConfigHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.storage.DerivedWorldInfo;
 import net.minecraft.world.storage.WorldInfo;
@@ -114,7 +113,8 @@ public class WorldProviderMetropolis extends WorldProvider {
 
     @Override
     public Vec3d getFogColor(float f, float f1) {
-        float bright = MathHelper.cos(0.25f * 3.141593F * 2.0F) * 2.0F + 0.5F;
+
+        float bright = MathHelper.cos(0.23F * 3.141593F * 2.0F) * 2.0F + 0.5F;
         if (bright < 0.0F) {
             bright = 0.0F;
         }
@@ -127,7 +127,7 @@ public class WorldProviderMetropolis extends WorldProvider {
         red *= bright * 0.94F + 0.06F;
         green *= bright * 0.94F + 0.06F;
         blue *= bright * 0.91F + 0.09F;
-        if (ConfigHandler.USING_FOG_COLOR) return new Vec3d(red, green, blue);
+        if (ConfigInit.USING_FOG_COLOR) return new Vec3d(red, green, blue);
         else return super.getFogColor(f, f1);
     }
 

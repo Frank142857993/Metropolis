@@ -6,28 +6,27 @@ import net.minecraft.client.particle.Particle;
 public class ParticleSpawner {
     private static Minecraft mc = Minecraft.getMinecraft();
 
-    public static Particle spawnParticle(MtrEnumParticleTypes type, double par2, double par4, double par6, double par8, double par10, double par12)
+    public static Particle spawnParticle(MtrEnumParticleTypes type, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed)
     {
         if (mc != null && mc.getRenderViewEntity() != null && mc.effectRenderer != null)
         {
-            int var14 = mc.gameSettings.particleSetting;
+            int f = mc.gameSettings.particleSetting;
 
-            if (var14 == 1 && mc.world.rand.nextInt(3) == 0)
+            if (f == 1 && mc.world.rand.nextInt(3) == 0)
             {
-                var14 = 2;
+                f = 2;
             }
 
-            double var15 = mc.getRenderViewEntity().posX - par2;
-            double var17 = mc.getRenderViewEntity().posY - par4;
-            double var19 = mc.getRenderViewEntity().posZ - par6;
-            Particle var21 = null;
-            double var22 = 16.0D;
+            double x = mc.getRenderViewEntity().posX - xCoord;
+            double y = mc.getRenderViewEntity().posY - yCoord;
+            double z = mc.getRenderViewEntity().posZ - zCoord;
+            Particle particle = null;
 
-            if (var15 * var15 + var17 * var17 + var19 * var19 > var22 * var22)
+            if (x * x + y * y + z * z > 16.0D * 16.0D)
             {
                 return null;
             }
-            else if (var14 > 1)
+            else if (f > 1)
             {
                 return null;
             }
@@ -35,11 +34,11 @@ public class ParticleSpawner {
             {
                 if (type == MtrEnumParticleTypes.MTR_PORTAL)
                 {
-                    var21 = new ParticleMtrPortal(mc.world, par2, par4, par6, par8, par10, par12);
+                    particle = new ParticleMtrPortal(mc.world, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed);
                 }
 
-                mc.effectRenderer.addEffect(var21);
-                return var21;
+                mc.effectRenderer.addEffect(particle);
+                return particle;
             }
         }
         return null;

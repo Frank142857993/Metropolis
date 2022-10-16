@@ -27,8 +27,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event){
         super.init(event);
-        //TODO PlayerChangeDimension 引发服务器错误
-        MinecraftForge.EVENT_BUS.register(new PlayerChangeDimension());
     }
 
     @Override

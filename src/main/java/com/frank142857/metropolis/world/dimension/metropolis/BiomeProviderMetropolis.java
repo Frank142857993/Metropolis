@@ -173,5 +173,4 @@ public class BiomeProviderMetropolis extends BiomeProvider {
     public void cleanupCache() {
         this.biomeCache.cleanupCache();
     }
-
 }
