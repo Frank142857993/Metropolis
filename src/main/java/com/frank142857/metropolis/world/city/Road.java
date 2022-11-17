@@ -1,9 +1,12 @@
 package com.frank142857.metropolis.world.city;
 
+import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.ConfigInit;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+
+import static com.frank142857.metropolis.world.city.ChunkGenFactory.*;
 
 public class Road {
     private int chunkX;
@@ -51,40 +54,40 @@ public class Road {
         if(this.containRiver()){ //TODO river network
             if(this.getRoadType().equals(RoadType.CROSS)){
                 if(chunkZ % ((width + 1) * river) != 0) {
-                    ChunkGenUtil.fill(primer, 4, y - 6, 0, 11, y - 3, 15, Blocks.WATER.getDefaultState());
-                    ChunkGenUtil.fill(primer, 4, y - 2, 0, 11, y, 15, Blocks.AIR.getDefaultState());
-                    ChunkGenUtil.fill(primer, 0, y, 4, 15, y, 11, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                    fill(primer, 4, y - 6, 0, 11, y - 3, 15, Blocks.WATER.getDefaultState());
+                    fill(primer, 4, y - 2, 0, 11, y, 15, Blocks.AIR.getDefaultState());
+                    fill(primer, 0, y, 4, 15, y, 11, BlockInit.STONE_PAVING.getDefaultState());
                 } else if (chunkX % ((width + 1) * river) != 0){
-                    ChunkGenUtil.fill(primer, 0, y - 6, 4, 15, y - 3, 11, Blocks.WATER.getDefaultState());
-                    ChunkGenUtil.fill(primer, 0, y - 2, 4, 15, y, 11, Blocks.AIR.getDefaultState());
-                    ChunkGenUtil.fill(primer, 4, y, 0, 11, y, 15, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                    fill(primer, 0, y - 6, 4, 15, y - 3, 11, Blocks.WATER.getDefaultState());
+                    fill(primer, 0, y - 2, 4, 15, y, 11, Blocks.AIR.getDefaultState());
+                    fill(primer, 4, y, 0, 11, y, 15, BlockInit.STONE_PAVING.getDefaultState());
                 }
                 else {
-                    ChunkGenUtil.fill(primer, 0, y - 6, 4, 3, y - 3, 11, Blocks.WATER.getDefaultState());//TODO 6 -> river depth?
-                    ChunkGenUtil.fill(primer, 4, y - 6, 0, 11, y - 3, 15, Blocks.WATER.getDefaultState());
-                    ChunkGenUtil.fill(primer, 12, y - 6, 4, 15, y - 3, 11, Blocks.WATER.getDefaultState());
+                    fill(primer, 0, y - 6, 4, 3, y - 3, 11, Blocks.WATER.getDefaultState());//TODO 6 -> river depth?
+                    fill(primer, 4, y - 6, 0, 11, y - 3, 15, Blocks.WATER.getDefaultState());
+                    fill(primer, 12, y - 6, 4, 15, y - 3, 11, Blocks.WATER.getDefaultState());
 
-                    ChunkGenUtil.fill(primer, 0, y - 2, 4, 3, y, 11, Blocks.AIR.getDefaultState());
-                    ChunkGenUtil.fill(primer, 4, y - 2, 0, 11, y, 15, Blocks.AIR.getDefaultState());
-                    ChunkGenUtil.fill(primer, 12, y - 2, 4, 15, y, 11, Blocks.AIR.getDefaultState());
+                    fill(primer, 0, y - 2, 4, 3, y, 11, Blocks.AIR.getDefaultState());
+                    fill(primer, 4, y - 2, 0, 11, y, 15, Blocks.AIR.getDefaultState());
+                    fill(primer, 12, y - 2, 4, 15, y, 11, Blocks.AIR.getDefaultState());
                 }
 
             } else if (this.getRoadType().equals(RoadType.SN)){
-                ChunkGenUtil.fill(primer, 4, y - 6, 0, 11, y - 3, 15, Blocks.WATER.getDefaultState());
-                ChunkGenUtil.fill(primer, 4, y - 2, 0, 11, y, 15, Blocks.AIR.getDefaultState());
+                fill(primer, 4, y - 6, 0, 11, y - 3, 15, Blocks.WATER.getDefaultState());
+                fill(primer, 4, y - 2, 0, 11, y, 15, Blocks.AIR.getDefaultState());
             } else if (this.getRoadType().equals(RoadType.EW)){
-                ChunkGenUtil.fill(primer, 0, y - 6, 4, 15, y - 3, 11, Blocks.WATER.getDefaultState());
-                ChunkGenUtil.fill(primer, 0, y - 2, 4, 15, y, 11, Blocks.AIR.getDefaultState());
+                fill(primer, 0, y - 6, 4, 15, y - 3, 11, Blocks.WATER.getDefaultState());
+                fill(primer, 0, y - 2, 4, 15, y, 11, Blocks.AIR.getDefaultState());
             }
         } else {
             if(this.getRoadType().equals(RoadType.CROSS)){
-                ChunkGenUtil.fill(primer, 0, y, 4, 3, y, 11, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
-                ChunkGenUtil.fill(primer, 4, y, 0, 11, y, 15, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
-                ChunkGenUtil.fill(primer, 12, y, 4, 15, y, 11, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                fill(primer, 0, y, 4, 3, y, 11, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 4, y, 0, 11, y, 15, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 12, y, 4, 15, y, 11, BlockInit.STONE_PAVING.getDefaultState());
             } else if (this.getRoadType().equals(RoadType.SN)){
-                ChunkGenUtil.fill(primer, 4, y, 0, 11, y, 15, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                fill(primer, 4, y, 0, 11, y, 15, BlockInit.STONE_PAVING.getDefaultState());
             } else if (this.getRoadType().equals(RoadType.EW)){
-                ChunkGenUtil.fill(primer, 0, y, 4, 15, y, 11, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                fill(primer, 0, y, 4, 15, y, 11, BlockInit.STONE_PAVING.getDefaultState());
             }
         }
     }

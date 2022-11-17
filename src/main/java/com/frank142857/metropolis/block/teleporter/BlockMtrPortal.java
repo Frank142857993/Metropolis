@@ -102,10 +102,10 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
         return false;
     }
 
-    public boolean trySpawnPortal(World world, BlockPos pos) {
+    public boolean trySpawnPortal(World world, BlockPos pos, boolean shortcut) {
         Size size = new Size(world, pos, EnumFacing.Axis.X);
 
-        if(ConfigInit.PORTAL_ENABLED){
+        if(ConfigInit.PORTAL_ENABLED && !shortcut){
             if(size.isValid() && size.portalBlockCount == 0) {
                 size.placePortalBlocks();
                 return true;
@@ -117,9 +117,21 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
                 }
                 return false;
             }
+        } else if (shortcut){
+            if(size.isValid() && size.portalBlockCount == 0) {
+                world.newExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 5.0F, true, true);
+                return false;
+            } else {
+                Size size1 = new Size(world, pos, EnumFacing.Axis.Z);
+                if(size1.isValid() && size1.portalBlockCount == 0) {
+                    world.newExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 5.0F, true, true);
+                    return false;
+                }
+            }
+            return false;
         } else {
             return false;
-        }
+        } //TODO advancement check: decide if teleportation rod is valid
     }
 
     @Override

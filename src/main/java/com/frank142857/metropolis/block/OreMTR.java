@@ -24,6 +24,7 @@ public class OreMTR extends BlockOre implements IHasModel {
         this.setUnlocalizedName(name);
         this.setCreativeTab(CreativeTabInit.TAB_METROPOLIS);
         this.setHardness(4.5F);
+        this.setResistance(5.0F);
         this.setHarvestLevel("pickaxe", harvestLevel);
         this.setLightLevel(lightValue);
         BlockInit.REGISTER_BLOCKS.add(this);

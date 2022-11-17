@@ -17,9 +17,12 @@ public class BlockInit {
     public static final BlockGrassMTR SURFACE_GRASS = new BlockGrassMTR();
     public static final BlockDirtMTR HEAVY_DIRT = new BlockDirtMTR();
     public static final BlockStoneMTR FOUNDATION_STONE = new BlockStoneMTR();
-    public static final BlockMTR POLISHED_FOUNDATION_STONE = new BlockMTR(
+    public static final BlockMTR POLISHED_FOUNDATION_STONE = (BlockMTR) new BlockMTR(
             "polished_foundation_stone", Material.ROCK, MapColor.STONE, "pickaxe", 1, 4.5F, 0
-    );
+    ).setResistance(10.0F);
+    public static final BlockMTR STONE_PAVING = (BlockMTR) new BlockMTR(
+            "stone_paving", Material.ROCK, MapColor.QUARTZ, "pickaxe", 2, 6.5F, 0
+    ).setResistance(25.0F);
 
     public static final MetalBlockMTR DYNAMITE_BLOCK = new MetalBlockMTR("dynamite_block", Material.IRON, 2);
 
@@ -29,6 +32,7 @@ public class BlockInit {
     public static final OreMTR REDSTONE_ORE = new OreMTR("redstone_ore", 2, 0);
     public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
     public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
+
     public static final BlockMTR UNDER_BRICK = new BlockMTR(
             "under_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
     );
@@ -38,4 +42,5 @@ public class BlockInit {
     public static final BlockMTR HARDENED_UNDER_BRICK = new BlockMTR(
             "hardened_under_brick", Material.ROCK, MapColor.SILVER, "pickaxe", 0, 5.0F, 0
     );
+    public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();
 }

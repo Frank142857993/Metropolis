@@ -9,7 +9,6 @@ import com.frank142857.metropolis.world.city.*;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -62,7 +61,9 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
 
     public void setupArchitectures(int chunkX, int chunkZ, ChunkPrimer primer){
         buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NORMAL);
-        if(this.rand.nextInt(16) == 0) buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.TOWER);
+        int b1 = this.rand.nextInt(256);
+        if(b1 < 16) buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.TOWER);
+        else if (b1 < 48) buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NONE); //TODO place holder
         /*
         for(int i = 0; i < b.getHeight(); i++){
             IBlockState[][] buildingBlocks = b.prepareForGen(i);

@@ -15,10 +15,12 @@ tile.surface_grass.name=Surface Grass
 tile.heavy_dirt.name=Heavy Dirt
 tile.foundation_stone.name=Foundation Stone
 tile.polished_foundation_stone.name=Polished Foundation Stone
+tile.stone_paving.name=Stone Paving
 
 tile.under_brick.name=Under Brick
 tile.slimy_under_brick.name=Slimy Under Brick
 tile.hardened_under_brick.name=Hardened Under Brick
+tile.ceiling_light.name=Ceiling Light
 
 tile.mtr_portal.name=Metropolis Portal
 

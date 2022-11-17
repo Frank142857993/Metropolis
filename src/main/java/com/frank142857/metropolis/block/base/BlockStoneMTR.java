@@ -21,6 +21,7 @@ public class BlockStoneMTR extends Block implements IHasModel {
         this.setCreativeTab(CreativeTabInit.TAB_METROPOLIS);
         this.setHarvestLevel("pickaxe", 1);
         this.setHardness(4.5F);
+        this.setResistance(10.0F);
         BlockInit.REGISTER_BLOCKS.add(this);
         ItemInit.REGISTER_ITEMS.add(new ItemBlock(this).setRegistryName(name));
     }

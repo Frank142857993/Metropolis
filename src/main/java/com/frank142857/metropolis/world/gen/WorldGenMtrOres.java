@@ -56,7 +56,7 @@ public class WorldGenMtrOres implements IWorldGenerator {
             runGenerator(redstone, world, random, chunkX, chunkZ, 8, 38, 54); //16+32+6
             runGenerator(dynamite, world, random, chunkX, chunkZ, 1, 38, 78); //40+32+6
             runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 38, 86); //54+32
-            runGenerator(stone, world, random, chunkX, chunkZ, 10, 64, 96); //64+32
+            runGenerator(stone, world, random, chunkX, chunkZ, 4, 64, 96); //64+32
             runGenerator(block_under_brick, world, random, chunkX, chunkZ, 5, 60, 92); //60+32
             runGenerator(block_slimy_brick, world, random, chunkX, chunkZ, 5, 48, 72); //40+32
         }

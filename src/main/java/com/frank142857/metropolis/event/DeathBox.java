@@ -21,9 +21,9 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = Metropolis.MODID)
-public class PlayerDeath {
+public class DeathBox {
 
-    public PlayerDeath(){
+    public DeathBox(){
         MinecraftForge.EVENT_BUS.register(this);
     }
 

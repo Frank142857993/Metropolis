@@ -8,6 +8,9 @@ import net.minecraft.init.Blocks;
 import static net.minecraft.block.BlockSlab.HALF;
 
 public enum BuildingType {
+    NONE(
+            1, 1, 1, Blocks.DOUBLE_STONE_SLAB.getDefaultState(), new IBlockState[]{Blocks.COBBLESTONE.getDefaultState()}
+    ),
     NORMAL(
             3, 4, 6, Blocks.DOUBLE_STONE_SLAB.getDefaultState(),
             new IBlockState[]{

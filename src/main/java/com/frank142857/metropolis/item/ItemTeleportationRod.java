@@ -65,10 +65,11 @@ public class ItemTeleportationRod extends Item implements IHasModel {
         IBlockState location = worldIn.getBlockState(new BlockPos(x, y, z));
 
         if(location == Blocks.AIR.getDefaultState()) {
-            if(!BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(worldIn, new BlockPos(x, y, z))){
-                //TODO add stuff
+            if(false){
+                //TODO add stuff: advancement check, replacing "false"
+                BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(worldIn, new BlockPos(x, y, z), false);
             } else {
-                worldIn.newExplosion(null, x, y, z, 5.0F, true, true);
+                BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(worldIn, new BlockPos(x, y, z), true);
             }
         }
 
