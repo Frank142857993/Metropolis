@@ -53,7 +53,7 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
     public static final String name = "mtr_portal";
     
     public static final Block FRAME = Blocks.QUARTZ_BLOCK;
-    //public static final Block FRAME = Blocks.IRONw_BLOCK;
+    //public static final Block FRAME = Blocks.IRON_BLOCK;
 
     public BlockMtrPortal(){
         super(Material.PORTAL, false);

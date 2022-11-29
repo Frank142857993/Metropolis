@@ -4,6 +4,7 @@ import com.frank142857.metropolis.init.BlockInit;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import static com.frank142857.metropolis.world.city.ChunkGenFactory.*;
@@ -12,9 +13,10 @@ public class Building {
     private int chunkX;
     private int chunkZ;
     private int baseHeight;
+    private int floor;
+    private EnumFacing facing;
     private IBlockState baseBlock;
     private IBlockState fillerBlock;
-    private int floor;
     private BuildingType type;
     private ChunkInfoMetropolis info;
 
@@ -22,10 +24,11 @@ public class Building {
     protected final IBlockState glass = Blocks.GLASS_PANE.getDefaultState();
     protected final IBlockState lamp = BlockInit.CEILING_LIGHT.getDefaultState();
 
-    public Building(int chunkX, int chunkZ, int baseHeight, BuildingType type) {
+    public Building(int chunkX, int chunkZ, int baseHeight, EnumFacing facing, BuildingType type) {
         this.chunkX = chunkX;
         this.chunkZ = chunkZ;
         this.baseHeight = baseHeight;
+        this.facing = facing;
         this.type = type;
         this.baseBlock = type.getBaseBlock();
         this.fillerBlock = Blocks.COBBLESTONE.getDefaultState();
@@ -44,8 +47,20 @@ public class Building {
         this.floor = floor;
     }
 
+    public void setType(BuildingType type){
+        this.type = type;
+    }
+
     public void generate(ChunkPrimer primer){
+
         int y = baseHeight;
+
+        //NORMAL-WALLS
+        IBlockState[] sq = new IBlockState[13];
+        sq[0] = air;
+        for(int i2 = 1; i2 < sq.length; i2++){
+            sq[i2] = fillerBlock;
+        }
 
         fillMargin(primer, 0, 0, 15, 15, y, this.baseBlock);
 
@@ -59,58 +74,28 @@ public class Building {
                     fillWalls(primer, 1, y + 2, 1, 14, y + type.getFloorHeight() - 1, 14, Blocks.GLASS_PANE.getDefaultState());
                     fillLayer(primer, 1, 1, 14, 14, y + type.getFloorHeight(), this.fillerBlock);
                 } else if (this.type.equals(BuildingType.NORMAL)) {
-                    fillWalls(primer, 1, y + 1, 1, 14, y + type.getFloorHeight() - 1, 14, this.fillerBlock);
-                    fillLayer(primer, 1, 1, 14, 14, y + type.getFloorHeight(), this.fillerBlock);
 
-                    fill(primer, 1, y + 1, 1, 1, y + type.getFloorHeight(), 1, Blocks.AIR.getDefaultState());
-                    fill(primer, 1, y + 1, 14, 1, y + type.getFloorHeight(), 14, Blocks.AIR.getDefaultState());
-                    fill(primer, 14, y + 1, 1, 14, y + type.getFloorHeight(), 1, Blocks.AIR.getDefaultState());
-                    fill(primer, 14, y + 1, 14, 14, y + type.getFloorHeight(), 14, Blocks.AIR.getDefaultState());
+                    fillMarginPattern(primer, 1, y + 1, 1, sq);
 
-                    for (int y0 = y + 2; y0 <= y + type.getFloorHeight() - 2; y0++) {
-                        fillMarginPattern(primer, 1, y0, 1, new IBlockState[]{
-                                air,
-                                fillerBlock,
-                                glass,
-                                fillerBlock,
-                                glass,
-                                fillerBlock,
-                                glass,
-                                glass,
-                                fillerBlock,
-                                glass,
-                                fillerBlock,
-                                glass,
-                                fillerBlock
-                        });
-                    }
+                    fillWallsPattern(primer, 1, y + 2, 1, 3, new IBlockState[]{
+                            air,
+                            fillerBlock,
+                            glass,
+                            fillerBlock,
+                            glass,
+                            fillerBlock,
+                            glass,
+                            glass,
+                            fillerBlock,
+                            glass,
+                            fillerBlock,
+                            glass,
+                            fillerBlock
+                    });
 
-                    //WALLS & WINDOWS
-                    /*
-                    fill(primer, 3, y + 2, 1, 3, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 5, y + 2, 1, 5, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 7, y + 2, 1, 8, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 10, y + 2, 1, 10, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 12, y + 2, 1, 12, y + type.getFloorHeight() - 2, 1, Blocks.GLASS_PANE.getDefaultState());
+                    fillWallsPattern(primer, 1, y + type.getFloorHeight() - 1, 1, 2, sq);
+                    fillLayer(primer, 2, 2, 13, 13, y + type.getFloorHeight(), fillerBlock);
 
-                    fill(primer, 3, y + 2, 14, 3, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 5, y + 2, 14, 5, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 7, y + 2, 14, 8, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 10, y + 2, 14, 10, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 12, y + 2, 14, 12, y + type.getFloorHeight() - 2, 14, Blocks.GLASS_PANE.getDefaultState());
-
-                    fill(primer, 1, y + 2, 3, 1, y + type.getFloorHeight() - 2, 3, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 1, y + 2, 5, 1, y + type.getFloorHeight() - 2, 5, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 1, y + 2, 7, 1, y + type.getFloorHeight() - 2, 8, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 1, y + 2, 10, 1, y + type.getFloorHeight() - 2, 10, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 1, y + 2, 12, 1, y + type.getFloorHeight() - 2, 12, Blocks.GLASS_PANE.getDefaultState());
-
-                    fill(primer, 14, y + 2, 3, 14, y + type.getFloorHeight() - 2, 3, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 14, y + 2, 5, 14, y + type.getFloorHeight() - 2, 5, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 14, y + 2, 7, 14, y + type.getFloorHeight() - 2, 8, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 14, y + 2, 10, 14, y + type.getFloorHeight() - 2, 10, Blocks.GLASS_PANE.getDefaultState());
-                    fill(primer, 14, y + 2, 12, 14, y + type.getFloorHeight() - 2, 12, Blocks.GLASS_PANE.getDefaultState());
-                    */
                 }
 
                 //LIGHTS
@@ -177,8 +162,31 @@ public class Building {
                     }
                 }
 
+                //DOOR
+                if(f == 0){
+                    switch (this.facing.getIndex()){
+                        case 2: //NORTH
+                            fill(primer, 7, y + 2, 1, 8, y + 3, 1, air);
+                            break;
+                        case 3: //SOUTH
+                            fill(primer, 7, y + 2, 14, 8, y + 3, 14, air);
+                            break;
+                        case 4: //WEST
+                            fill(primer, 1, y + 2, 7, 1, y + 3, 8, air);
+                            break;
+                        case 5: //EAST
+                            fill(primer, 14, y + 2, 7, 14, y + 3, 8, air);
+                            break;
+                        default:
+                            System.out.println("ERROR! Building Facing illegal");
+                            fill(primer, 7, y + 2, 1, 8, y + 3, 1, Blocks.BEDROCK.getDefaultState());
+                            break;
+                    }
+                }
+
                 y += this.type.getFloorHeight();
             }
+            fillLayer(primer, 6, 6, 9, 9, y + 1, fillerBlock);
         }
     }
 }

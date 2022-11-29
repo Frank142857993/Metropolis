@@ -5,10 +5,13 @@ import java.util.Random;
 
 import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.util.interfaces.IBiomeCity;
+import com.frank142857.metropolis.util.interfaces.IBuilding;
 import com.frank142857.metropolis.world.city.*;
+import com.frank142857.metropolis.world.city.features.*;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -26,7 +29,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     private Biome[] biomesForGeneration;
 
     private Road roadIn;
-    private Building buildingIn;
+    private IBuilding feature;
 
     protected static final IBlockState STONE = BlockInit.FOUNDATION_STONE.getDefaultState();
 
@@ -60,26 +63,27 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     }
 
     public void setupArchitectures(int chunkX, int chunkZ, ChunkPrimer primer){
-        buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NORMAL);
-        int b1 = this.rand.nextInt(256);
-        if(b1 < 16) buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.TOWER);
-        else if (b1 < 48) buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), BuildingType.NONE); //TODO place holder
+        int index = 2 + this.rand.nextInt(4); //DIRECTION
         /*
-        for(int i = 0; i < b.getHeight(); i++){
-            IBlockState[][] buildingBlocks = b.prepareForGen(i);
-            int y = this.world.getSeaLevel();
-            for(int x = 0; x < 16; ++x){
-                for (int z = 0; z < 16; ++z)
-                {
-                    primer.setBlockState(x, y + i, z, buildingBlocks[x][z]);
-                }
-            }
-        }
-        */
+        buildingIn = new Building(chunkX, chunkZ, this.world.getSeaLevel(), EnumFacing.getFront(index), BuildingType.NORMAL);
+        int b1 = this.rand.nextInt(256);
+        if(b1 < 16) buildingIn.setType(BuildingType.TOWER);
+        else if (b1 < 48) buildingIn.setType(BuildingType.NONE); //TODO place holder
+
         BuildingType type = buildingIn.getBuildingType();
         buildingIn.setFillerBlock(type.getFillerBlocks()[this.rand.nextInt(type.getFillerBlocks().length)]);
         buildingIn.setFloor(type.getMinFloor() + this.rand.nextInt(type.getFloorVariation()));
         buildingIn.generate(primer);
+        */
+        int b1 = this.rand.nextInt(256);
+        if (b1 < 48) {
+            feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel(), EnumFacing.getFront(index));
+        } else if (b1 < 60) {
+            feature = new BuildingTower(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+        } else {
+            feature = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+        }
+        feature.generate(primer);
     }
 
     @Override

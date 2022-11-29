@@ -49,4 +49,10 @@ public class ChunkGenFactory {
             }
         }
     }
+
+    public static void fillWallsPattern(ChunkPrimer primer, int x0, int y0, int z0, int floors, IBlockState[] sequence){
+        for(int i = 0; i < floors; i++){
+            fillMarginPattern(primer, x0, y0 + i, z0, sequence);
+        }
+    }
 }
