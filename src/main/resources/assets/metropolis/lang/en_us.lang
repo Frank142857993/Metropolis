@@ -2,8 +2,8 @@ item.dynamite_ingot.name=Ingot of Dynamite
 
 item.teleportation_rod.name=Rod of Teleportation
 
-tile.iron_ore.name=Iron Plated Foundation Stone
-tile.gold_ore.name=Gold Plated Foundation Stone
+tile.iron_ore.name=Foundation Stone Iron Ore
+tile.gold_ore.name=Foundation Stone Gold Ore
 tile.diamond_ore.name=Foundation Stone Diamond Ore
 tile.redstone_ore.name=Foundation Stone Redstone Ore
 tile.quartz_ore.name=Foundation Stone Quartz Ore
@@ -17,9 +17,8 @@ tile.foundation_stone.name=Foundation Stone
 tile.polished_foundation_stone.name=Polished Foundation Stone
 tile.stone_paving.name=Stone Paving
 
-tile.under_brick.name=Under Brick
-tile.slimy_under_brick.name=Slimy Under Brick
-tile.hardened_under_brick.name=Hardened Under Brick
+tile.black_brick.name=Black Brick
+tile.mossy_black_brick.name=Mossy Black Brick
 tile.ceiling_light.name=Ceiling Light
 
 tile.mtr_portal.name=Metropolis Portal

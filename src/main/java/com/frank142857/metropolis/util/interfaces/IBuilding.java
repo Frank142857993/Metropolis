@@ -1,6 +1,8 @@
 package com.frank142857.metropolis.util.interfaces;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 public interface IBuilding {
@@ -10,6 +12,10 @@ public interface IBuilding {
     public IBlockState getBaseBlock();
 
     public IBlockState[] getFillerBlocks();
+
+    public ChunkPos getChunkPos();
+
+    public int getBaseHeight();
 
     public int getMinFloor();
 
@@ -21,6 +27,8 @@ public interface IBuilding {
 
     public void setFloorCount(int floorCount);
 
-    public void generate(ChunkPrimer primer);
+    public void generate(World world, ChunkPrimer primer);
+
+    public void addDetails(World world);
 
 }

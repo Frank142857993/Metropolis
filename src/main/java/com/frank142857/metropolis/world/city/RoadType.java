@@ -4,5 +4,10 @@ public enum RoadType {
     NONE,
     EW,
     SN,
-    CROSS;
+    CROSS,
+    RIVER_EW,
+    RIVER_SN,
+    BRIDGE_EW,
+    BRIDGE_SN,
+    WATER
 }

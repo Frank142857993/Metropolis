@@ -19,7 +19,7 @@ public class ConfigInit {
     public static int NEIGHBORHOOD_WIDTH = 4;
 
     @Config.RequiresWorldRestart
-    public static int RIVER_DISTRIBUTION = 8;
+    public static int RIVER_DISTRIBUTION = 4;
 
     //Is portal enabled
     public static boolean PORTAL_ENABLED = true;
@@ -42,9 +42,8 @@ public class ConfigInit {
         config.addCustomCategoryComment(category, "Set the width & length for neighborhoods, min: 2, max: 16, default: 4");
         NEIGHBORHOOD_WIDTH = config.getInt("Neighborhood width & length", category, 4, 2, 16, "Neighborhood width", "neighborhood");
 
-        config.addCustomCategoryComment(category, "Set the distribution of river, min: 4, max: 16, default: 8");
-        RIVER_DISTRIBUTION = config.getInt("River distribution", category, 8, 4, 16, "River network", "river");
-
+        config.addCustomCategoryComment(category, "Set the distribution of river, min: 2, max: 8, default: 4");
+        RIVER_DISTRIBUTION = config.getInt("River distribution", category, 4, 2, 8, "River network", "river");
 
         config.addCustomCategoryComment(category, "Decide if MTR portal is enabled, default:true");
         PORTAL_ENABLED = config.getBoolean("Enable Portal", category, true, "Enable Metropolis Portal", "enable_portal");

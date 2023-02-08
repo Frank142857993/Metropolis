@@ -27,8 +27,8 @@ public class WorldGenMtrOres implements IWorldGenerator {
         ore_mtr_quartz = new WorldGenMinable(BlockInit.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
 
         stone = new WorldGenMinable(Blocks.STONE.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
-        block_under_brick = new WorldGenMinable(BlockInit.UNDER_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
-        block_slimy_brick = new WorldGenMinable(BlockInit.SLIMY_UNDER_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
+        block_under_brick = new WorldGenMinable(BlockInit.BLACK_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
+        block_slimy_brick = new WorldGenMinable(BlockInit.MOSSY_BLACK_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
     }
 
     private void runGenerator(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, int minHeight, int maxHeight){
@@ -52,8 +52,8 @@ public class WorldGenMtrOres implements IWorldGenerator {
         if(world.provider.getDimension() == DimensionInit.metropolis.getId()){
             runGenerator(iron, world, random, chunkX, chunkZ, 8, 38, 92); //60+32
             runGenerator(gold, world, random, chunkX, chunkZ, 3, 38, 70); //32+32+6
-            runGenerator(diamond, world, random, chunkX, chunkZ, 2, 38, 54); //16+32+6
-            runGenerator(redstone, world, random, chunkX, chunkZ, 8, 38, 54); //16+32+6
+            runGenerator(diamond, world, random, chunkX, chunkZ, 3, 38, 54); //16+32+6
+            runGenerator(redstone, world, random, chunkX, chunkZ, 6, 38, 54); //16+32+6
             runGenerator(dynamite, world, random, chunkX, chunkZ, 1, 38, 78); //40+32+6
             runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 38, 86); //54+32
             runGenerator(stone, world, random, chunkX, chunkZ, 4, 64, 96); //64+32

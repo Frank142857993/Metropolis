@@ -1,6 +1,7 @@
 package com.frank142857.metropolis.client.gui;
 
 import com.frank142857.metropolis.init.BlockInit;
+import com.frank142857.metropolis.init.ConfigInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -34,7 +35,7 @@ public class GuiPortal extends Gui {
 
         if (!this.mc.player.isPotionActive(MobEffects.NAUSEA))
         {
-            float f = this.mc.player.prevTimeInPortal + (this.mc.player.timeInPortal - this.mc.player.prevTimeInPortal) * partialTicks; // TODO
+            float f = this.mc.player.prevTimeInPortal + (this.mc.player.timeInPortal - this.mc.player.prevTimeInPortal) * partialTicks; // TODO Capability
 
             if (f > 0.0F)
             {

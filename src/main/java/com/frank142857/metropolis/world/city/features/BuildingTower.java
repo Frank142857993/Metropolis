@@ -2,10 +2,13 @@ package com.frank142857.metropolis.world.city.features;
 
 import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.util.interfaces.IBuilding;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
@@ -17,6 +20,7 @@ public class BuildingTower implements IBuilding {
     private int chunkZ;
     private int baseHeight;
     private int floorCount;
+    private int roofType;
     private EnumFacing facing;
 
     private IBlockState baseBlock;
@@ -37,6 +41,7 @@ public class BuildingTower implements IBuilding {
         this.baseBlock = Blocks.DOUBLE_STONE_SLAB.getDefaultState();
         this.fillerBlock = this.fillerBlocks[rand.nextInt(this.fillerBlocks.length)];
         this.floorCount = this.getMinFloor() + rand.nextInt(this.getFloorVariation());
+        this.roofType = rand.nextInt(3); //roof count
     }
 
     @Override
@@ -52,6 +57,16 @@ public class BuildingTower implements IBuilding {
     @Override
     public IBlockState[] getFillerBlocks() {
         return fillerBlocks;
+    }
+
+    @Override
+    public ChunkPos getChunkPos() {
+        return new ChunkPos(chunkX, chunkZ);
+    }
+
+    @Override
+    public int getBaseHeight() {
+        return baseHeight;
     }
 
     @Override
@@ -80,7 +95,7 @@ public class BuildingTower implements IBuilding {
     }
 
     @Override
-    public void generate(ChunkPrimer primer) {
+    public void generate(World worldIn, ChunkPrimer primer) {
         int y = baseHeight;
 
         //FLOOR
@@ -90,6 +105,45 @@ public class BuildingTower implements IBuilding {
         for (int f = 0; f < floorCount; f++) {
             fillMargin(primer, 1, 1, 14, 14, y + 1, this.fillerBlock);
             fillWalls(primer, 1, y + 2, 1, 14, y + this.getFloorHeight() - 1, 14, glass);
+            fillPillar(primer, 1, y + 2, 1, 4, this.fillerBlock);
+            fillPillar(primer, 1, y + 2, 14, 4, this.fillerBlock);
+            fillPillar(primer, 14, y + 2, 1, 4, this.fillerBlock);
+            fillPillar(primer, 14, y + 2, 14, 4, this.fillerBlock);
+            switch (this.facing.getIndex()){
+                case 2: //NORTH
+                    fillPillar(primer, 6, y + 2, 1, 4, this.fillerBlock);
+                    fillPillar(primer, 9, y + 2, 1, 4, this.fillerBlock);
+                    fill(primer, 7, y + 2, 14, 8, y + this.getFloorHeight() - 1, 14, this.fillerBlock);
+                    fill(primer, 1, y + 2, 7, 1, y + this.getFloorHeight() - 1, 8, this.fillerBlock);
+                    fill(primer, 14, y + 2, 7, 14, y + this.getFloorHeight() - 1, 8, this.fillerBlock);
+                    break;
+                case 3: //SOUTH
+                    fillPillar(primer, 6, y + 2, 14, 4, this.fillerBlock);
+                    fillPillar(primer, 9, y + 2, 14, 4, this.fillerBlock);
+                    fill(primer, 7, y + 2, 1, 8, y + this.getFloorHeight() - 1, 1, this.fillerBlock);
+                    fill(primer, 1, y + 2, 7, 1, y + this.getFloorHeight() - 1, 8, this.fillerBlock);
+                    fill(primer, 14, y + 2, 7, 14, y + this.getFloorHeight() - 1, 8, this.fillerBlock);
+                    break;
+                case 4: //WEST
+                    fillPillar(primer, 1, y + 2, 6, 4, this.fillerBlock);
+                    fillPillar(primer, 1, y + 2, 9, 4, this.fillerBlock);
+                    fill(primer, 14, y + 2, 7, 14, y + this.getFloorHeight() - 1, 8, this.fillerBlock);
+                    fill(primer, 7, y + 2, 1, 8, y + this.getFloorHeight() - 1, 1, this.fillerBlock);
+                    fill(primer, 7, y + 2, 14, 8, y + this.getFloorHeight() - 1, 14, this.fillerBlock);
+                    break;
+                case 5: //EAST
+                    fillPillar(primer, 14, y + 2, 6, 4, this.fillerBlock);
+                    fillPillar(primer, 14, y + 2, 9, 4, this.fillerBlock);
+                    fill(primer, 1, y + 2, 7, 1, y + this.getFloorHeight() - 1, 8, this.fillerBlock);
+                    fill(primer, 7, y + 2, 1, 8, y + this.getFloorHeight() - 1, 1, this.fillerBlock);
+                    fill(primer, 7, y + 2, 14, 8, y + this.getFloorHeight() - 1, 14, this.fillerBlock);
+                    break;
+                default:
+                    System.out.println("ERROR! Building Facing illegal");
+                    fill(primer, 7, y + 2, 1, 8, y + 3, 1, Blocks.BEDROCK.getDefaultState());
+                    break;
+            }
+
             fillLayer(primer, 1, 1, 14, 14, y + this.getFloorHeight(), this.fillerBlock);
 
             //LIGHTS
@@ -140,16 +194,24 @@ public class BuildingTower implements IBuilding {
             if(f == 0){
                 switch (this.facing.getIndex()){
                     case 2: //NORTH
+                        fill(primer, 7, y + 1, 0, 8, y + 1, 0, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 7, y + 2, 1, 8, y + 3, 1, air);
+                        fill(primer, 7, y + 1, 2, 8, y + 1, 2, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     case 3: //SOUTH
+                        fill(primer, 7, y + 1, 15, 8, y + 1, 15, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 7, y + 2, 14, 8, y + 3, 14, air);
+                        fill(primer, 7, y + 1, 13, 8, y + 1, 13, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     case 4: //WEST
+                        fill(primer, 0, y + 1, 7, 0, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 1, y + 2, 7, 1, y + 3, 8, air);
+                        fill(primer, 2, y + 1, 7, 2, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     case 5: //EAST
+                        fill(primer, 15, y + 1, 7, 15, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 14, y + 2, 7, 14, y + 3, 8, air);
+                        fill(primer, 13, y + 1, 7, 13, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     default:
                         System.out.println("ERROR! Building Facing illegal");
@@ -161,6 +223,32 @@ public class BuildingTower implements IBuilding {
             y += this.getFloorHeight();
         }
 
-        fillLayer(primer, 6, 6, 9, 9, y + 1, fillerBlock);
+        makeRoof(primer, y);
+
+    }
+
+    public void makeRoof(ChunkPrimer primer, int height){
+
+        switch (this.roofType){
+            case 0:
+                break;
+            case 1:
+                fillLayer(primer, 6, 6, 9, 9, height + 1, fillerBlock);
+                break;
+            case 2:
+                IBlockState[] top = new IBlockState[11];
+                top[0] = fillerBlock;
+                for(int i = 1; i < top.length; i++) top[i] = glass;
+                fillMargin(primer, 2, 2, 13, 13, height + 1, fillerBlock);
+                fillWallsPattern(primer, 2, height + 2, 2, 3, top);
+                fillMargin(primer, 2, 2, 13, 13, height + 5, fillerBlock);
+                fillMargin(primer, 7, 7, 8, 8, height + 5, lamp);
+                fillLayer(primer, 3, 3, 12, 12, height + 6, fillerBlock);
+        }
+    }
+
+    @Override
+    public void addDetails(World world) {
+
     }
 }

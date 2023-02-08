@@ -4,6 +4,8 @@ import com.frank142857.metropolis.util.interfaces.IBuilding;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
@@ -37,6 +39,16 @@ public class BuildingBase implements IBuilding {
     }
 
     @Override
+    public ChunkPos getChunkPos() {
+        return new ChunkPos(chunkX, chunkZ);
+    }
+
+    @Override
+    public int getBaseHeight() {
+        return baseHeight;
+    }
+
+    @Override
     public int getMinFloor() {
         return 0;
     }
@@ -62,8 +74,13 @@ public class BuildingBase implements IBuilding {
     }
 
     @Override
-    public void generate(ChunkPrimer primer) {
+    public void generate(World worldIn, ChunkPrimer primer) {
         int y = baseHeight;
-        fillMargin(primer, 0, 0, 15, 15, y, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+        //fillMargin(primer, 0, 0, 15, 15, y, Blocks.DOUBLE_STONE_SLAB.getDefaultState()); //TODO Nothing generated
+    }
+
+    @Override
+    public void addDetails(World world) {
+
     }
 }

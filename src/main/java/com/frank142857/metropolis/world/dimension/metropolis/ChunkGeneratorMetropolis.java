@@ -8,6 +8,7 @@ import com.frank142857.metropolis.util.interfaces.IBiomeCity;
 import com.frank142857.metropolis.util.interfaces.IBuilding;
 import com.frank142857.metropolis.world.city.*;
 import com.frank142857.metropolis.world.city.features.*;
+import com.frank142857.metropolis.world.gen.feature.WorldGenSmallFeatures;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -28,6 +29,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     private final WorldType terrainType;
     private Biome[] biomesForGeneration;
 
+    private ChunkInfoMetropolis info;
     private Road roadIn;
     private IBuilding feature;
 
@@ -43,6 +45,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     @Override
     public Chunk generateChunk(int chunkX, int chunkZ) {
         this.rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
+        this.info = new ChunkInfoMetropolis(chunkX, chunkZ);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
@@ -57,7 +60,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     }
 
     public void setupNetworks(int chunkX, int chunkZ, ChunkPrimer primer){
-        roadIn = new Road(chunkX, chunkZ);
+        roadIn = info.getRoad();
         roadIn.setBaseHeight(world.getSeaLevel());
         roadIn.generate(primer);
     }
@@ -76,14 +79,18 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         buildingIn.generate(primer);
         */
         int b1 = this.rand.nextInt(256);
-        if (b1 < 48) {
-            feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel(), EnumFacing.getFront(index));
-        } else if (b1 < 60) {
+        if (b1 < 32) {//48
+            //feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel(), EnumFacing.getFront(index));
+            feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+        } else if (b1 < 64) {
+            feature = new Pavilion(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
+        } else if (b1 < 80) {
             feature = new BuildingTower(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
         } else {
             feature = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
         }
-        feature.generate(primer);
+
+        feature.generate(world, primer);
     }
 
     @Override
@@ -96,13 +103,22 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         long l = this.rand.nextLong() / 2L * 2L + 1L;
         this.rand.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.world.getSeed());
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
+
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, chunkX, chunkZ, false);
+
+        feature.addDetails(this.world); //TODO setupArchitectures + generate环节移到这里
+        if(feature instanceof FlowerShop){
+            (new WorldGenSmallFeatures()).generate(this.world, this.rand, new BlockPos(feature.getChunkPos().x * 16 + 2, feature.getBaseHeight() + 1, feature.getChunkPos().z * 16 + 2));
+        }
+
         biome.decorate(this.world, this.rand, new BlockPos(x, 0, z));
         if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false,
                 net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS)) {
             WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
         }
+
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, chunkX, chunkZ, false);
+
         BlockFalling.fallInstantly = false;
     }
 
@@ -115,7 +131,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
             return;
         }
         if(biomesIn[120] instanceof IBiomeCity){
-            if(new ChunkInfoMetropolis(chunkX, chunkZ).isRoad()) {
+            if(info.isRoad()) {
                 setupNetworks(chunkX, chunkZ, primer);
             }
             else {

@@ -33,14 +33,11 @@ public class BlockInit {
     public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
     public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
 
-    public static final BlockMTR UNDER_BRICK = new BlockMTR(
-            "under_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
+    public static final BlockMTR BLACK_BRICK = new BlockMTR( //BLACK BRICK 青砖
+            "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
     );
-    public static final BlockAccelerateMTR SLIMY_UNDER_BRICK = new BlockAccelerateMTR(
-            "slimy_under_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
-    );
-    public static final BlockMTR HARDENED_UNDER_BRICK = new BlockMTR(
-            "hardened_under_brick", Material.ROCK, MapColor.SILVER, "pickaxe", 0, 5.0F, 0
+    public static final BlockAccelerateMTR MOSSY_BLACK_BRICK = new BlockAccelerateMTR(
+            "mossy_black_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
     );
     public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();
 }

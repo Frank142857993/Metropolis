@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "model": "minecraft:cube_all",
-    "textures": {"all": "metropolis:blocks/slimy_under_brick"}
+    "textures": {"all": "metropolis:blocks/black_brick"}
   },
   "variants": {
     "normal": [{}],

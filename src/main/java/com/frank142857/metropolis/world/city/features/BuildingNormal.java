@@ -6,6 +6,8 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
@@ -17,12 +19,14 @@ public class BuildingNormal implements IBuilding {
     private int chunkZ;
     private int baseHeight;
     private int floorCount;
+    private int roofType;
     private EnumFacing facing;
 
     private IBlockState baseBlock;
     private IBlockState fillerBlock;
     protected final IBlockState[] fillerBlocks = new IBlockState[]{
             BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(),
+            BlockInit.BLACK_BRICK.getDefaultState(),
             Blocks.QUARTZ_BLOCK.getDefaultState(),
             Blocks.BRICK_BLOCK.getDefaultState()
     };
@@ -38,6 +42,7 @@ public class BuildingNormal implements IBuilding {
         this.baseBlock = Blocks.DOUBLE_STONE_SLAB.getDefaultState();
         this.fillerBlock = this.fillerBlocks[rand.nextInt(this.fillerBlocks.length)];
         this.floorCount = this.getMinFloor() + rand.nextInt(this.getFloorVariation());
+        this.roofType = rand.nextInt(4); //roof count
     }
 
     @Override
@@ -53,6 +58,16 @@ public class BuildingNormal implements IBuilding {
     @Override
     public IBlockState[] getFillerBlocks() {
         return fillerBlocks;
+    }
+
+    @Override
+    public ChunkPos getChunkPos() {
+        return new ChunkPos(chunkX, chunkZ);
+    }
+
+    @Override
+    public int getBaseHeight() {
+        return baseHeight;
     }
 
     @Override
@@ -81,7 +96,7 @@ public class BuildingNormal implements IBuilding {
     }
 
     @Override
-    public void generate(ChunkPrimer primer) {
+    public void generate(World worldIn, ChunkPrimer primer) {
 
         int y = baseHeight;
 
@@ -167,16 +182,24 @@ public class BuildingNormal implements IBuilding {
             if (f == 0) {
                 switch (this.facing.getIndex()) {
                     case 2: //NORTH
+                        fill(primer, 7, y + 1, 0, 8, y + 1, 0, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 7, y + 2, 1, 8, y + 3, 1, air);
+                        fill(primer, 7, y + 1, 2, 8, y + 1, 2, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     case 3: //SOUTH
+                        fill(primer, 7, y + 1, 15, 8, y + 1, 15, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 7, y + 2, 14, 8, y + 3, 14, air);
+                        fill(primer, 7, y + 1, 13, 8, y + 1, 13, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     case 4: //WEST
+                        fill(primer, 0, y + 1, 7, 0, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 1, y + 2, 7, 1, y + 3, 8, air);
+                        fill(primer, 2, y + 1, 7, 2, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     case 5: //EAST
+                        fill(primer, 15, y + 1, 7, 15, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         fill(primer, 14, y + 2, 7, 14, y + 3, 8, air);
+                        fill(primer, 13, y + 1, 7, 13, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
                         break;
                     default:
                         System.out.println("ERROR! Building Facing illegal");
@@ -189,6 +212,52 @@ public class BuildingNormal implements IBuilding {
         }
 
         //SIMPLE ROOF
-        fillLayer(primer, 6, 6, 9, 9, y + 1, fillerBlock);
+        makeRoof(primer, y);
+    }
+
+    public void makeRoof(ChunkPrimer primer, int height){
+
+        switch (this.roofType){
+            case 0:
+                break;
+            case 1:
+                fillLayer(primer, 6, 6, 9, 9, height + 1, fillerBlock);
+                break;
+            case 2:
+                fillMargin(primer, 2, 2, 13, 13, height + 1, fillerBlock);
+                fillWallsPattern(primer, 2, height + 2, 2, 3, new IBlockState[]{
+                        fillerBlock,
+                        fillerBlock,
+                        glass,
+                        fillerBlock,
+                        glass,
+                        fillerBlock,
+                        fillerBlock,
+                        glass,
+                        fillerBlock,
+                        glass,
+                        fillerBlock
+                });
+                fillMargin(primer, 2, 2, 13, 13, height + 5, fillerBlock);
+                fillMargin(primer, 7, 7, 8, 8, height + 5, lamp);
+                fillLayer(primer, 3, 3, 12, 12, height + 6, fillerBlock);
+                break;
+            default:
+                IBlockState[] top = new IBlockState[5];
+                top[0] = lamp;
+
+                int i = 0;
+                while(i < 6){
+                    fillMargin(primer, 2 + i, 2 + i, 13 - i, 13 - i, height + i + 1, fillerBlock);
+                    i = i + 1;
+                }
+                fillMarginPattern(primer, 5, height + 3, 5, top);
+                break;
+        }
+    }
+
+    @Override
+    public void addDetails(World world) {
+
     }
 }

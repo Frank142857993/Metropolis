@@ -114,21 +114,34 @@ public class WorldProviderMetropolis extends WorldProvider {
     @Override
     public Vec3d getFogColor(float f, float f1) {
 
-        float bright = MathHelper.cos(0.23F * 3.141593F * 2.0F) * 2.0F + 0.5F;
+        float bright = MathHelper.cos(f * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
+        bright = MathHelper.clamp(bright, 0.0F, 1.0F);
+        float red = 0.84705883F;
+        float green = 0.84705883F;
+        float blue = 0.84705883F;
+        red = red * (bright * 0.94F + 0.06F);
+        green = green * (bright * 0.94F + 0.06F);
+        blue = blue * (bright * 0.91F + 0.09F);
+        if (ConfigInit.USING_FOG_COLOR) return new Vec3d((double)red, (double)green, (double)blue);
+        else return super.getFogColor(f, f1);
+
+        /*
+        float bright = MathHelper.cos(f * 3.141593F * 2.0F) * 2.0F + 0.5F;
         if (bright < 0.0F) {
             bright = 0.0F;
         }
         if (bright > 1.0F) {
             bright = 1.0F;
         }
-        float red = 0.9882353F;
-        float green = 0.9882353F;
-        float blue = 0.9882353F;
+        float red = 0.84705883F;
+        float green = 0.84705883F;
+        float blue = 0.84705883F;
         red *= bright * 0.94F + 0.06F;
         green *= bright * 0.94F + 0.06F;
-        blue *= bright * 0.91F + 0.09F;
+        blue *= bright * 0.91F + 0.06F;
         if (ConfigInit.USING_FOG_COLOR) return new Vec3d(red, green, blue);
         else return super.getFogColor(f, f1);
+        */
     }
 
 }

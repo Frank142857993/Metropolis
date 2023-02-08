@@ -1,10 +1,8 @@
 package com.frank142857.metropolis.block.teleporter;
 
 import com.frank142857.metropolis.Metropolis;
-import com.frank142857.metropolis.init.BlockInit;
-import com.frank142857.metropolis.init.ConfigInit;
-import com.frank142857.metropolis.init.CreativeTabInit;
-import com.frank142857.metropolis.init.DimensionInit;
+import com.frank142857.metropolis.capability.ICapabilityPortal;
+import com.frank142857.metropolis.init.*;
 import com.frank142857.metropolis.util.handlers.SoundsHandler;
 import com.frank142857.metropolis.util.interfaces.IHasModel;
 import com.frank142857.metropolis.util.particle.MtrEnumParticleTypes;
@@ -28,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
@@ -38,6 +37,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -198,20 +198,28 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        Random rand = new Random();
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        ICapabilityPortal capability = entityIn.getCapability(CapabilityInit.PORTAL, null);
 
-        if(!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn instanceof EntityPlayerMP) {
-            EntityPlayerMP player = (EntityPlayerMP) entityIn;
-            player.setPortal(pos);
-            if(player.timeUntilPortal > 0) {
-                player.timeUntilPortal = player.getPortalCooldown();
-            } else if (player.dimension != DimensionInit.metropolis.getId()) {
-                player.timeUntilPortal = 300;
-                player.changeDimension(DimensionInit.metropolis.getId(), new MtrTeleporter(player.mcServer.getWorld(DimensionInit.metropolis.getId())));
-                player.setSpawnChunk(player.getPosition(), true, DimensionInit.metropolis.getId());
+        if (!worldIn.isRemote && !entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
+            /*
+            if(entityIn instanceof EntityPlayerMP){
+                ((EntityPlayerMP) entityIn).setPortal(pos);
+            }
+            */
+            entityIn.setPortal(pos); //TODO Portal Check
+            if(entityIn.timeUntilPortal > 0) {
+                entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+            } else if (entityIn.dimension != DimensionInit.metropolis.getId()) {
+                entityIn.timeUntilPortal = 300;
+                if(capability != null) System.out.println("tick until teleport = " + capability.getTicksUntilTeleport());
+                entityIn.changeDimension(DimensionInit.metropolis.getId(), new MtrTeleporter(server.getWorld(DimensionInit.metropolis.getId())));
+                if(entityIn instanceof EntityPlayerMP){
+                    ((EntityPlayerMP) entityIn).setSpawnChunk(entityIn.getPosition(), true, DimensionInit.metropolis.getId());
+                }
             } else {
-                player.timeUntilPortal = 300;
-                player.changeDimension(0, new MtrTeleporter(player.mcServer.getWorld(0)));
+                entityIn.timeUntilPortal = 300;
+                entityIn.changeDimension(0, new MtrTeleporter(server.getWorld(0)));
             }
         }
     }
