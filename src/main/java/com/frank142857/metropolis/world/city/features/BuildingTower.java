@@ -95,7 +95,7 @@ public class BuildingTower implements IBuilding {
     }
 
     @Override
-    public void generate(World worldIn, ChunkPrimer primer) {
+    public void generate(ChunkPrimer primer) {
         int y = baseHeight;
 
         //FLOOR

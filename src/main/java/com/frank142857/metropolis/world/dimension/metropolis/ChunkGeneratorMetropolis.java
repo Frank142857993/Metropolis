@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.frank142857.metropolis.init.BlockInit;
-import com.frank142857.metropolis.util.interfaces.IBiomeCity;
-import com.frank142857.metropolis.util.interfaces.IBuilding;
+import com.frank142857.metropolis.util.interfaces.*;
 import com.frank142857.metropolis.world.city.*;
 import com.frank142857.metropolis.world.city.features.*;
-import com.frank142857.metropolis.world.gen.feature.WorldGenSmallFeatures;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -31,7 +29,8 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
 
     private ChunkInfoMetropolis info;
     private Road roadIn;
-    private IBuilding feature;
+    private IHouse feature;
+    private IBuilding building;
 
     protected static final IBlockState STONE = BlockInit.FOUNDATION_STONE.getDefaultState();
 
@@ -72,15 +71,14 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         int b1 = this.rand.nextInt(256);
         if(b1 < 16) buildingIn.setType(BuildingType.TOWER);
         else if (b1 < 48) buildingIn.setType(BuildingType.NONE); //TODO place holder
-
         BuildingType type = buildingIn.getBuildingType();
         buildingIn.setFillerBlock(type.getFillerBlocks()[this.rand.nextInt(type.getFillerBlocks().length)]);
         buildingIn.setFloor(type.getMinFloor() + this.rand.nextInt(type.getFloorVariation()));
         buildingIn.generate(primer);
         */
         int b1 = this.rand.nextInt(256);
-        if (b1 < 32) {//48
-            //feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel(), EnumFacing.getFront(index));
+        /*
+        if (b1 < 32) {
             feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
         } else if (b1 < 64) {
             feature = new Pavilion(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
@@ -88,9 +86,11 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
             feature = new BuildingTower(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
         } else {
             feature = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-        }
+        }*/
 
-        feature.generate(world, primer);
+        building = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+
+        building.generate(primer);
     }
 
     @Override
@@ -106,10 +106,29 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
 
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, chunkX, chunkZ, false);
 
-        feature.addDetails(this.world); //TODO setupArchitectures + generate环节移到这里
-        if(feature instanceof FlowerShop){
-            (new WorldGenSmallFeatures()).generate(this.world, this.rand, new BlockPos(feature.getChunkPos().x * 16 + 2, feature.getBaseHeight() + 1, feature.getChunkPos().z * 16 + 2));
+        if(((new ChunkInfoMetropolis(chunkX, chunkZ)).getStructureType().equals(StructureType.SMALL_FEATURE))){ //set up architectures
+            int index = 2 + this.rand.nextInt(4); //DIRECTION
+            int b1 = this.rand.nextInt(256);
+            if (b1 < 48) {//48
+                //feature = new Pavilion(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
+            } else if (b1 < 254) {//128
+                //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+            //} else if (b1 < 254) {
+              //  feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel());
+            } else {
+                //feature = new Sculpture(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
+                //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+            }
+
+            if(feature != null){
+                //feature.generate(this.world); //TODO test
+                //TODO setupArchitectures + generate环节移到这里
+            }
         }
+
+        //if(feature instanceof FlowerShop){
+        //    (new WorldGenSmallFeatures()).generate(this.world, this.rand, new BlockPos(feature.getChunkPos().x * 16 + 2, feature.getBaseHeight() + 1, feature.getChunkPos().z * 16 + 2));
+        //}
 
         biome.decorate(this.world, this.rand, new BlockPos(x, 0, z));
         if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false,
@@ -133,8 +152,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         if(biomesIn[120] instanceof IBiomeCity){
             if(info.isRoad()) {
                 setupNetworks(chunkX, chunkZ, primer);
-            }
-            else {
+            } else if (info.getStructureType().equals(StructureType.BUILDING)) {
                 setupArchitectures(chunkX, chunkZ, primer);
             }
         }

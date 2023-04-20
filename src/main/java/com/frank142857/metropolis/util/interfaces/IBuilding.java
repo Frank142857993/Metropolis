@@ -27,7 +27,7 @@ public interface IBuilding {
 
     public void setFloorCount(int floorCount);
 
-    public void generate(World world, ChunkPrimer primer);
+    public void generate(ChunkPrimer primer); //OLD
 
     public void addDetails(World world);
 

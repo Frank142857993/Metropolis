@@ -5,8 +5,9 @@ import com.frank142857.metropolis.world.city.ChunkGenFactory;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -18,26 +19,29 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 
 import java.util.Random;
 
-public class Pavilion implements IHouse {
-    private static final ResourceLocation PAVILION = new ResourceLocation("metropolis:pavilion");
+public class Sculpture implements IHouse {
+    private static final ResourceLocation RELIC_PORTAL = new ResourceLocation("metropolis:portal");
 
     private int chunkX;
     private int chunkZ;
     private int baseHeight;
     private int floorCount;
 
+    private Random rand;
+
     private IBlockState baseBlock = Blocks.QUARTZ_BLOCK.getDefaultState();
     private IBlockState fillerBlock = Blocks.QUARTZ_BLOCK.getDefaultState();
 
-    public Pavilion(int chunkX, int chunkZ, int baseHeight, Random rand){
+    public Sculpture(int chunkX, int chunkZ, int baseHeight, Random rand){
         this.chunkX = chunkX;
         this.chunkZ = chunkZ;
         this.baseHeight = baseHeight;
+        this.rand = rand;
     }
 
     @Override
     public String getType() {
-        return "pavilion";
+        return "sculpture";
     }
 
     @Override
@@ -60,9 +64,12 @@ public class Pavilion implements IHouse {
         WorldServer worldserver = (WorldServer) world;
         MinecraftServer minecraftserver = world.getMinecraftServer();
         TemplateManager templatemanager = worldserver.getStructureTemplateManager();
-        Template template = templatemanager.getTemplate(minecraftserver, PAVILION);
+        Template template = templatemanager.getTemplate(minecraftserver, RELIC_PORTAL);
 
-        template.addBlocksToWorldChunk(world, pos, new PlacementSettings().setChunk(new ChunkPos(chunkX, chunkZ)).setIgnoreEntities(false));
+        Rotation[] rotations = Rotation.values();
+        Rotation rotation = rotations[rand.nextInt(rotations.length)];
+        BlockPos pos1 = template.getZeroPositionWithTransform(pos, Mirror.NONE, rotation);
+
+        template.addBlocksToWorldChunk(world, pos1, new PlacementSettings().setChunk(new ChunkPos(chunkX, chunkZ)).setRotation(rotation).setIgnoreEntities(false));
     }
-
 }

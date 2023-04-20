@@ -2,6 +2,7 @@ package com.frank142857.metropolis.world.city;
 
 import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.ConfigInit;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -128,9 +129,47 @@ public class Road {
                 break;
             case SN:
                 fill(primer, 4, y, 0, 11, y, 15, BlockInit.STONE_PAVING.getDefaultState());
+
+                //STREET LAMP
+                if(Math.floorMod(chunkZ, (width + 1)) % 2 == 0) {
+                    fill(primer, 2, y, 7, 2, y + 9, 7, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                    primer.setBlockState(1, y + 9, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(2, y + 10, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(3, y + 9, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                    primer.setBlockState(4, y + 10, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(5, y + 10, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(5, y + 9, 7, BlockInit.CEILING_LIGHT.getDefaultState());
+                } else {
+                    fill(primer, 13, y, 7, 13, y + 9, 7, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                    primer.setBlockState(14, y + 9, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(13, y + 10, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(12, y + 9, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                    primer.setBlockState(11, y + 10, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(10, y + 10, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(10, y + 9, 7, BlockInit.CEILING_LIGHT.getDefaultState());
+                }
                 break;
             case EW:
                 fill(primer, 0, y, 4, 15, y, 11, BlockInit.STONE_PAVING.getDefaultState());
+
+                //STREET LAMP
+                if(Math.floorMod(chunkX, (width + 1)) % 2 == 1) {
+                    fill(primer, 7, y, 2, 7, y + 9, 2, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                    primer.setBlockState(7, y + 9, 1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 10, 2, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 9, 3, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                    primer.setBlockState(7, y + 10, 4, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 10, 5, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 9, 5, BlockInit.CEILING_LIGHT.getDefaultState());
+                } else {
+                    fill(primer, 7, y, 13, 7, y + 9, 13, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+                    primer.setBlockState(7, y + 9, 14, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 10, 13, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 9, 12, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                    primer.setBlockState(7, y + 10, 11, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 10, 10, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(7, y + 9, 10, BlockInit.CEILING_LIGHT.getDefaultState());
+                }
                 break;
             case CROSS:
                 fill(primer, 0, y, 4, 3, y, 11, BlockInit.STONE_PAVING.getDefaultState());

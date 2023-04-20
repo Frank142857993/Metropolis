@@ -1,6 +1,8 @@
 package com.frank142857.metropolis.world.city.features;
 
+import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.util.interfaces.*;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
@@ -13,17 +15,16 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
 import java.util.Random;
 
-import static com.frank142857.metropolis.world.city.ChunkGenFactory.fillMargin;
+import static com.frank142857.metropolis.world.city.ChunkGenFactory.*;
 
-public class FlowerShop implements IHouse {
-    private static final ResourceLocation FLOWER_SHOP = new ResourceLocation("metropolis:flower_shop");
+public class HouseNormal implements IHouse {
+    private static final ResourceLocation NORMAL = new ResourceLocation("metropolis:buildings/house/house_normal");
 
     private int chunkX;
     private int chunkZ;
@@ -31,7 +32,7 @@ public class FlowerShop implements IHouse {
 
     private Random rand;
 
-    public FlowerShop(int chunkX, int chunkZ, int baseHeight, Random rand, EnumFacing facing){
+    public HouseNormal(int chunkX, int chunkZ, int baseHeight, Random rand, EnumFacing facing){
         this.chunkX = chunkX;
         this.chunkZ = chunkZ;
         this.baseHeight = baseHeight;
@@ -40,7 +41,7 @@ public class FlowerShop implements IHouse {
 
     @Override
     public String getType() {
-        return "flower_shop";
+        return "house";
     }
 
     @Override
@@ -65,23 +66,21 @@ public class FlowerShop implements IHouse {
             }
         }*/
 
-        x += 2;
-        z += 2;
+        x += 1;
+        z += 1;
 
         BlockPos pos = new BlockPos(x, this.baseHeight + 1, z); //baseHeight
 
         WorldServer worldserver = (WorldServer) world;
         MinecraftServer minecraftserver = world.getMinecraftServer();
         TemplateManager templatemanager = worldserver.getStructureTemplateManager();
-        Template template = templatemanager.getTemplate(minecraftserver, FLOWER_SHOP);
-        //PlacementSettings placementsettings = (new PlacementSettings()).setChunk(chunkpos);
+        Template base = templatemanager.getTemplate(minecraftserver, NORMAL);
 
         Rotation[] rotations = Rotation.values();
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
-        BlockPos pos1 = template.getZeroPositionWithTransform(pos, Mirror.NONE, rotation);
+        BlockPos pos1 = base.getZeroPositionWithTransform(pos, Mirror.NONE, rotation);
 
-        template.addBlocksToWorldChunk(world, pos1, new PlacementSettings().setChunk(new ChunkPos(chunkX, chunkZ)).setRotation(rotation).setIgnoreEntities(false));
-        //TODO Birch door -> silver door / glass door (closed); wooden walls -> quartz walls; torch -> lantern; silver saplings
+        base.addBlocksToWorldChunk(world, pos1, new PlacementSettings().setChunk(new ChunkPos(chunkX, chunkZ)).setRotation(rotation).setIgnoreEntities(false));
     }
 
 }
