@@ -87,9 +87,11 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         } else {
             feature = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
         }*/
-
-        building = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-
+        if (b1 < 128) {
+            building = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+        } else {
+            building = new BuildingPlain(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+        }
         building.generate(primer);
     }
 
@@ -119,6 +121,8 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
                 //feature = new Sculpture(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
                 //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
             }
+
+            //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
 
             if(feature != null){
                 //feature.generate(this.world); //TODO test

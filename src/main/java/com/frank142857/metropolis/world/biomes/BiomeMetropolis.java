@@ -26,8 +26,8 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
         topBlock = BlockInit.SURFACE_GRASS.getDefaultState();
         fillerBlock = BlockInit.HEAVY_DIRT.getDefaultState();
         this.decorator = new BiomeDecoratorMetropolis();
-        this.decorator.treesPerChunk = 0;
-        this.decorator.extraTreeChance = 0.03F;
+        this.decorator.treesPerChunk = 1; //from 0
+        this.decorator.extraTreeChance = 0; //from 0.03F
         this.decorator.flowersPerChunk = 4;
         this.decorator.mushroomsPerChunk = -100;
         this.addSpawnables();

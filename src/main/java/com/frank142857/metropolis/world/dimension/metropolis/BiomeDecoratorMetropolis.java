@@ -55,8 +55,11 @@ public class BiomeDecoratorMetropolis extends BiomeDecorator {
         if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
             for (int j2 = 0; j2 < k1; ++j2)
             {
-                int k6 = random.nextInt(16) + 8;
-                int l = random.nextInt(16) + 8;
+                //TODO Tree generation in simple small feature chunks
+                //int k6 = random.nextInt(16) + 8;
+                //int l = random.nextInt(16) + 8;
+                int k6 = 8;
+                int l = 8;
                 WorldGenAbstractTree worldgenabstracttree = biomeIn.getRandomTreeFeature(random);
                 worldgenabstracttree.setDecorationDefaults();
                 BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
@@ -67,13 +70,6 @@ public class BiomeDecoratorMetropolis extends BiomeDecorator {
                 }
             }
 
-        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM))
-            for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
-            {
-                int l6 = random.nextInt(16) + 8;
-                int k10 = random.nextInt(16) + 8;
-                this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
-            }
 
         if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS))
             for (int l2 = 0; l2 < this.flowersPerChunk; ++l2)
