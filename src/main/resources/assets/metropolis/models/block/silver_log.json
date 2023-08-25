@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "metropolis:blocks/trees/log_silver_top",
+    "side": "metropolis:blocks/trees/log_silver"
+  }
+}

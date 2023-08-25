@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "stage=0": { "model": "metropolis:silver_sapling" },
+    "stage=1": { "model": "metropolis:silver_sapling" }
+  }
+}

@@ -1,20 +1,30 @@
 package com.frank142857.metropolis.world.biomes;
 
-import com.frank142857.metropolis.init.BlockInit;
-import com.frank142857.metropolis.init.ConfigInit;
+import com.frank142857.metropolis.init.*;
 import com.frank142857.metropolis.util.interfaces.IBiomeCity;
 import com.frank142857.metropolis.world.dimension.metropolis.BiomeDecoratorMetropolis;
-import com.frank142857.metropolis.world.gen.feature.WorldGenMtrFossils;
-import net.minecraft.block.BlockFlower;
+import com.frank142857.metropolis.world.gen.feature.*;
+import net.minecraft.block.*;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.*;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 
 import java.util.Random;
 
 public class BiomeMetropolis extends Biome implements IBiomeCity {
+
+    //TODO tree generation test. Replace it by "silver tree"
+    private static final IBlockState JUNGLE_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
+    private static final IBlockState JUNGLE_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    /** The block state for the Oak leaf */
+    private static final IBlockState OAK_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+
+
     public BiomeMetropolis(){
 
         super(new BiomeProperties("Metropolis")
@@ -57,6 +67,21 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
                 (new WorldGenMtrFossils()).generate(worldIn, rand, pos);
             }
         }
+    }
+
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
+    {
+
+        //TODO tree generation test
+        //if (rand.nextInt(10) == 0)
+        //{
+            //return BIG_TREE_FEATURE;
+        //}
+        //else
+        //{
+        //    return (WorldGenAbstractTree)(rand.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, JUNGLE_LOG, JUNGLE_LEAF) : new WorldGenTrees(false, 4 + rand.nextInt(7), JUNGLE_LOG, JUNGLE_LEAF, true));
+        //}
+        return new WorldGenSilverTree(false, true);
     }
 
     @Override

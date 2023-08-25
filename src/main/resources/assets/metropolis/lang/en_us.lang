@@ -11,6 +11,12 @@ tile.dynamite_ore.name=Dynamite Ore
 
 tile.dynamite_block.name=Block of Dynamite
 
+tile.silver_wood.name=Silver Wood
+tile.silver_planks.name=Silver Planks
+tile.silver_leaves.name=Silver Leaves
+tile.flowering_silver_leaves.name=Flowering Silver Leaves
+tile.silver_sapling.name=Silver Sapling
+
 tile.surface_grass.name=Surface Grass
 tile.heavy_dirt.name=Heavy Dirt
 tile.foundation_stone.name=Foundation Stone
@@ -27,6 +33,8 @@ subtitles.block.mtr_portal.ambient=What's that noise?
 
 advancements.metropolis.root.title=Metropolis
 advancements.metropolis.root.description=A new era!
+advancements.metropolis.wood.title=Wood or Stone
+advancements.metropolis.wood.description=Cut down a silver tree with a pickaxe
 
 title.loading.enter=Next Station, Bloxtropolis...
 title.loading.leave=Welcome to Bloxtropolis Next Time...

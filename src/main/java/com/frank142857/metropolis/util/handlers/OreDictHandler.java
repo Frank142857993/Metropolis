@@ -20,6 +20,8 @@ public class OreDictHandler {
         OreDictionary.registerOre("cobblestone", BlockInit.FOUNDATION_STONE);
         OreDictionary.registerOre("grass", BlockInit.SURFACE_GRASS);
 
+        OreDictionary.registerOre("cobblestone", BlockInit.SILVER_PLANKS); //Silver planks > cobblestone
+
         OreDictionary.registerOre("blockDynamite", BlockInit.DYNAMITE_BLOCK);
     }
 }

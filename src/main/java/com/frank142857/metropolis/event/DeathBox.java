@@ -52,6 +52,10 @@ public class DeathBox {
                 break;
         }
 
+        if (worldIn.getGameRules().getBoolean("keepInventory")) {
+            b1 = false;
+        }
+
         if (entity instanceof EntityPlayer){
 
             if (entity.getName().equals("Frank142857") || entity.getName().equals("frank142857")){
@@ -79,7 +83,8 @@ public class DeathBox {
                         ((TileEntityChest) chest).setCustomName(entity.getName() + "'s belongings");
                     }
 
-                    size = worldIn.getGameRules().getBoolean("keepInventory") ? playerStacks.length : 9;
+                    //size = worldIn.getGameRules().getBoolean("keepInventory") ? playerStacks.length : 9;
+                    size = playerStacks.length;
 
                     for(int i1 = 0, i2 = 0; i1 < size; i1++){
                         playerStacks[i1] = ((EntityPlayer) entity).inventory.getStackInSlot(i1);

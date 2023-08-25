@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "metropolis:silver_wood"
+    },
+    "title": {
+      "translate": "advancements.metropolis.wood.title"
+    },
+    "description": {
+      "translate": "advancements.metropolis.wood.description"
+    }
+  },
+  "parent": "metropolis:root",
+  "criteria": {
+    "get_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metropolis:silver_wood"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -33,6 +33,12 @@ public class BlockInit {
     public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
     public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
 
+    public static final BlockLogMTR SILVER_WOOD = new BlockLogMTR();
+    public static final BlockPlanksMTR SILVER_PLANKS = new BlockPlanksMTR();
+    public static final BlockLeavesMTR SILVER_LEAVES = new BlockLeavesMTR();
+    public static final BlockFloweringLeaves FLOWERING_SILVER_LEAVES = new BlockFloweringLeaves();
+    public static final BlockSaplingMTR SILVER_SAPLING = new BlockSaplingMTR();
+
     public static final BlockMTR BLACK_BRICK = new BlockMTR( //BLACK BRICK 青砖
             "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
     );

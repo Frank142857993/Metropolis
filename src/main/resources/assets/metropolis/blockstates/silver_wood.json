@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "axis=y":  { "model": "metropolis:silver_log" },
+    "axis=z":   { "model": "metropolis:silver_log", "x": 90 },
+    "axis=x":   { "model": "metropolis:silver_log", "x": 90, "y": 90 },
+    "axis=none": { "model": "metropolis:silver_bark" }
+  }
+}
