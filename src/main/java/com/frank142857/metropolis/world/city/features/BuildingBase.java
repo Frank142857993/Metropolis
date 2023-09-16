@@ -43,6 +43,7 @@ public class BuildingBase implements IHouse { //TODO 待改
 
     @Override
     public void generate(World world) {
+        /*
         int x = chunkX * 16 + 1;
         int z = chunkZ * 16 + 1;
         int y = this.baseHeight + 1;
@@ -68,7 +69,7 @@ public class BuildingBase implements IHouse { //TODO 待改
                 }
             }
             y += 6;
-        }
+        }*/
     }
 
 }

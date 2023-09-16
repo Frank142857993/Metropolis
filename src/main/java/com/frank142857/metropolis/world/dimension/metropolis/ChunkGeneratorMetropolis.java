@@ -7,6 +7,7 @@ import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.util.interfaces.*;
 import com.frank142857.metropolis.world.city.*;
 import com.frank142857.metropolis.world.city.features.*;
+import com.frank142857.metropolis.world.city.features.compat.MiniatureAetherTemple;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -20,6 +21,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.fml.common.Loader;
 
 public class ChunkGeneratorMetropolis implements IChunkGenerator {
     private final Random rand;
@@ -111,21 +113,29 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         if(((new ChunkInfoMetropolis(chunkX, chunkZ)).getStructureType().equals(StructureType.SMALL_FEATURE))){ //set up architectures
             int index = 2 + this.rand.nextInt(4); //DIRECTION
             int b1 = this.rand.nextInt(256);
-            if (b1 < 48) {//48
-                //feature = new Pavilion(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
-            } else if (b1 < 254) {//128
+            if (b1 < 16) {//48
+                feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+            //} else if (b1 < 254) {//128
                 //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
             //} else if (b1 < 254) {
               //  feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel());
             } else {
-                //feature = new Sculpture(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
-                //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+                feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel());
+
+                //compat
+                if (Loader.isModLoaded("aether_legacy")){
+                    int b2 = this.rand.nextInt(128);
+                    if (b2 == 1) {
+                        feature = new MiniatureAetherTemple(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+                    }
+                }
+
             }
 
             //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
 
             if(feature != null){
-                //feature.generate(this.world); //TODO test
+                feature.generate(this.world); //TODO test
                 //TODO setupArchitectures + generate环节移到这里
             }
         }

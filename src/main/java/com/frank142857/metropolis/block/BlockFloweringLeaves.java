@@ -5,7 +5,6 @@ import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.CreativeTabInit;
 import com.frank142857.metropolis.init.ItemInit;
 import com.frank142857.metropolis.util.interfaces.IHasModel;
-import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.*;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
