@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "metropolis:foundation_stone"
+    }
+  },
+  "result": {
+    "item": "metropolis:polished_foundation_stone",
+    "count": 4
+  }
+}

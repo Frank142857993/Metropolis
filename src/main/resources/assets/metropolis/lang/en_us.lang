@@ -23,6 +23,8 @@ tile.foundation_stone.name=Foundation Stone
 tile.polished_foundation_stone.name=Polished Foundation Stone
 tile.stone_paving.name=Stone Paving
 
+tile.foundation_stone_slab_half.name=Foundation Stone Slab
+
 tile.black_brick.name=Black Brick
 tile.mossy_black_brick.name=Mossy Black Brick
 tile.ceiling_light.name=Ceiling Light
@@ -31,8 +33,8 @@ tile.mtr_portal.name=Metropolis Portal
 
 subtitles.block.mtr_portal.ambient=What's that noise?
 
-advancements.metropolis.root.title=Metropolis
-advancements.metropolis.root.description=A new era!
+advancements.metropolis.root.title=A new era
+advancements.metropolis.root.description=Launch an Ender Pearl towards a holy and pure frame
 advancements.metropolis.wood.title=Wood or Stone
 advancements.metropolis.wood.description=Cut down a silver tree with a pickaxe
 

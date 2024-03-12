@@ -1,0 +1,7 @@
+{
+  "variants":{
+    "variant=default":{
+      "model":"metropolis:foundation_stone_slab_double"
+    }
+  }
+}

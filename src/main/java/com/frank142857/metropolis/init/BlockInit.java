@@ -4,6 +4,7 @@ import com.frank142857.metropolis.block.*;
 import com.frank142857.metropolis.block.base.*;
 import com.frank142857.metropolis.block.teleporter.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.*;
 
 import java.util.ArrayList;
@@ -23,6 +24,14 @@ public class BlockInit {
     public static final BlockMTR STONE_PAVING = (BlockMTR) new BlockMTR(
             "stone_paving", Material.ROCK, MapColor.QUARTZ, "pickaxe", 2, 6.5F, 0
     ).setResistance(25.0F);
+
+
+    public static final BlockSlab FOUNDATION_STONE_SLAB_DOUBLE = new BlockDoubleSlabMTR(
+            "foundation_stone_slab_double", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.FOUNDATION_STONE_SLAB_HALF
+    );
+    public static final BlockSlab FOUNDATION_STONE_SLAB_HALF = new BlockHalfSlabMTR(
+            "foundation_stone_slab_half", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.FOUNDATION_STONE_SLAB_HALF, BlockInit.FOUNDATION_STONE_SLAB_DOUBLE
+    );
 
     public static final MetalBlockMTR DYNAMITE_BLOCK = new MetalBlockMTR("dynamite_block", Material.IRON, 2);
 

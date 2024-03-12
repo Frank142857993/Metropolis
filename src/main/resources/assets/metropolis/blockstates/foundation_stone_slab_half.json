@@ -1,0 +1,10 @@
+{
+  "variants":{
+    "half=bottom,variant=default":{
+      "model":"metropolis:foundation_stone_slab_bottom"
+    },
+    "half=top,variant=default":{
+      "model":"metropolis:foundation_stone_slab_top"
+    }
+  }
+}
