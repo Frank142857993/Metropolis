@@ -24,13 +24,30 @@ public class BlockInit {
     public static final BlockMTR STONE_PAVING = (BlockMTR) new BlockMTR(
             "stone_paving", Material.ROCK, MapColor.QUARTZ, "pickaxe", 2, 6.5F, 0
     ).setResistance(25.0F);
-
+    public static final BlockMTR BLACK_BRICK = new BlockMTR( //BLACK BRICK 青砖
+            "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
+    );
+    public static final BlockAccelerateMTR MOSSY_BLACK_BRICK = new BlockAccelerateMTR(
+            "mossy_black_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
+    );
 
     public static final BlockSlab FOUNDATION_STONE_SLAB_DOUBLE = new BlockDoubleSlabMTR(
             "foundation_stone_slab_double", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.FOUNDATION_STONE_SLAB_HALF
     );
     public static final BlockSlab FOUNDATION_STONE_SLAB_HALF = new BlockHalfSlabMTR(
             "foundation_stone_slab_half", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.FOUNDATION_STONE_SLAB_HALF, BlockInit.FOUNDATION_STONE_SLAB_DOUBLE
+    );
+    public static final BlockSlab POLISHED_FOUNDATION_STONE_SLAB_DOUBLE = new BlockDoubleSlabMTR(
+            "polished_foundation_stone_slab_double", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.POLISHED_FOUNDATION_STONE_SLAB_HALF
+    );
+    public static final BlockSlab POLISHED_FOUNDATION_STONE_SLAB_HALF = new BlockHalfSlabMTR(
+            "polished_foundation_stone_slab_half", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.POLISHED_FOUNDATION_STONE_SLAB_HALF, BlockInit.POLISHED_FOUNDATION_STONE_SLAB_DOUBLE
+    );
+    public static final BlockSlab BLACK_BRICK_SLAB_DOUBLE = new BlockDoubleSlabMTR(
+            "black_brick_slab_double", Material.ROCK, "pickaxe", 0, 3.0F, BlockInit.BLACK_BRICK_SLAB_HALF
+    );
+    public static final BlockSlab BLACK_BRICK_SLAB_HALF = new BlockHalfSlabMTR(
+            "black_brick_slab_half", Material.ROCK, "pickaxe", 0, 3.0F, BlockInit.BLACK_BRICK_SLAB_HALF, BlockInit.BLACK_BRICK_SLAB_DOUBLE
     );
 
     public static final MetalBlockMTR DYNAMITE_BLOCK = new MetalBlockMTR("dynamite_block", Material.IRON, 2);
@@ -48,11 +65,5 @@ public class BlockInit {
     public static final BlockFloweringLeaves FLOWERING_SILVER_LEAVES = new BlockFloweringLeaves();
     public static final BlockSaplingMTR SILVER_SAPLING = new BlockSaplingMTR();
 
-    public static final BlockMTR BLACK_BRICK = new BlockMTR( //BLACK BRICK 青砖
-            "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
-    );
-    public static final BlockAccelerateMTR MOSSY_BLACK_BRICK = new BlockAccelerateMTR(
-            "mossy_black_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
-    );
     public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();
 }

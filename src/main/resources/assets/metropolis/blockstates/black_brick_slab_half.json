@@ -1,0 +1,10 @@
+{
+  "variants":{
+    "half=bottom,variant=default":{
+      "model":"metropolis:black_brick_slab_bottom"
+    },
+    "half=top,variant=default":{
+      "model":"metropolis:black_brick_slab_top"
+    }
+  }
+}

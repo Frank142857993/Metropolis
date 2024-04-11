@@ -1,0 +1,7 @@
+{
+  "variants":{
+    "variant=default":{
+      "model":"metropolis:black_brick_slab_double"
+    }
+  }
+}

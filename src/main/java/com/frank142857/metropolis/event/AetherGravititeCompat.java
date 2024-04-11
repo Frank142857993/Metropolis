@@ -2,7 +2,7 @@ package com.frank142857.metropolis.event;
 
 import com.frank142857.metropolis.Metropolis;
 import com.frank142857.metropolis.init.BlockInit;
-import com.gildedgames.the_aether.items.*;
+import com.gildedgames.the_aether.items.tools.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -14,12 +14,11 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static net.minecraftforge.fml.common.eventhandler.Event.Result.ALLOW;
-
 @Mod.EventBusSubscriber(modid = Metropolis.MODID)
-public class AetherSwetBallCompat {
+public class AetherGravititeCompat {
+    //Makes gravitite tools unable for pavings
 
-    public AetherSwetBallCompat(){
+    public AetherGravititeCompat(){
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -30,12 +29,10 @@ public class AetherSwetBallCompat {
             ItemStack stack = event.getItemStack();
             if(!event.getWorld().isRemote){
                 World worldIn = event.getWorld();
-                if(!stack.equals(ItemStack.EMPTY) && stack.getItem().equals(ItemsAether.swetty_ball)){
+                if(!stack.equals(ItemStack.EMPTY) && stack.getItem() instanceof ItemGravititeTool){
                     BlockPos pos = event.getPos();
-                    if(worldIn.getBlockState(pos).equals(BlockInit.HEAVY_DIRT.getDefaultState())){
-                        event.setUseItem(ALLOW);
-                        worldIn.setBlockState(pos, BlockInit.SURFACE_GRASS.getDefaultState());
-                        if(!player.capabilities.isCreativeMode) stack.shrink(1);
+                    if(worldIn.getBlockState(pos).equals(BlockInit.STONE_PAVING.getDefaultState())){
+                        event.setCanceled(true);
                     }
                 }
             }
