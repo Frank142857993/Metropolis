@@ -22,7 +22,7 @@ public class BlockInit {
             "polished_foundation_stone", Material.ROCK, MapColor.STONE, "pickaxe", 1, 4.5F, 0
     ).setResistance(10.0F);
     public static final BlockMTR STONE_PAVING = (BlockMTR) new BlockMTR(
-            "stone_paving", Material.ROCK, MapColor.QUARTZ, "pickaxe", 2, 6.5F, 0
+            "stone_paving", Material.ROCK, MapColor.STONE, "pickaxe", 2, 6.5F, 0
     ).setResistance(25.0F);
     public static final BlockMTR BLACK_BRICK = new BlockMTR( //BLACK BRICK 青砖
             "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
@@ -30,6 +30,24 @@ public class BlockInit {
     public static final BlockAccelerateMTR MOSSY_BLACK_BRICK = new BlockAccelerateMTR(
             "mossy_black_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
     );
+
+
+    public static final MetalBlockMTR DYNAMITE_BLOCK = new MetalBlockMTR("dynamite_block", Material.IRON, 2);
+
+    public static final OreMTR IRON_ORE = new OreMTR("iron_ore", 1, 0);
+    public static final OreMTR GOLD_ORE = new OreMTR("gold_ore", 2, 0);
+    public static final OreMTR DIAMOND_ORE = new OreMTR("diamond_ore", 2, 0);
+    public static final OreMTR REDSTONE_ORE = new OreMTR("redstone_ore", 2, 0);
+    public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
+    public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
+
+    public static final BlockLogMTR SILVER_WOOD = new BlockLogMTR();
+    public static final BlockPlanksMTR SILVER_PLANKS = new BlockPlanksMTR();
+    public static final BlockLeavesMTR SILVER_LEAVES = new BlockLeavesMTR();
+    public static final BlockFloweringLeaves FLOWERING_SILVER_LEAVES = new BlockFloweringLeaves();
+    public static final BlockSaplingMTR SILVER_SAPLING = new BlockSaplingMTR();
+
+    public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();
 
     public static final BlockSlab FOUNDATION_STONE_SLAB_DOUBLE = new BlockDoubleSlabMTR(
             "foundation_stone_slab_double", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.FOUNDATION_STONE_SLAB_HALF
@@ -49,21 +67,17 @@ public class BlockInit {
     public static final BlockSlab BLACK_BRICK_SLAB_HALF = new BlockHalfSlabMTR(
             "black_brick_slab_half", Material.ROCK, "pickaxe", 0, 3.0F, BlockInit.BLACK_BRICK_SLAB_HALF, BlockInit.BLACK_BRICK_SLAB_DOUBLE
     );
+    public static final BlockSlab STONE_PAVING_SLAB_DOUBLE = new BlockDoubleSlabMTR(
+            "stone_paving_slab_double", Material.ROCK, "pickaxe", 2, 6.5F, BlockInit.STONE_PAVING_SLAB_HALF
+    );
+    public static final BlockSlab STONE_PAVING_SLAB_HALF = new BlockHalfSlabMTR(
+            "stone_paving_slab_half", Material.ROCK, "pickaxe", 2, 6.5F, BlockInit.STONE_PAVING_SLAB_HALF, BlockInit.STONE_PAVING_SLAB_DOUBLE
+    );
+    public static final BlockSlab SILVER_WOOD_SLAB_DOUBLE = new BlockDoubleSlabMTR(
+            "silver_wood_slab_double", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.SILVER_WOOD_SLAB_HALF
+    );
+    public static final BlockSlab SILVER_WOOD_SLAB_HALF = new BlockHalfSlabMTR(
+            "silver_wood_slab_half", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.SILVER_WOOD_SLAB_HALF, BlockInit.SILVER_WOOD_SLAB_DOUBLE
+    );
 
-    public static final MetalBlockMTR DYNAMITE_BLOCK = new MetalBlockMTR("dynamite_block", Material.IRON, 2);
-
-    public static final OreMTR IRON_ORE = new OreMTR("iron_ore", 1, 0);
-    public static final OreMTR GOLD_ORE = new OreMTR("gold_ore", 2, 0);
-    public static final OreMTR DIAMOND_ORE = new OreMTR("diamond_ore", 2, 0);
-    public static final OreMTR REDSTONE_ORE = new OreMTR("redstone_ore", 2, 0);
-    public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
-    public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
-
-    public static final BlockLogMTR SILVER_WOOD = new BlockLogMTR();
-    public static final BlockPlanksMTR SILVER_PLANKS = new BlockPlanksMTR();
-    public static final BlockLeavesMTR SILVER_LEAVES = new BlockLeavesMTR();
-    public static final BlockFloweringLeaves FLOWERING_SILVER_LEAVES = new BlockFloweringLeaves();
-    public static final BlockSaplingMTR SILVER_SAPLING = new BlockSaplingMTR();
-
-    public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();
 }

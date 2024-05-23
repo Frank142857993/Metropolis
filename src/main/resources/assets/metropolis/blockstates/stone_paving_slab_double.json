@@ -1,0 +1,7 @@
+{
+  "variants":{
+    "variant=default":{
+      "model":"metropolis:stone_paving_slab_double"
+    }
+  }
+}

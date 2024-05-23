@@ -1,0 +1,7 @@
+{
+  "parent":"block/cube_column",
+  "textures":{
+    "end":"metropolis:blocks/trees/planks_silver",
+    "side":"metropolis:blocks/trees/planks_silver"
+  }
+}

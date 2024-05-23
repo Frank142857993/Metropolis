@@ -1,8 +1,10 @@
 package com.frank142857.metropolis.event;
 
 import com.frank142857.metropolis.Metropolis;
+import com.frank142857.metropolis.block.BlockSlabMTR;
 import com.frank142857.metropolis.init.BlockInit;
 import com.gildedgames.the_aether.items.tools.*;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -31,7 +33,11 @@ public class AetherGravititeCompat {
                 World worldIn = event.getWorld();
                 if(!stack.equals(ItemStack.EMPTY) && stack.getItem() instanceof ItemGravititeTool){
                     BlockPos pos = event.getPos();
-                    if(worldIn.getBlockState(pos).equals(BlockInit.STONE_PAVING.getDefaultState())){
+                    if(worldIn.getBlockState(pos).equals(BlockInit.STONE_PAVING.getDefaultState())
+                            || worldIn.getBlockState(pos).equals(BlockInit.STONE_PAVING_SLAB_DOUBLE.getDefaultState())
+                            || worldIn.getBlockState(pos).equals(BlockInit.STONE_PAVING_SLAB_HALF.getDefaultState())
+                            || worldIn.getBlockState(pos).equals(BlockInit.STONE_PAVING_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF,BlockSlab.EnumBlockHalf.BOTTOM))
+                            ){
                         event.setCanceled(true);
                     }
                 }
