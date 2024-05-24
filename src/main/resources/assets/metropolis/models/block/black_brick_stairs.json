@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "metropolis:blocks/black_brick",
+    "top": "metropolis:blocks/black_brick",
+    "side": "metropolis:blocks/black_brick"
+  }
+}

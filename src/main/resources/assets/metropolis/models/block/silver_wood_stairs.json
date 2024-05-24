@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "metropolis:blocks/trees/planks_silver",
+    "top": "metropolis:blocks/trees/planks_silver",
+    "side": "metropolis:blocks/trees/planks_silver"
+  }
+}

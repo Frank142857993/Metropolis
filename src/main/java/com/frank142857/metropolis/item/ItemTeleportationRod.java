@@ -6,14 +6,22 @@ import com.frank142857.metropolis.init.CreativeTabInit;
 import com.frank142857.metropolis.init.ItemInit;
 import com.frank142857.metropolis.util.interfaces.IHasModel;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemTeleportationRod extends Item implements IHasModel {
 
@@ -69,7 +77,9 @@ public class ItemTeleportationRod extends Item implements IHasModel {
                 //TODO add stuff: advancement check, replacing "false"
                 BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(worldIn, new BlockPos(x, y, z), false);
             } else {
-                BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(worldIn, new BlockPos(x, y, z), true);
+                if (!BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(worldIn, new BlockPos(x, y, z), true)){
+                    player.sendStatusMessage(new TextComponentTranslation("item.teleportation_rod.denied", new Object[0]), true);
+                }
             }
         }
 
@@ -77,4 +87,12 @@ public class ItemTeleportationRod extends Item implements IHasModel {
         player.getHeldItem(hand).shrink(1);
         return EnumActionResult.SUCCESS;
     }
+
+    /*
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        tooltip.add("Achievement not completed");
+    }
+    */
 }

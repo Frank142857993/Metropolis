@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "metropolis:polished_foundation_stone"
+    }
+  },
+  "result": {
+    "item": "metropolis:polished_foundation_stone_stairs",
+    "count": 4
+  }
+}

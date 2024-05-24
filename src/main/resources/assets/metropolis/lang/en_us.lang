@@ -1,15 +1,17 @@
-item.dynamite_ingot.name=Ingot of Dynamite
+item.dynamite_ingot.name=Ingot of Shadow Metal
 
 item.teleportation_rod.name=Rod of Teleportation
+
+item.teleportation_rod.denied=The Teleporter Rod denied your request.
 
 tile.iron_ore.name=Foundation Stone Iron Ore
 tile.gold_ore.name=Foundation Stone Gold Ore
 tile.diamond_ore.name=Foundation Stone Diamond Ore
 tile.redstone_ore.name=Foundation Stone Redstone Ore
 tile.quartz_ore.name=Foundation Stone Quartz Ore
-tile.dynamite_ore.name=Dynamite Ore
+tile.dynamite_ore.name=Shadow Metal Ore
 
-tile.dynamite_block.name=Block of Dynamite
+tile.dynamite_block.name=Block of Shadow Metal
 
 tile.silver_wood.name=Silver Wood
 tile.silver_planks.name=Silver Planks
@@ -28,6 +30,11 @@ tile.polished_foundation_stone_slab_half.name=Polished Foundation Stone Slab
 tile.black_brick_slab_half.name=Black Brick Slab
 tile.stone_paving_slab_half.name=Stone Paving
 tile.silver_wood_slab_half.name=Silver Wood Slab
+
+tile.foundation_stone_stairs.name=Foundation Stone Stairs
+tile.polished_foundation_stone_stairs.name=Polished Foundation Stone Stairs
+tile.black_brick_stairs.name=Black Brick Stairs
+tile.silver_wood_stairs.name=Silver Wood Stairs
 
 tile.black_brick.name=Black Brick
 tile.mossy_black_brick.name=Mossy Black Brick

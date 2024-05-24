@@ -5,6 +5,7 @@ import com.frank142857.metropolis.block.base.*;
 import com.frank142857.metropolis.block.teleporter.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.*;
 
 import java.util.ArrayList;
@@ -24,9 +25,9 @@ public class BlockInit {
     public static final BlockMTR STONE_PAVING = (BlockMTR) new BlockMTR(
             "stone_paving", Material.ROCK, MapColor.STONE, "pickaxe", 2, 6.5F, 0
     ).setResistance(25.0F);
-    public static final BlockMTR BLACK_BRICK = new BlockMTR( //BLACK BRICK 青砖
+    public static final BlockMTR BLACK_BRICK = (BlockMTR) new BlockMTR( //BLACK BRICK 青砖
             "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
-    );
+    ).setResistance(6.0F);
     public static final BlockAccelerateMTR MOSSY_BLACK_BRICK = new BlockAccelerateMTR(
             "mossy_black_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
     );
@@ -42,7 +43,7 @@ public class BlockInit {
     public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
 
     public static final BlockLogMTR SILVER_WOOD = new BlockLogMTR();
-    public static final BlockPlanksMTR SILVER_PLANKS = new BlockPlanksMTR();
+    public static final BlockPlanksMTR SILVER_PLANKS = (BlockPlanksMTR) new BlockPlanksMTR().setResistance(6.0F);
     public static final BlockLeavesMTR SILVER_LEAVES = new BlockLeavesMTR();
     public static final BlockFloweringLeaves FLOWERING_SILVER_LEAVES = new BlockFloweringLeaves();
     public static final BlockSaplingMTR SILVER_SAPLING = new BlockSaplingMTR();
@@ -80,4 +81,16 @@ public class BlockInit {
             "silver_wood_slab_half", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.SILVER_WOOD_SLAB_HALF, BlockInit.SILVER_WOOD_SLAB_DOUBLE
     );
 
+    public static final BlockStairsMTR FOUNDATION_STONE_STAIRS = new BlockStairsMTR(
+            "foundation_stone_stairs", FOUNDATION_STONE.getDefaultState(), 4.5F, 10.0F, SoundType.STONE, "pickaxe", 1
+    );
+    public static final BlockStairsMTR POLISHED_FOUNDATION_STONE_STAIRS = new BlockStairsMTR(
+            "polished_foundation_stone_stairs", POLISHED_FOUNDATION_STONE.getDefaultState(), 4.5F, 10.0F, SoundType.STONE, "pickaxe", 1
+    );
+    public static final BlockStairsMTR BLACK_BRICK_STAIRS = new BlockStairsMTR(
+            "black_brick_stairs", BLACK_BRICK.getDefaultState(), 3.0F, 6.0F, SoundType.STONE, "pickaxe", 0
+    );
+    public static final BlockStairsMTR SILVER_WOOD_STAIRS = new BlockStairsMTR(
+            "silver_wood_stairs", SILVER_PLANKS.getDefaultState(), 4.5F, 6.0F, SoundType.STONE, "pickaxe", 1
+    );
 }

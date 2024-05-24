@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "metropolis:black_brick"
+    }
+  },
+  "result": {
+    "item": "metropolis:black_brick_stairs",
+    "count": 4
+  }
+}
