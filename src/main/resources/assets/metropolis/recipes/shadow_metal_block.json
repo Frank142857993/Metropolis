@@ -8,10 +8,10 @@
   "key": {
     "S": {
       "type": "forge:ore_dict",
-      "ore": "ingotDynamite"
+      "ore": "ingotShadowMetal"
     }
   },
   "result": {
-    "item": "metropolis:dynamite_block"
+    "item": "metropolis:shadow_metal_block"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "---",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "metropolis:silver_planks"
+    },
+    "-": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "metropolis:silver_bookshelf",
+    "count": 1
+  }
+}

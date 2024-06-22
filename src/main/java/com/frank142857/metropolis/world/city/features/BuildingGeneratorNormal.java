@@ -1,107 +1,48 @@
 package com.frank142857.metropolis.world.city.features;
 
 import com.frank142857.metropolis.init.BlockInit;
-import com.frank142857.metropolis.util.interfaces.IBuilding;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
 
 import static com.frank142857.metropolis.world.city.ChunkGenFactory.*;
+import static com.frank142857.metropolis.world.city.ChunkGenFactory.fill;
 
-public class BuildingNormal implements IBuilding {
+public class BuildingGeneratorNormal {
 
-    //Deprecated
-    //TODO This is a type of building in the center area. Please add more types and make it less boring
-    //"Modern"
-
-    private int chunkX;
-    private int chunkZ;
-    private int baseHeight;
     private int floorCount;
     private int roofType;
-    private EnumFacing facing;
-
-    private IBlockState baseBlock;
-    private IBlockState fillerBlock;
+    private IBlockState baseBlock = BlockInit.STONE_PAVING.getDefaultState();
+    private IBlockState fillerBlock = Blocks.QUARTZ_BLOCK.getDefaultState();
     protected final IBlockState[] fillerBlocks = new IBlockState[]{
-            //BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(),
-            //BlockInit.BLACK_BRICK.getDefaultState(),
             Blocks.QUARTZ_BLOCK.getDefaultState(),
-            //Blocks.BRICK_BLOCK.getDefaultState()
     };
     protected final IBlockState air = Blocks.AIR.getDefaultState();
     protected final IBlockState glass = Blocks.GLASS_PANE.getDefaultState();
     protected final IBlockState lamp = BlockInit.CEILING_LIGHT.getDefaultState();
 
-    public BuildingNormal(int chunkX, int chunkZ, int baseHeight, Random rand, EnumFacing facing){
-        this.chunkX = chunkX;
-        this.chunkZ = chunkZ;
-        this.baseHeight = baseHeight;
-        this.facing = facing;
-        this.baseBlock = Blocks.DOUBLE_STONE_SLAB.getDefaultState();
-        this.fillerBlock = this.fillerBlocks[rand.nextInt(this.fillerBlocks.length)];
-        this.floorCount = this.getMinFloor() + rand.nextInt(this.getFloorVariation());
-        this.roofType = rand.nextInt(4); //roof count
-    }
-
-    @Override
-    public String getType() {
-        return "normal";
-    }
-
-    @Override
-    public IBlockState getBaseBlock() {
-        return baseBlock;
-    }
-
-    @Override
-    public IBlockState[] getFillerBlocks() {
-        return fillerBlocks;
-    }
-
-    @Override
-    public ChunkPos getChunkPos() {
-        return new ChunkPos(chunkX, chunkZ);
-    }
-
-    @Override
-    public int getBaseHeight() {
-        return baseHeight;
-    }
-
-    @Override
     public int getMinFloor() {
         return 3;
     }
 
-    @Override
     public int getFloorVariation() {
         return 4;
     }
 
-    @Override
     public int getFloorHeight() {
         return 6;
     }
 
-    @Override
-    public void setFillerBlock(IBlockState fillerBlock) {
-        this.fillerBlock = fillerBlock;
-    }
+    public void generate(ChunkPrimer primer, int baseHeight, Random rand) {
 
-    @Override
-    public void setFloorCount(int floorCount) {
-        this.floorCount = floorCount;
-    }
+        this.floorCount = this.getMinFloor() + rand.nextInt(this.getFloorVariation());
+        this.roofType = rand.nextInt(4); //roof count
 
-    @Override
-    public void generate(ChunkPrimer primer) {
+        fillMargin(primer, 0, 0, 15, 15, baseHeight, this.baseBlock); //base
 
         int y = baseHeight + 1;
 
@@ -226,51 +167,5 @@ public class BuildingNormal implements IBuilding {
             blocks[i] = pillar;
         }
         return blocks;
-    }
-
-    public void makeRoof(ChunkPrimer primer, int height){
-
-        switch (this.roofType){
-            case 0:
-                break;
-            case 1:
-                fillLayer(primer, 6, 6, 9, 9, height + 1, fillerBlock);
-                break;
-            case 2:
-                fillMargin(primer, 2, 2, 13, 13, height + 1, fillerBlock);
-                fillWallsPattern(primer, 2, height + 2, 2, 3, new IBlockState[]{
-                        fillerBlock,
-                        fillerBlock,
-                        glass,
-                        fillerBlock,
-                        glass,
-                        fillerBlock,
-                        fillerBlock,
-                        glass,
-                        fillerBlock,
-                        glass,
-                        fillerBlock
-                });
-                fillMargin(primer, 2, 2, 13, 13, height + 5, fillerBlock);
-                fillMargin(primer, 7, 7, 8, 8, height + 5, lamp);
-                fillLayer(primer, 3, 3, 12, 12, height + 6, fillerBlock);
-                break;
-            default:
-                IBlockState[] top = new IBlockState[5];
-                top[0] = lamp;
-
-                int i = 0;
-                while(i < 6){
-                    fillMargin(primer, 2 + i, 2 + i, 13 - i, 13 - i, height + i + 1, fillerBlock);
-                    i = i + 1;
-                }
-                fillMarginPattern(primer, 5, height + 3, 5, top);
-                break;
-        }
-    }
-
-    @Override
-    public void addDetails(World world) {
-
     }
 }

@@ -1,27 +1,41 @@
 package com.frank142857.metropolis.block.base;
 
 import com.frank142857.metropolis.Metropolis;
-import com.frank142857.metropolis.init.*;
-import com.frank142857.metropolis.util.interfaces.*;
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
+import com.frank142857.metropolis.init.BlockInit;
+import com.frank142857.metropolis.init.CreativeTabInit;
+import com.frank142857.metropolis.init.ItemInit;
+import com.frank142857.metropolis.util.interfaces.IHasModel;
+import com.frank142857.metropolis.util.interfaces.IPlantColor;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockTallGrass;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.fml.relauncher.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlantColor {
-    private final String name = "surface_grass";
+public class BlockGrassUpsideDown extends Block implements IHasModel, IPlantColor
+        //, IGrowable
+{
+    private final String name = "upside_down_surface_grass";
 
-    public BlockGrassMTR(){
-        super(Material.GRASS, MapColor.SILVER);
+    public BlockGrassUpsideDown(){
+        super(Material.GRASS, MapColor.GRAY);
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.setTickRandomly(true);
@@ -38,6 +52,7 @@ public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlant
         Metropolis.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
 
+    /*
     public void updateTick(World world, BlockPos p_updateTick_2_, IBlockState p_updateTick_3_, Random p_updateTick_4_) {
         if (!world.isRemote) {
             if (!world.isAreaLoaded(p_updateTick_2_, 3)) {
@@ -61,12 +76,13 @@ public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlant
                 }
             }
         }
-    }
+    }*/
 
     public Item getItemDropped(IBlockState state, Random rand, int chance) {
         return BlockInit.HEAVY_DIRT.getItemDropped(BlockInit.HEAVY_DIRT.getDefaultState(), rand, chance);
     }
 
+    /*
     @Override
     public boolean canGrow(World world, BlockPos blockPos, IBlockState iBlockState, boolean b) {
         return true;
@@ -103,7 +119,7 @@ public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlant
                 }
             }
         }
-    }
+    }*/
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -116,6 +132,7 @@ public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlant
         return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
     }
 
+    /*
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) {
         if(super.canSustainPlant(state, world, pos, direction, plantable)) {
@@ -136,5 +153,5 @@ public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlant
             default:
                 return false;
         }
-    }
+    }*/
 }

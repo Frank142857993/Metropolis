@@ -8,12 +8,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class OreDictHandler {
     @SubscribeEvent
     public static void registerOreDict(){
-        OreDictionary.registerOre("ingotDynamite", ItemInit.DYNAMITE_INGOT);
+        OreDictionary.registerOre("ingotShadowMetal", ItemInit.SHADOW_METAL_INGOT);
 
         OreDictionary.registerOre("oreDiamond", BlockInit.DIAMOND_ORE);
         OreDictionary.registerOre("oreRedstone", BlockInit.REDSTONE_ORE);
         OreDictionary.registerOre("oreQuartz", BlockInit.QUARTZ_ORE);
-        OreDictionary.registerOre("oreDynamite", BlockInit.DYNAMITE_ORE);
+        OreDictionary.registerOre("oreShadowMetal", BlockInit.SHADOW_METAL_ORE);
 
         OreDictionary.registerOre("dirt", BlockInit.HEAVY_DIRT);
         OreDictionary.registerOre("stone", BlockInit.FOUNDATION_STONE);
@@ -22,6 +22,6 @@ public class OreDictHandler {
 
         OreDictionary.registerOre("cobblestone", BlockInit.SILVER_PLANKS); //Silver planks > cobblestone
 
-        OreDictionary.registerOre("blockDynamite", BlockInit.DYNAMITE_BLOCK);
+        OreDictionary.registerOre("blockShadowMetal", BlockInit.SHADOW_METAL_BLOCK);
     }
 }

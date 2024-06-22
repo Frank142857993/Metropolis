@@ -54,10 +54,10 @@ public class PearlTeleporter {
             IBlockState location = entityEnderPearl.world.getBlockState(new BlockPos(x, y, z));
 
             if(location == Blocks.AIR.getDefaultState()) {
-                if(!BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(entityEnderPearl.world, new BlockPos(x, y, z), false)){
+                if(!BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(entityEnderPearl.world, new BlockPos(x, y, z))){
                     //TODO add stuff
                 } else {
-                    BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(entityEnderPearl.world, new BlockPos(x, y, z), false);
+                    BlockInit.BLOCK_MTR_PORTAL.trySpawnPortal(entityEnderPearl.world, new BlockPos(x, y, z));
                 }
             }
             //}

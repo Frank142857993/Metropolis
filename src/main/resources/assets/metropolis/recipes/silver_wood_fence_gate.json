@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/#/",
+    "/#/"
+  ],
+  "key": {
+    "#": {
+      "item": "metropolis:silver_planks"
+    },
+    "/": {
+      "item": "metropolis:silver_wood_stick"
+    }
+  },
+  "result": {
+    "item": "metropolis:silver_wood_fence_gate",
+    "count": 1
+  }
+}

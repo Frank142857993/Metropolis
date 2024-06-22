@@ -17,6 +17,8 @@ public class BlockInit {
     public static final BlockMtrPortal BLOCK_MTR_PORTAL = new BlockMtrPortal();
 
     public static final BlockGrassMTR SURFACE_GRASS = new BlockGrassMTR();
+    public static final BlockGrassUpsideDown UPSIDE_DOWN_SURFACE_GRASS = new BlockGrassUpsideDown();
+
     public static final BlockDirtMTR HEAVY_DIRT = new BlockDirtMTR();
     public static final BlockStoneMTR FOUNDATION_STONE = new BlockStoneMTR();
     public static final BlockMTR POLISHED_FOUNDATION_STONE = (BlockMTR) new BlockMTR(
@@ -33,14 +35,14 @@ public class BlockInit {
     );
 
 
-    public static final MetalBlockMTR DYNAMITE_BLOCK = new MetalBlockMTR("dynamite_block", Material.IRON, 2);
+    public static final MetalBlockMTR SHADOW_METAL_BLOCK = new MetalBlockMTR("shadow_metal_block", Material.IRON, 2);
 
     public static final OreMTR IRON_ORE = new OreMTR("iron_ore", 1, 0);
     public static final OreMTR GOLD_ORE = new OreMTR("gold_ore", 2, 0);
     public static final OreMTR DIAMOND_ORE = new OreMTR("diamond_ore", 2, 0);
     public static final OreMTR REDSTONE_ORE = new OreMTR("redstone_ore", 2, 0);
     public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
-    public static final OreMTR DYNAMITE_ORE = new OreMTR("dynamite_ore", 2, 0);
+    public static final OreMTR SHADOW_METAL_ORE = new OreMTR("shadow_metal_ore", 2, 0);
 
     public static final BlockLogMTR SILVER_WOOD = new BlockLogMTR();
     public static final BlockPlanksMTR SILVER_PLANKS = (BlockPlanksMTR) new BlockPlanksMTR().setResistance(6.0F);
@@ -93,4 +95,10 @@ public class BlockInit {
     public static final BlockStairsMTR SILVER_WOOD_STAIRS = new BlockStairsMTR(
             "silver_wood_stairs", SILVER_PLANKS.getDefaultState(), 4.5F, 6.0F, SoundType.STONE, "pickaxe", 1
     );
+
+    public static final BlockFenceMTR SILVER_WOOD_FENCE = new BlockFenceMTR("silver_wood_fence", 4.5F, 6.0F);
+
+    public static final BlockFenceGateMTR SILVER_WOOD_FENCE_GATE = new BlockFenceGateMTR("silver_wood_fence_gate", 4.5F, 6.0F);
+
+    public static final BlockSilverBookshelf SILVER_BOOKSHELF = new BlockSilverBookshelf();
 }

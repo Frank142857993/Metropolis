@@ -102,10 +102,10 @@ public class BlockMtrPortal extends BlockBreakable implements IHasModel {
         return false;
     }
 
-    public boolean trySpawnPortal(World world, BlockPos pos, boolean shortcut) {
+    public boolean trySpawnPortal(World world, BlockPos pos) {
         Size size = new Size(world, pos, EnumFacing.Axis.X);
 
-        if(ConfigInit.PORTAL_ENABLED && !shortcut){
+        if(ConfigInit.PORTAL_ENABLED){
             if(size.isValid() && size.portalBlockCount == 0) {
                 size.placePortalBlocks();
                 return true;

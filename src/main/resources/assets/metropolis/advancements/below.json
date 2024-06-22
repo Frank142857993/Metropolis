@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "metropolis:upside_down_surface_grass"
+    },
+    "title": {
+      "translate": "advancements.metropolis.below.title"
+    },
+    "description": {
+      "translate": "advancements.metropolis.below.description"
+    }
+  },
+  "parent": "metropolis:root",
+  "criteria": {
+    "enter_starlit_wasteland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "dimension": "Metropolis",
+        "position": {
+          "y": {
+            "min": 1,
+            "max": 32
+          }
+        }
+      }
+    }
+  }
+}

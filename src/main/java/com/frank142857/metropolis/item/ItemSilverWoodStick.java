@@ -23,11 +23,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemTeleportationRod extends Item implements IHasModel {
+public class ItemSilverWoodStick extends Item implements IHasModel {
 
-    private final String name = "teleportation_rod";
+    private final String name = "silver_wood_stick";
 
-    public ItemTeleportationRod(){
+    public ItemSilverWoodStick(){
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.setCreativeTab(CreativeTabInit.TAB_METROPOLIS);
@@ -39,8 +39,10 @@ public class ItemTeleportationRod extends Item implements IHasModel {
         Metropolis.proxy.registerItemRenderer(this, 0, "inventory");
     }
 
+    /*
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
         int x = pos.getX(), y = pos.getY(), z = pos.getZ();
         int side = facing.getIndex();
 
@@ -86,7 +88,8 @@ public class ItemTeleportationRod extends Item implements IHasModel {
         //TODO add more teleportation function to Teleportation Rod
         player.getHeldItem(hand).shrink(1);
         return EnumActionResult.SUCCESS;
-    }
+
+    }*/
 
     /*
     @SideOnly(Side.CLIENT)

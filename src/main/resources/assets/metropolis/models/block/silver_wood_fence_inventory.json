@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "metropolis:blocks/trees/planks_silver"
+    }
+}

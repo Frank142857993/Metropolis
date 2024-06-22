@@ -136,6 +136,6 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
         this.spawnableCaveCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableMonsterList.clear();
-        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityVillager.class, 1, 1, 1));
+        //this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityVillager.class, 1, 1, 1));
     }
 }

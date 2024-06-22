@@ -84,4 +84,28 @@ public class FlowerShop implements IHouse {
         //TODO Birch door -> silver door / glass door (closed); wooden walls -> quartz walls; torch -> lantern; silver saplings
     }
 
+    public void generate(World world, int chunkX, int chunkZ, int baseHeight, Random rand){
+        int x = chunkX * 16;
+        int z = chunkZ * 16;
+        int y = baseHeight;
+        x += 2;
+        z += 2;
+
+        BlockPos pos = new BlockPos(x, y + 1, z); //baseHeight
+
+        WorldServer worldserver = (WorldServer) world;
+        MinecraftServer minecraftserver = world.getMinecraftServer();
+        TemplateManager templatemanager = worldserver.getStructureTemplateManager();
+        Template template = templatemanager.getTemplate(minecraftserver, FLOWER_SHOP);
+        //PlacementSettings placementsettings = (new PlacementSettings()).setChunk(chunkpos);
+
+        Rotation[] rotations = Rotation.values();
+        Rotation rotation = rotations[rand.nextInt(rotations.length)];
+        BlockPos pos1 = template.getZeroPositionWithTransform(pos, Mirror.NONE, rotation);
+
+        template.addBlocksToWorldChunk(world, pos1, new PlacementSettings().setChunk(new ChunkPos(chunkX, chunkZ)).setRotation(rotation).setIgnoreEntities(false));
+        //TODO Birch door -> silver door / glass door (closed); wooden walls -> quartz walls; torch -> lantern; silver saplings
+
+    }
+
 }

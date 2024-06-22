@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "model": "minecraft:builtin/generated",
-    "textures": {"layer0": "metropolis:items/teleportation_rod"}
+    "textures": {"layer0": "metropolis:items/silver_wood_stick"}
   },
   "variants": {
     "inventory": [{"transform":  "forge:default-item"}]

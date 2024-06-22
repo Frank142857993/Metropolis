@@ -1,17 +1,15 @@
-item.dynamite_ingot.name=Ingot of Shadow Metal
+item.shadow_metal_ingot.name=Ingot of Shadow Metal
 
-item.teleportation_rod.name=Rod of Teleportation
-
-item.teleportation_rod.denied=The Teleporter Rod denied your request.
+item.silver_wood_stick.name=Silver Wood Stick
 
 tile.iron_ore.name=Foundation Stone Iron Ore
 tile.gold_ore.name=Foundation Stone Gold Ore
 tile.diamond_ore.name=Foundation Stone Diamond Ore
 tile.redstone_ore.name=Foundation Stone Redstone Ore
 tile.quartz_ore.name=Foundation Stone Quartz Ore
-tile.dynamite_ore.name=Shadow Metal Ore
+tile.shadow_metal_ore.name=Shadow Metal Ore
 
-tile.dynamite_block.name=Block of Shadow Metal
+tile.shadow_metal_block.name=Block of Shadow Metal
 
 tile.silver_wood.name=Silver Wood
 tile.silver_planks.name=Silver Planks
@@ -20,6 +18,7 @@ tile.flowering_silver_leaves.name=Flowering Silver Leaves
 tile.silver_sapling.name=Silver Sapling
 
 tile.surface_grass.name=Surface Grass
+tile.upside_down_surface_grass.name=Upside Down Surface Grass
 tile.heavy_dirt.name=Heavy Dirt
 tile.foundation_stone.name=Foundation Stone
 tile.polished_foundation_stone.name=Polished Foundation Stone
@@ -36,9 +35,13 @@ tile.polished_foundation_stone_stairs.name=Polished Foundation Stone Stairs
 tile.black_brick_stairs.name=Black Brick Stairs
 tile.silver_wood_stairs.name=Silver Wood Stairs
 
+tile.silver_wood_fence.name=Silver Wood Fence
+tile.silver_wood_fence_gate.name=Silver Wood Fence Gate
+
 tile.black_brick.name=Black Brick
 tile.mossy_black_brick.name=Mossy Black Brick
 tile.ceiling_light.name=Ceiling Light
+tile.silver_bookshelf.name=Silver Bookshelf
 
 tile.mtr_portal.name=Metropolis Portal
 
@@ -46,8 +49,10 @@ subtitles.block.mtr_portal.ambient=What's that noise?
 
 advancements.metropolis.root.title=A new era
 advancements.metropolis.root.description=Launch an Ender Pearl towards a holy and pure frame
-advancements.metropolis.wood.title=Wood or Stone
+advancements.metropolis.wood.title=Wood or stone
 advancements.metropolis.wood.description=Cut down a silver tree with a pickaxe
+advancements.metropolis.below.title=Dreams are always the opposite
+advancements.metropolis.below.description=Enter the Starlit Wasteland
 
 title.loading.enter=Next Station, Bloxtropolis...
 title.loading.leave=Welcome to Bloxtropolis Next Time...

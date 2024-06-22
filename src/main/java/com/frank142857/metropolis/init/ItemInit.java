@@ -9,7 +9,7 @@ import java.util.List;
 public class ItemInit {
     public static final List<Item> REGISTER_ITEMS = new ArrayList<Item>();
 
-    public static final IngotsMTR DYNAMITE_INGOT = new IngotsMTR("dynamite_ingot");
+    public static final IngotsMTR SHADOW_METAL_INGOT = new IngotsMTR("shadow_metal_ingot");
 
-    public static final ItemTeleportationRod TELEPORTATION_ROD = new ItemTeleportationRod();
+    public static final ItemSilverWoodStick SILVER_WOOD_STICK = new ItemSilverWoodStick();
 }

@@ -8,9 +8,11 @@ import com.frank142857.metropolis.util.interfaces.*;
 import com.frank142857.metropolis.world.city.*;
 import com.frank142857.metropolis.world.city.features.*;
 import com.frank142857.metropolis.world.city.features.compat.MiniatureAetherTemple;
+import com.frank142857.metropolis.world.city.features.compat.MiniatureAetherTempleGenerator;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -33,6 +35,12 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
     private Road roadIn;
     private IHouse feature;
     private IBuilding building;
+
+    private BuildingGeneratorNormal buildingGeneratorNormal = new BuildingGeneratorNormal();
+    private BuildingGeneratorPlain buildingGeneratorPlain = new BuildingGeneratorPlain();
+    private FlowerShopGenerator flowerShopGenerator = new FlowerShopGenerator();
+
+    private MiniatureAetherTempleGenerator aetherTempleGenerator = new MiniatureAetherTempleGenerator();
 
     protected static final IBlockState STONE = BlockInit.FOUNDATION_STONE.getDefaultState();
 
@@ -79,22 +87,21 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         buildingIn.generate(primer);
         */
         int b1 = this.rand.nextInt(256);
+
         /*
-        if (b1 < 32) {
-            feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-        } else if (b1 < 64) {
-            feature = new Pavilion(chunkX, chunkZ, this.world.getSeaLevel(), this.rand);
-        } else if (b1 < 80) {
-            feature = new BuildingTower(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-        } else {
-            feature = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-        }*/
         if (b1 < 128) {
             building = new BuildingNormal(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
         } else {
             building = new BuildingPlain(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
+        }*/
+
+        //building.generate(primer);
+
+        if (b1 < 128) {
+            buildingGeneratorNormal.generate(primer, this.world.getSeaLevel(), rand);
+        } else {
+            buildingGeneratorPlain.generate(primer, this.world.getSeaLevel(), rand);
         }
-        building.generate(primer);
     }
 
     @Override
@@ -110,39 +117,28 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
 
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, chunkX, chunkZ, false);
 
-        if(((new ChunkInfoMetropolis(chunkX, chunkZ)).getStructureType().equals(StructureType.SMALL_FEATURE))){ //set up architectures
+        ChunkInfoMetropolis chunkInfo = new ChunkInfoMetropolis(chunkX, chunkZ);
+
+        if(chunkInfo.getStructureType().equals(StructureType.SMALL_FEATURE)){ //set up architectures
             int index = 2 + this.rand.nextInt(4); //DIRECTION
             int b1 = this.rand.nextInt(256);
-            if (b1 < 16) {//48
-                feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-            //} else if (b1 < 254) {//128
-                //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-            //} else if (b1 < 254) {
-              //  feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel());
-            } else {
-                feature = new BuildingBase(chunkX, chunkZ, this.world.getSeaLevel());
 
-                //compat
-                if (Loader.isModLoaded("aether_legacy")){
-                    int b2 = this.rand.nextInt(128);
-                    if (b2 == 1) {
-                        feature = new MiniatureAetherTemple(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-                    }
-                }
-
+            if (b1 < 16) {
+                flowerShopGenerator.generate(this.world, chunkX, chunkZ, this.world.getSeaLevel(), rand);
             }
-
-            //feature = new FlowerShop(chunkX, chunkZ, this.world.getSeaLevel(), this.rand, EnumFacing.getFront(index));
-
-            if(feature != null){
-                feature.generate(this.world); //TODO test
-                //TODO setupArchitectures + generate环节移到这里
+            else if (b1 < 20 && Loader.isModLoaded("aether_legacy")){
+                aetherTempleGenerator.generate(this.world, chunkX, chunkZ, this.world.getSeaLevel(), rand);
             }
         }
 
-        //if(feature instanceof FlowerShop){
-        //    (new WorldGenSmallFeatures()).generate(this.world, this.rand, new BlockPos(feature.getChunkPos().x * 16 + 2, feature.getBaseHeight() + 1, feature.getChunkPos().z * 16 + 2));
-        //}
+        /*else if (chunkInfo.getStructureType().equals(StructureType.BUILDING) && this.buildingFloorCount > 0){
+            for (int x1 = x + 2; x1 <= x + 5; x1++){
+                for (int z1 = z + 2; z1 <= z + 5; z1++){
+                    this.world.setBlockState(new BlockPos(x1, world.getSeaLevel() + this.buildingFloorCount * 6 + 2, z1), Blocks.SEA_LANTERN.getDefaultState());
+                }
+            } // TODO Test "adding details"
+
+        }*/
 
         biome.decorate(this.world, this.rand, new BlockPos(x, 0, z));
         if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false,
@@ -177,7 +173,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
             if (i == 33) {
                 for (int j = 0; j < 16; ++j) {
                     for (int k = 0; k < 16; ++k) {
-                        primer.setBlockState(j, i, k, BlockInit.SURFACE_GRASS.getDefaultState());
+                        primer.setBlockState(j, i, k, BlockInit.UPSIDE_DOWN_SURFACE_GRASS.getDefaultState());
                     }
                 }
             } else if (33 < i && i < 37) {

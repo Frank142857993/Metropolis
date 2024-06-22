@@ -1,28 +1,20 @@
 package com.frank142857.metropolis.world.city.features;
 
 import com.frank142857.metropolis.init.BlockInit;
-import com.frank142857.metropolis.util.interfaces.IBuilding;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
 
 import static com.frank142857.metropolis.world.city.ChunkGenFactory.*;
+import static com.frank142857.metropolis.world.city.ChunkGenFactory.fillMargin;
+import static com.frank142857.metropolis.world.city.ChunkGenFactory.fillMarginPattern;
 
-public class BuildingNormal implements IBuilding {
-
-    //Deprecated
-    //TODO This is a type of building in the center area. Please add more types and make it less boring
-    //"Modern"
-
-    private int chunkX;
-    private int chunkZ;
-    private int baseHeight;
+public class BuildingGeneratorPlain {
     private int floorCount;
     private int roofType;
     private EnumFacing facing;
@@ -30,125 +22,83 @@ public class BuildingNormal implements IBuilding {
     private IBlockState baseBlock;
     private IBlockState fillerBlock;
     protected final IBlockState[] fillerBlocks = new IBlockState[]{
-            //BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(),
-            //BlockInit.BLACK_BRICK.getDefaultState(),
+            BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(),
+            BlockInit.BLACK_BRICK.getDefaultState(),
             Blocks.QUARTZ_BLOCK.getDefaultState(),
-            //Blocks.BRICK_BLOCK.getDefaultState()
+            Blocks.BRICK_BLOCK.getDefaultState()
     };
     protected final IBlockState air = Blocks.AIR.getDefaultState();
     protected final IBlockState glass = Blocks.GLASS_PANE.getDefaultState();
     protected final IBlockState lamp = BlockInit.CEILING_LIGHT.getDefaultState();
 
-    public BuildingNormal(int chunkX, int chunkZ, int baseHeight, Random rand, EnumFacing facing){
-        this.chunkX = chunkX;
-        this.chunkZ = chunkZ;
-        this.baseHeight = baseHeight;
-        this.facing = facing;
-        this.baseBlock = Blocks.DOUBLE_STONE_SLAB.getDefaultState();
-        this.fillerBlock = this.fillerBlocks[rand.nextInt(this.fillerBlocks.length)];
-        this.floorCount = this.getMinFloor() + rand.nextInt(this.getFloorVariation());
-        this.roofType = rand.nextInt(4); //roof count
-    }
-
-    @Override
-    public String getType() {
-        return "normal";
-    }
-
-    @Override
-    public IBlockState getBaseBlock() {
-        return baseBlock;
-    }
-
-    @Override
-    public IBlockState[] getFillerBlocks() {
-        return fillerBlocks;
-    }
-
-    @Override
-    public ChunkPos getChunkPos() {
-        return new ChunkPos(chunkX, chunkZ);
-    }
-
-    @Override
-    public int getBaseHeight() {
-        return baseHeight;
-    }
-
-    @Override
     public int getMinFloor() {
         return 3;
     }
 
-    @Override
     public int getFloorVariation() {
         return 4;
     }
 
-    @Override
     public int getFloorHeight() {
         return 6;
     }
 
-    @Override
-    public void setFillerBlock(IBlockState fillerBlock) {
-        this.fillerBlock = fillerBlock;
-    }
 
-    @Override
-    public void setFloorCount(int floorCount) {
-        this.floorCount = floorCount;
-    }
+    public void generate(ChunkPrimer primer, int baseHeight, Random rand) {
 
-    @Override
-    public void generate(ChunkPrimer primer) {
+        int index = 2 + rand.nextInt(4); //DIRECTION
+        this.facing = EnumFacing.getFront(index);
+        this.floorCount = this.getMinFloor() + rand.nextInt(this.getFloorVariation());
+        this.baseBlock = BlockInit.STONE_PAVING.getDefaultState();
+        this.fillerBlock = this.fillerBlocks[rand.nextInt(this.fillerBlocks.length)];
+        this.roofType = rand.nextInt(4); //roof count
 
-        int y = baseHeight + 1;
+        int y = baseHeight;
 
         //WALLS SEQUENCE
         IBlockState[] sq = new IBlockState[13];
-        for(int i = 0; i < sq.length; i++){
-            sq[i] = Blocks.STONE_SLAB.getStateFromMeta(7);
-        }
-        sq = makePillars(sq, BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(), 1);
-        sq[sq.length - 1] = BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState();
-
-        IBlockState[] sq1 = new IBlockState[11];
-        for(int i = 0; i < sq1.length; i++){
-            sq1[i] = glass;
-        }
-        sq1 = makePillars(sq1, fillerBlock, 0);
-
-        IBlockState[] sq2 = new IBlockState[13];
-        for(int i = 0; i < sq2.length; i++){
-            sq2[i] = air;
-        }
-        sq2 = makePillars(sq2, BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(), 1);
-        sq2[sq2.length - 1] = BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState();
-
-        IBlockState[] sq3 = new IBlockState[7];
-        for(int i = 0; i < sq3.length; i++){
-            sq3[0] = lamp;
-            if(i == 3 || i == 4) sq3[i] = lamp;
+        sq[0] = air;
+        for(int i2 = 1; i2 < sq.length; i2++){
+            sq[i2] = fillerBlock;
         }
 
-        fillMarginPattern(primer, 1, y, 1, sq);
-        fillMargin(primer, 2, 2, 13, 13, y, this.fillerBlock);
-        fillLayer(primer, 3, 3, 12, 12, y, BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState());
+        //FLOOR
+        fillMargin(primer, 0, 0, 15, 15, y, this.baseBlock);
+        fillLayer(primer, 1, 1, 14, 14, y, this.fillerBlock);
 
         for(int f = 0; f < floorCount; f++) {
-            //FLOOR
-
-            fillMarginPattern(primer, 1, y + this.getFloorHeight(), 1, sq);
-            fillMargin(primer, 2, 2, 13, 13, y + this.getFloorHeight(), this.fillerBlock);
-            fillLayer(primer, 3, 3, 12, 12, y + this.getFloorHeight(), BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState());
-
             //WALLS & WINDOWS
-            fillWallsPattern(primer, 1, y + 1, 1, this.getFloorHeight() - 1, sq2);
-            fillWallsPattern(primer, 2, y + 1, 2, this.getFloorHeight() - 1, sq1);
+            fillMarginPattern(primer, 1, y + 1, 1, sq);
+
+            fillWallsPattern(primer, 1, y + 2, 1, 3, new IBlockState[]{
+                    air,
+                    fillerBlock,
+                    glass,
+                    fillerBlock,
+                    glass,
+                    fillerBlock,
+                    glass,
+                    glass,
+                    fillerBlock,
+                    glass,
+                    fillerBlock,
+                    glass,
+                    fillerBlock
+            });
+
+            fillWallsPattern(primer, 1, y + this.getFloorHeight() - 1, 1, 2, sq);
+            fillLayer(primer, 2, 2, 13, 13, y + this.getFloorHeight(), fillerBlock);
 
             //LIGHTS
-            fillMarginPattern(primer, 4, y + this.getFloorHeight() - 1, 4, sq3);
+            fillMarginPattern(primer, 4, y + this.getFloorHeight() - 1, 4, new IBlockState[]{
+                    lamp,
+                    air,
+                    lamp,
+                    air,
+                    air,
+                    lamp,
+                    air,
+            });
 
             //STAIRS PATTERN 1
 
@@ -184,7 +134,6 @@ public class BuildingNormal implements IBuilding {
             }
 
             //DOOR
-            /*
             if (f == 0) {
                 switch (this.facing.getIndex()) {
                     case 2: //NORTH
@@ -212,20 +161,14 @@ public class BuildingNormal implements IBuilding {
                         fill(primer, 7, y + 2, 1, 8, y + 3, 1, Blocks.BEDROCK.getDefaultState());
                         break;
                 }
-            }*/
+            }
 
             y += this.getFloorHeight();
         }
 
         //SIMPLE ROOF
-        //makeRoof(primer, y); TODO 待改
-    }
-
-    public IBlockState[] makePillars(IBlockState[] blocks, IBlockState pillar, int start){
-        for(int i = start; i <= blocks.length / 2; i += 2){
-            blocks[i] = pillar;
-        }
-        return blocks;
+        makeRoof(primer, y);
+        addDetails(primer, baseHeight, rand);
     }
 
     public void makeRoof(ChunkPrimer primer, int height){
@@ -234,7 +177,7 @@ public class BuildingNormal implements IBuilding {
             case 0:
                 break;
             case 1:
-                fillLayer(primer, 6, 6, 9, 9, height + 1, fillerBlock);
+                fillLayer(primer, 2, 2, 13, 13, height + 1, fillerBlock);
                 break;
             case 2:
                 fillMargin(primer, 2, 2, 13, 13, height + 1, fillerBlock);
@@ -269,8 +212,36 @@ public class BuildingNormal implements IBuilding {
         }
     }
 
-    @Override
-    public void addDetails(World world) {
-
+    public void addDetails(ChunkPrimer primer, int baseHeight, Random rand) {
+        //2 2 13 13
+        //Test: library
+        fillMargin(primer, 2, 2, 13, 13, baseHeight + getFloorHeight() + 1, BlockInit.SILVER_BOOKSHELF.getDefaultState());
+        fillMargin(primer, 2, 2, 13, 13, baseHeight + getFloorHeight() + 5, BlockInit.SILVER_BOOKSHELF.getDefaultState());
+        primer.setBlockState(2, baseHeight + getFloorHeight() + 1, 2, Blocks.CRAFTING_TABLE.getDefaultState());
+        primer.setBlockState(2, baseHeight + getFloorHeight() + 1, 13, Blocks.CRAFTING_TABLE.getDefaultState());
+        primer.setBlockState(13, baseHeight + getFloorHeight() + 1, 2, Blocks.CRAFTING_TABLE.getDefaultState());
+        primer.setBlockState(13, baseHeight + getFloorHeight() + 1, 13, Blocks.CRAFTING_TABLE.getDefaultState());
+        fillMarginPattern(primer, 4, baseHeight + getFloorHeight() + 1, 4, new IBlockState[]{
+                BlockInit.SILVER_WOOD_FENCE.getDefaultState(),
+                BlockInit.SILVER_WOOD_FENCE.getDefaultState(),
+                air,
+                air,
+                air,
+                air,
+                BlockInit.SILVER_WOOD_FENCE.getDefaultState()
+        });
+        fillMarginPattern(primer, 4, baseHeight + getFloorHeight() + 2, 4, new IBlockState[]{
+                Blocks.CARPET.getDefaultState(),
+                Blocks.CARPET.getDefaultState(),
+                air,
+                air,
+                air,
+                air,
+                Blocks.CARPET.getDefaultState()
+        });
+        /*
+        if(rand.nextInt(20) == 1){
+            fillMargin(primer, 2, 2, 13, 13, height + floorCount + 1, Blocks.BOOKSHELF.getDefaultState());
+        }*/
     }
 }
