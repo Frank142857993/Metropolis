@@ -1,0 +1,7 @@
+{
+  "parent":"block/cube_column",
+  "textures":{
+    "end":"metropolis:blocks/marble",
+    "side":"metropolis:blocks/marble_slab_double"
+  }
+}

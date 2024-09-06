@@ -4,6 +4,7 @@ import com.frank142857.metropolis.block.*;
 import com.frank142857.metropolis.block.base.*;
 import com.frank142857.metropolis.block.teleporter.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.*;
@@ -14,11 +15,12 @@ import java.util.List;
 public class BlockInit {
     public static final List<Block> REGISTER_BLOCKS = new ArrayList<Block>();
 
+    //portal
     public static final BlockMtrPortal BLOCK_MTR_PORTAL = new BlockMtrPortal();
 
+    //base blocks
     public static final BlockGrassMTR SURFACE_GRASS = new BlockGrassMTR();
     public static final BlockGrassUpsideDown UPSIDE_DOWN_SURFACE_GRASS = new BlockGrassUpsideDown();
-
     public static final BlockDirtMTR HEAVY_DIRT = new BlockDirtMTR();
     public static final BlockStoneMTR FOUNDATION_STONE = new BlockStoneMTR();
     public static final BlockMTR POLISHED_FOUNDATION_STONE = (BlockMTR) new BlockMTR(
@@ -30,13 +32,25 @@ public class BlockInit {
     public static final BlockMTR BLACK_BRICK = (BlockMTR) new BlockMTR( //BLACK BRICK 青砖
             "black_brick", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
     ).setResistance(6.0F);
-    public static final BlockAccelerateMTR MOSSY_BLACK_BRICK = new BlockAccelerateMTR(
-            "mossy_black_brick", Material.ROCK, MapColor.GREEN_STAINED_HARDENED_CLAY, "pickaxe", 0, 3.0F, 0, 0.6D
-    );
+    public static final BlockMTR RAW_MARBLE = (BlockMTR) new BlockMTR(
+            "raw_marble", Material.ROCK, MapColor.QUARTZ, "pickaxe", 0, 3.0F, 0
+    ).setResistance(6.0F);
+    public static final BlockMTR MARBLE = (BlockMTR) new BlockMTR(
+            "marble", Material.ROCK, MapColor.QUARTZ, "pickaxe", 0, 3.0F, 0
+    ).setResistance(6.0F);
+    public static final BlockMTR MARBLE_BRICK = (BlockMTR) new BlockMTR(
+            "marble_brick", Material.ROCK, MapColor.QUARTZ, "pickaxe", 0, 3.0F, 0
+    ).setResistance(6.0F);
+    public static final BlockPillarMTR MARBLE_PILLAR = (BlockPillarMTR) new BlockPillarMTR(
+            "marble_pillar", Material.ROCK, MapColor.QUARTZ, "pickaxe", 0, 3.0F, 0
+    ).setResistance(6.0F);
+    public static final BlockCloud CLOUD = new BlockCloud();
+    public static final BlockMTR FIGURE = (BlockMTR) new BlockMTR(
+            "figure", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
+    ).setResistance(6.0F); //TODO Figure
+    public static final BlockVirtual HOLOGRAM = (BlockVirtual) new BlockVirtual("hologram", MapColor.STONE, 3.0F, 0, SoundType.STONE).setResistance(10.0F);
 
-
-    public static final MetalBlockMTR SHADOW_METAL_BLOCK = new MetalBlockMTR("shadow_metal_block", Material.IRON, 2);
-
+    //metal & ores
     public static final OreMTR IRON_ORE = new OreMTR("iron_ore", 1, 0);
     public static final OreMTR GOLD_ORE = new OreMTR("gold_ore", 2, 0);
     public static final OreMTR DIAMOND_ORE = new OreMTR("diamond_ore", 2, 0);
@@ -44,14 +58,32 @@ public class BlockInit {
     public static final OreMTR QUARTZ_ORE = new OreMTR("quartz_ore", 1, 0);
     public static final OreMTR SHADOW_METAL_ORE = new OreMTR("shadow_metal_ore", 2, 0);
 
+    public static final MetalBlockMTR SHADOW_METAL_BLOCK = new MetalBlockMTR("shadow_metal_block", Material.IRON, 2);
+
+    //wood
     public static final BlockLogMTR SILVER_WOOD = new BlockLogMTR();
     public static final BlockPlanksMTR SILVER_PLANKS = (BlockPlanksMTR) new BlockPlanksMTR().setResistance(6.0F);
     public static final BlockLeavesMTR SILVER_LEAVES = new BlockLeavesMTR();
     public static final BlockFloweringLeaves FLOWERING_SILVER_LEAVES = new BlockFloweringLeaves();
     public static final BlockSaplingMTR SILVER_SAPLING = new BlockSaplingMTR();
+    public static final BlockSilverBookshelf SILVER_BOOKSHELF = new BlockSilverBookshelf();
+    public static final BlockFenceMTR SILVER_WOOD_FENCE = new BlockFenceMTR("silver_wood_fence", 4.5F, 6.0F);
+    public static final BlockFenceGateMTR SILVER_WOOD_FENCE_GATE = new BlockFenceGateMTR("silver_wood_fence_gate", 4.5F, 6.0F);
 
+    //decoration
+    public static final BlockCloudGlass CLOUD_GLASS = new BlockCloudGlass();
+    public static final BlockCloudGlassPane CLOUD_GLASS_PANE = new BlockCloudGlassPane();
+
+    //misc
     public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();
 
+    //virtual
+    public static final BlockVirtual VIRTUAL_FOUNDATION_STONE = (BlockVirtual) new BlockVirtual("virtual_foundation_stone", MapColor.STONE, 4.5F, 0, SoundType.STONE).setResistance(10.0F);
+    public static final BlockVirtual VIRTUAL_POLISHED_FOUNDATION_STONE = (BlockVirtual) new BlockVirtual("virtual_polished_foundation_stone", MapColor.STONE, 4.5F, 0, SoundType.STONE).setResistance(10.0F);
+    public static final BlockTrasnslucentVirtual VIRTUAL_CLOUD_GLASS = (BlockTrasnslucentVirtual) new BlockTrasnslucentVirtual("virtual_cloud_glass", MapColor.AIR, 0.3F, 0, SoundType.GLASS);
+    public static final BlockPaneVirtual VIRTUAL_CLOUD_GLASS_PANE = new BlockPaneVirtual("virtual_cloud_glass_pane", 0.3F, 0, SoundType.GLASS);
+
+    //slab
     public static final BlockSlab FOUNDATION_STONE_SLAB_DOUBLE = new BlockDoubleSlabMTR(
             "foundation_stone_slab_double", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.FOUNDATION_STONE_SLAB_HALF
     );
@@ -82,7 +114,14 @@ public class BlockInit {
     public static final BlockSlab SILVER_WOOD_SLAB_HALF = new BlockHalfSlabMTR(
             "silver_wood_slab_half", Material.ROCK, "pickaxe", 1, 4.5F, BlockInit.SILVER_WOOD_SLAB_HALF, BlockInit.SILVER_WOOD_SLAB_DOUBLE
     );
+    public static final BlockSlab MARBLE_SLAB_DOUBLE = new BlockDoubleSlabMTR(
+            "marble_slab_double", Material.ROCK, "pickaxe", 0, 3.0F, BlockInit.MARBLE_SLAB_HALF
+    );
+    public static final BlockSlab MARBLE_SLAB_HALF = new BlockHalfSlabMTR(
+            "marble_slab_half", Material.ROCK, "pickaxe", 0, 3.0F, BlockInit.MARBLE_SLAB_HALF, BlockInit.MARBLE_SLAB_DOUBLE
+    );
 
+    //stairs
     public static final BlockStairsMTR FOUNDATION_STONE_STAIRS = new BlockStairsMTR(
             "foundation_stone_stairs", FOUNDATION_STONE.getDefaultState(), 4.5F, 10.0F, SoundType.STONE, "pickaxe", 1
     );
@@ -95,10 +134,7 @@ public class BlockInit {
     public static final BlockStairsMTR SILVER_WOOD_STAIRS = new BlockStairsMTR(
             "silver_wood_stairs", SILVER_PLANKS.getDefaultState(), 4.5F, 6.0F, SoundType.STONE, "pickaxe", 1
     );
-
-    public static final BlockFenceMTR SILVER_WOOD_FENCE = new BlockFenceMTR("silver_wood_fence", 4.5F, 6.0F);
-
-    public static final BlockFenceGateMTR SILVER_WOOD_FENCE_GATE = new BlockFenceGateMTR("silver_wood_fence_gate", 4.5F, 6.0F);
-
-    public static final BlockSilverBookshelf SILVER_BOOKSHELF = new BlockSilverBookshelf();
+    public static final BlockStairsMTR MARBLE_STAIRS = new BlockStairsMTR(
+            "marble_stairs", MARBLE.getDefaultState(), 3.0F, 6.0F, SoundType.STONE, "pickaxe", 0
+    );
 }

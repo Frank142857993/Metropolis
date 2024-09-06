@@ -12,4 +12,6 @@ public class ItemInit {
     public static final IngotsMTR SHADOW_METAL_INGOT = new IngotsMTR("shadow_metal_ingot");
 
     public static final ItemSilverWoodStick SILVER_WOOD_STICK = new ItemSilverWoodStick();
+
+    public static final ItemCloudBottle CLOUD_BOTTLE = new ItemCloudBottle();
 }

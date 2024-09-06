@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "axis=y":  { "model": "metropolis:marble_pillar" },
+    "axis=z":   { "model": "metropolis:marble_pillar", "x": 90 },
+    "axis=x":   { "model": "metropolis:marble_pillar", "x": 90, "y": 90 },
+    "axis=none": { "model": "minecraft:cube_all",
+      "textures": {"all": "metropolis:blocks/marble"} }
+  }
+}

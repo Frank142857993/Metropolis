@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_side",
+    "textures": {
+        "edge": "metropolis:blocks/cloud_glass_pane_top",
+        "pane": "metropolis:blocks/cloud_glass"
+    }
+}

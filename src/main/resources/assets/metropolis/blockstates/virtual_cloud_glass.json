@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {"all": "metropolis:blocks/cloud_glass"}
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{
+      "transform":  "forge:default-block",
+      "textures": {"all": "metropolis:blocks/virtual_cloud_glass"}}]
+  }
+}

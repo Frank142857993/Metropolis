@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {"all": "metropolis:blocks/polished_foundation_stone"}
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{
+      "transform":  "forge:default-block",
+      "textures": {"all": "metropolis:blocks/virtual_polished_foundation_stone"}}]
+  }
+}

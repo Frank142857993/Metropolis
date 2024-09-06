@@ -16,17 +16,17 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import java.util.Random;
 
 public class WorldGenMtrOres implements IWorldGenerator {
-    private WorldGenerator iron, gold, diamond, redstone, ore_mtr_quartz, shadow_metal, stone, block_under_brick;
+    private WorldGenerator iron, gold, diamond, redstone, ore_mtr_quartz, shadow_metal, marble, block_under_brick;
 
     public WorldGenMtrOres(){
         iron = new WorldGenMinable(BlockInit.IRON_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
         gold = new WorldGenMinable(BlockInit.GOLD_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
         diamond = new WorldGenMinable(BlockInit.DIAMOND_ORE.getDefaultState(), 8, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
         redstone = new WorldGenMinable(BlockInit.REDSTONE_ORE.getDefaultState(), 8, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
-        shadow_metal = new WorldGenMinable(BlockInit.SHADOW_METAL_ORE.getDefaultState(), 3, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
+        shadow_metal = new WorldGenMinable(BlockInit.SHADOW_METAL_ORE.getDefaultState(), 9, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
         ore_mtr_quartz = new WorldGenMinable(BlockInit.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
 
-        stone = new WorldGenMinable(Blocks.STONE.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
+        marble = new WorldGenMinable(BlockInit.RAW_MARBLE.getDefaultState(), 33, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
         block_under_brick = new WorldGenMinable(BlockInit.BLACK_BRICK.getDefaultState(), 17, BlockMatcher.forBlock(BlockInit.FOUNDATION_STONE));
     }
 
@@ -53,9 +53,9 @@ public class WorldGenMtrOres implements IWorldGenerator {
             runGenerator(gold, world, random, chunkX, chunkZ, 3, 38, 70); //32+32+6
             runGenerator(diamond, world, random, chunkX, chunkZ, 3, 38, 54); //16+32+6
             runGenerator(redstone, world, random, chunkX, chunkZ, 6, 38, 54); //16+32+6
-            runGenerator(shadow_metal, world, random, chunkX, chunkZ, 1, 38, 78); //40+32+6
+            runGenerator(shadow_metal, world, random, chunkX, chunkZ, 8, 38, 78); //40+32+6
             runGenerator(ore_mtr_quartz, world, random, chunkX, chunkZ, 6, 38, 86); //54+32
-            runGenerator(stone, world, random, chunkX, chunkZ, 4, 64, 96); //64+32
+            runGenerator(marble, world, random, chunkX, chunkZ, 4, 38, 96); //64+32
             runGenerator(block_under_brick, world, random, chunkX, chunkZ, 5, 60, 92); //60+32
         }
     }

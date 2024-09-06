@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "metropolis:blocks/virtual_cloud_glass"
+  }
+}

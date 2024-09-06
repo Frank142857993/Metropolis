@@ -2,6 +2,8 @@ item.shadow_metal_ingot.name=Ingot of Shadow Metal
 
 item.silver_wood_stick.name=Silver Wood Stick
 
+item.cloud_bottle.name=Cloud Bottle
+
 tile.iron_ore.name=Foundation Stone Iron Ore
 tile.gold_ore.name=Foundation Stone Gold Ore
 tile.diamond_ore.name=Foundation Stone Diamond Ore
@@ -23,17 +25,29 @@ tile.heavy_dirt.name=Heavy Dirt
 tile.foundation_stone.name=Foundation Stone
 tile.polished_foundation_stone.name=Polished Foundation Stone
 tile.stone_paving.name=Stone Paving
+tile.raw_marble.name=Raw Marble
+tile.marble.name=Marble
+tile.marble_pillar.name=Marble Pillar
+tile.marble_brick.name=Marble Brick
+
+tile.cloud.name=Cloud
+
+tile.figure.name=Figure
+
+tile.hologram.name=Hologram
 
 tile.foundation_stone_slab_half.name=Foundation Stone Slab
 tile.polished_foundation_stone_slab_half.name=Polished Foundation Stone Slab
 tile.black_brick_slab_half.name=Black Brick Slab
 tile.stone_paving_slab_half.name=Stone Paving
 tile.silver_wood_slab_half.name=Silver Wood Slab
+tile.marble_slab_half.name=Marble Slab
 
 tile.foundation_stone_stairs.name=Foundation Stone Stairs
 tile.polished_foundation_stone_stairs.name=Polished Foundation Stone Stairs
 tile.black_brick_stairs.name=Black Brick Stairs
 tile.silver_wood_stairs.name=Silver Wood Stairs
+tile.marble_stairs.name=Marble Stairs
 
 tile.silver_wood_fence.name=Silver Wood Fence
 tile.silver_wood_fence_gate.name=Silver Wood Fence Gate
@@ -42,6 +56,13 @@ tile.black_brick.name=Black Brick
 tile.mossy_black_brick.name=Mossy Black Brick
 tile.ceiling_light.name=Ceiling Light
 tile.silver_bookshelf.name=Silver Bookshelf
+tile.cloud_glass.name=Cloud Glass
+tile.cloud_glass_pane.name=Cloud Glass Pane
+
+tile.virtual_foundation_stone.name=Virtual Foundation Stone
+tile.virtual_polished_foundation_stone.name=Virtual Polished Foundation Stone
+tile.virtual_cloud_glass.name=Virtual Cloud Glass
+tile.virtual_cloud_glass_pane.name=Virtual Cloud Glass Pane
 
 tile.mtr_portal.name=Metropolis Portal
 

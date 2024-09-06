@@ -8,9 +8,14 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class BiomeInit {
     public static final Biome METROPOLIS = new BiomeMetropolis();
+    public static final Biome LATTICED_REALM = new BiomeLatticedRealm();
 
     public static void registerBiomes(){
-        initBiome(METROPOLIS, "Metropolis",
+        initBiome(METROPOLIS, "overgrown_garden",
+                BiomeManager.BiomeType.COOL,
+                BiomeDictionary.Type.PLAINS
+        );
+        initBiome(LATTICED_REALM, "latticed_realm",
                 BiomeManager.BiomeType.COOL,
                 BiomeDictionary.Type.PLAINS
         );

@@ -21,14 +21,13 @@ public class BuildingGeneratorPlain {
 
     private IBlockState baseBlock;
     private IBlockState fillerBlock;
-    protected final IBlockState[] fillerBlocks = new IBlockState[]{
+    private IBlockState[] fillerBlocks = new IBlockState[]{
             BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(),
-            BlockInit.BLACK_BRICK.getDefaultState(),
-            Blocks.QUARTZ_BLOCK.getDefaultState(),
-            Blocks.BRICK_BLOCK.getDefaultState()
+            //BlockInit.BLACK_BRICK.getDefaultState(),
+            //BlockInit.MARBLE_BRICK.getDefaultState()
     };
     protected final IBlockState air = Blocks.AIR.getDefaultState();
-    protected final IBlockState glass = Blocks.GLASS_PANE.getDefaultState();
+    protected final IBlockState glass = BlockInit.CLOUD_GLASS_PANE.getDefaultState();
     protected final IBlockState lamp = BlockInit.CEILING_LIGHT.getDefaultState();
 
     public int getMinFloor() {
@@ -43,6 +42,9 @@ public class BuildingGeneratorPlain {
         return 6;
     }
 
+    public void setFillerBlocks(IBlockState[] fillerBlocks){
+        this.fillerBlocks = fillerBlocks;
+    }
 
     public void generate(ChunkPrimer primer, int baseHeight, Random rand) {
 
@@ -121,9 +123,9 @@ public class BuildingGeneratorPlain {
                 if (i1 >= 6) j = -1;
                 if (i1 % 2 == 0) {
                     y1++;
-                    primer.setBlockState(x1, y1, z1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(x1, y1, z1, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                 } else {
-                    primer.setBlockState(x1, y1, z1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                    primer.setBlockState(x1, y1, z1, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
                 }
 
                 if (i1 % 6 < 3) {
@@ -137,24 +139,24 @@ public class BuildingGeneratorPlain {
             if (f == 0) {
                 switch (this.facing.getIndex()) {
                     case 2: //NORTH
-                        fill(primer, 7, y + 1, 0, 8, y + 1, 0, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 7, y + 1, 0, 8, y + 1, 0, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         fill(primer, 7, y + 2, 1, 8, y + 3, 1, air);
-                        fill(primer, 7, y + 1, 2, 8, y + 1, 2, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 7, y + 1, 2, 8, y + 1, 2, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         break;
                     case 3: //SOUTH
-                        fill(primer, 7, y + 1, 15, 8, y + 1, 15, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 7, y + 1, 15, 8, y + 1, 15, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         fill(primer, 7, y + 2, 14, 8, y + 3, 14, air);
-                        fill(primer, 7, y + 1, 13, 8, y + 1, 13, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 7, y + 1, 13, 8, y + 1, 13, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         break;
                     case 4: //WEST
-                        fill(primer, 0, y + 1, 7, 0, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 0, y + 1, 7, 0, y + 1, 8, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         fill(primer, 1, y + 2, 7, 1, y + 3, 8, air);
-                        fill(primer, 2, y + 1, 7, 2, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 2, y + 1, 7, 2, y + 1, 8, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         break;
                     case 5: //EAST
-                        fill(primer, 15, y + 1, 7, 15, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 15, y + 1, 7, 15, y + 1, 8, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         fill(primer, 14, y + 2, 7, 14, y + 3, 8, air);
-                        fill(primer, 13, y + 1, 7, 13, y + 1, 8, Blocks.STONE_SLAB.getDefaultState());
+                        fill(primer, 13, y + 1, 7, 13, y + 1, 8, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                         break;
                     default:
                         System.out.println("ERROR! Building Facing illegal");

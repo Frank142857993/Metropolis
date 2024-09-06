@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IYI",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "metropolis:cloud_glass"
+    },
+    "I": {
+      "item": "metropolis:shadow_metal_ingot"
+    },
+    "Y": {
+      "item": "metropolis:flowering_silver_leaves"
+    }
+  },
+  "result": {
+    "item": "metropolis:ceiling_light",
+    "count": 2
+  }
+}

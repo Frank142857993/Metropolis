@@ -27,7 +27,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
 
     public BiomeMetropolis(){
 
-        super(new BiomeProperties("Metropolis")
+        super(new BiomeProperties("overgrown_garden")
                 .setBaseHeight(2.0F)
                 .setHeightVariation(0.0F)
                 .setTemperature(0.205F) //0.21
@@ -36,9 +36,9 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
         topBlock = BlockInit.SURFACE_GRASS.getDefaultState();
         fillerBlock = BlockInit.HEAVY_DIRT.getDefaultState();
         this.decorator = new BiomeDecoratorMetropolis();
-        this.decorator.treesPerChunk = 1; //from 0
+        this.decorator.treesPerChunk = 8; //from 0
         this.decorator.extraTreeChance = 0; //from 0.03F
-        this.decorator.flowersPerChunk = 4;
+        this.decorator.flowersPerChunk = 7;
         this.decorator.mushroomsPerChunk = -100;
         this.addSpawnables();
     }
@@ -46,7 +46,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
     @Override
     public int getGrassColorAtPos(BlockPos pos){
         return 0xe6e6e6;
-    }
+    } //e6e6e6
 
     @Override
     public int getFoliageColorAtPos(BlockPos pos){
@@ -87,7 +87,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
     @Override
     public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos) { //TODO silver flower?
         int i = rand.nextInt(10);
-        /*
+
         switch (i){
             case 0:
                 return BlockFlower.EnumFlowerType.DANDELION;
@@ -110,8 +110,7 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
             default:
                 return BlockFlower.EnumFlowerType.OXEYE_DAISY;
         }
-        */
-        return super.pickRandomFlower(rand, pos);
+
     }
 
     @Override

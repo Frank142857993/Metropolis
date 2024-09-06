@@ -52,24 +52,6 @@ public class BiomeDecoratorMetropolis extends BiomeDecorator {
             ++k1;
         }
 
-        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
-            for (int j2 = 0; j2 < k1; ++j2)
-            {
-                //TODO Tree generation in simple small feature chunks
-                //int k6 = random.nextInt(16) + 8;
-                //int l = random.nextInt(16) + 8;
-                int k6 = 8;
-                int l = 8;
-                WorldGenAbstractTree worldgenabstracttree = biomeIn.getRandomTreeFeature(random);
-                worldgenabstracttree.setDecorationDefaults();
-                BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
-
-                if (worldgenabstracttree.generate(worldIn, random, blockpos))
-                {
-                    worldgenabstracttree.generateSaplings(worldIn, random, blockpos);
-                }
-            }
-
 
         if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS))
             for (int l2 = 0; l2 < this.flowersPerChunk; ++l2)
@@ -176,6 +158,23 @@ public class BiomeDecoratorMetropolis extends BiomeDecorator {
                 }
             }
         } // End of Reed generation
+
+        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
+            for (int j2 = 0; j2 < k1; ++j2)
+            {
+
+                int k6 = random.nextInt(16) + 8;
+                int l = random.nextInt(16) + 8;
+                WorldGenAbstractTree worldgenabstracttree = biomeIn.getRandomTreeFeature(random);
+                worldgenabstracttree.setDecorationDefaults();
+                BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
+
+                if (worldgenabstracttree.generate(worldIn, random, blockpos))
+                {
+                    worldgenabstracttree.generateSaplings(worldIn, random, blockpos);
+                }
+            }
+
         if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.PUMPKIN))
             if (random.nextInt(32) == 0)
             {

@@ -1,0 +1,6 @@
+{
+    "parent": "block/pane_noside",
+    "textures": {
+        "pane": "metropolis:blocks/cloud_glass"
+    }
+}

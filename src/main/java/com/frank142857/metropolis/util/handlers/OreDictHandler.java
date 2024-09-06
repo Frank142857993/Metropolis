@@ -15,6 +15,8 @@ public class OreDictHandler {
         OreDictionary.registerOre("oreQuartz", BlockInit.QUARTZ_ORE);
         OreDictionary.registerOre("oreShadowMetal", BlockInit.SHADOW_METAL_ORE);
 
+        OreDictionary.registerOre("stoneMarble", BlockInit.RAW_MARBLE);
+
         OreDictionary.registerOre("dirt", BlockInit.HEAVY_DIRT);
         OreDictionary.registerOre("stone", BlockInit.FOUNDATION_STONE);
         OreDictionary.registerOre("cobblestone", BlockInit.FOUNDATION_STONE);

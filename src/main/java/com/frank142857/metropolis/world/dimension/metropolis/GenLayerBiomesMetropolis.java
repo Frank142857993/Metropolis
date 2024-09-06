@@ -9,7 +9,8 @@ import net.minecraft.world.gen.layer.IntCache;
 public class GenLayerBiomesMetropolis extends GenLayer {
 
     private Biome[] allowedBiomes = {
-            BiomeInit.METROPOLIS
+            BiomeInit.METROPOLIS,
+            BiomeInit.LATTICED_REALM
             //Biomes.PLAINS //TODO More modified biomes
     };
 

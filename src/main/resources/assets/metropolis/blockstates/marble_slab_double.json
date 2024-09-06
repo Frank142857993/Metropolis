@@ -1,0 +1,7 @@
+{
+  "variants":{
+    "variant=default":{
+      "model":"metropolis:marble_slab_double"
+    }
+  }
+}

@@ -3,6 +3,7 @@ package com.frank142857.metropolis.world.dimension.metropolis;
 import java.util.List;
 import java.util.Random;
 
+import com.frank142857.metropolis.init.BiomeInit;
 import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.util.interfaces.*;
 import com.frank142857.metropolis.world.city.*;
@@ -38,6 +39,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
 
     private BuildingGeneratorNormal buildingGeneratorNormal = new BuildingGeneratorNormal();
     private BuildingGeneratorPlain buildingGeneratorPlain = new BuildingGeneratorPlain();
+    private BuildingGeneratorTower buildingGeneratorTower = new BuildingGeneratorTower();
     private FlowerShopGenerator flowerShopGenerator = new FlowerShopGenerator();
 
     private MiniatureAetherTempleGenerator aetherTempleGenerator = new MiniatureAetherTempleGenerator();
@@ -100,7 +102,18 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         if (b1 < 128) {
             buildingGeneratorNormal.generate(primer, this.world.getSeaLevel(), rand);
         } else {
-            buildingGeneratorPlain.generate(primer, this.world.getSeaLevel(), rand);
+            if (world.getBiome(new BlockPos(chunkX * 16, this.world.getSeaLevel(),chunkZ * 16)).equals(BiomeInit.LATTICED_REALM)){
+                buildingGeneratorTower.setFillerBlocks(new IBlockState[]{
+                        BlockInit.MARBLE.getDefaultState()
+                });
+                buildingGeneratorTower.generate(primer, this.world.getSeaLevel(), rand);
+            } else {
+                buildingGeneratorPlain.setFillerBlocks(new IBlockState[]{
+                        BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(),
+                        BlockInit.MARBLE_BRICK.getDefaultState()
+                });
+                buildingGeneratorPlain.generate(primer, this.world.getSeaLevel(), rand);
+            }
         }
     }
 
@@ -159,7 +172,7 @@ public class ChunkGeneratorMetropolis implements IChunkGenerator {
         if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world)) {
             return;
         }
-        if(biomesIn[120] instanceof IBiomeCity){
+        if(biomesIn[120] instanceof IBiomeCity){ //TODO setup architectures according to biome
             if(info.isRoad()) {
                 setupNetworks(chunkX, chunkZ, primer);
             } else if (info.getStructureType().equals(StructureType.BUILDING)) {

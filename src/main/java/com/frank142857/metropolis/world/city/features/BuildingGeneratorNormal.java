@@ -17,12 +17,12 @@ public class BuildingGeneratorNormal {
     private int floorCount;
     private int roofType;
     private IBlockState baseBlock = BlockInit.STONE_PAVING.getDefaultState();
-    private IBlockState fillerBlock = Blocks.QUARTZ_BLOCK.getDefaultState();
+    private IBlockState fillerBlock = BlockInit.MARBLE.getDefaultState();
     protected final IBlockState[] fillerBlocks = new IBlockState[]{
-            Blocks.QUARTZ_BLOCK.getDefaultState(),
+            BlockInit.MARBLE.getDefaultState(),
     };
     protected final IBlockState air = Blocks.AIR.getDefaultState();
-    protected final IBlockState glass = Blocks.GLASS_PANE.getDefaultState();
+    protected final IBlockState glass = BlockInit.CLOUD_GLASS_PANE.getDefaultState();
     protected final IBlockState lamp = BlockInit.CEILING_LIGHT.getDefaultState();
 
     public int getMinFloor() {
@@ -44,12 +44,12 @@ public class BuildingGeneratorNormal {
 
         fillMargin(primer, 0, 0, 15, 15, baseHeight, this.baseBlock); //base
 
-        int y = baseHeight + 1;
+        int y = baseHeight;
 
         //WALLS SEQUENCE
         IBlockState[] sq = new IBlockState[13];
         for(int i = 0; i < sq.length; i++){
-            sq[i] = Blocks.STONE_SLAB.getStateFromMeta(7);
+            sq[i] = BlockInit.MARBLE_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         }
         sq = makePillars(sq, BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState(), 1);
         sq[sq.length - 1] = BlockInit.POLISHED_FOUNDATION_STONE.getDefaultState();
@@ -112,9 +112,9 @@ public class BuildingGeneratorNormal {
                 if (i1 >= 6) j = -1;
                 if (i1 % 2 == 0) {
                     y1++;
-                    primer.setBlockState(x1, y1, z1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+                    primer.setBlockState(x1, y1, z1, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM));
                 } else {
-                    primer.setBlockState(x1, y1, z1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
+                    primer.setBlockState(x1, y1, z1, BlockInit.SILVER_WOOD_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP));
                 }
 
                 if (i1 % 6 < 3) {
