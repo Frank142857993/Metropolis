@@ -4,6 +4,7 @@ import com.frank142857.metropolis.init.BlockInit;
 import com.frank142857.metropolis.init.ConfigInit;
 import com.frank142857.metropolis.util.interfaces.IBiomeCity;
 import com.frank142857.metropolis.world.dimension.metropolis.BiomeDecoratorMetropolis;
+import com.frank142857.metropolis.world.gen.feature.WorldGenGrassMTR;
 import com.frank142857.metropolis.world.gen.feature.WorldGenMtrFossils;
 import com.frank142857.metropolis.world.gen.feature.WorldGenSilverTree;
 import net.minecraft.block.*;
@@ -13,18 +14,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 
 import java.util.Random;
 
 public class BiomeLatticedRealm extends Biome implements IBiomeCity {
-
-    //TODO tree generation test. Replace it by "silver tree"
-    private static final IBlockState JUNGLE_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-    private static final IBlockState JUNGLE_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-    /** The block state for the Oak leaf */
-    private static final IBlockState OAK_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-
 
     public BiomeLatticedRealm(){
 
@@ -52,6 +47,11 @@ public class BiomeLatticedRealm extends Biome implements IBiomeCity {
     @Override
     public int getFoliageColorAtPos(BlockPos pos){
         return 0x7b8770;
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+        return new WorldGenGrassMTR();
     }
 
     @Override

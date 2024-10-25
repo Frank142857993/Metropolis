@@ -30,7 +30,7 @@ import java.util.Random;
 public class BlockTrasnslucentVirtual extends BlockBreakable implements IHasModel {
 
     public BlockTrasnslucentVirtual(String name, MapColor color, float hardness, float lightValue, SoundType soundType){
-        super(Material.STRUCTURE_VOID, false, color);
+        super(Material.REDSTONE_LIGHT, false, color);
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.setHardness(hardness);

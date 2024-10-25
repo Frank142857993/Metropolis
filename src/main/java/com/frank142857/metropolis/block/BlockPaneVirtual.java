@@ -27,7 +27,7 @@ import java.util.Random;
 public class BlockPaneVirtual extends BlockPane implements IHasModel {
 
     public BlockPaneVirtual(String name, float hardness, float lightValue, SoundType soundType){
-        super(Material.STRUCTURE_VOID, false);
+        super(Material.REDSTONE_LIGHT, false);
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.setHardness(hardness);

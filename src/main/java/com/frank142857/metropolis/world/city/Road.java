@@ -96,7 +96,9 @@ public class Road {
                 fill(primer, 4, y, 0, 4, y, 15, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
                 fill(primer, 11, y, 0, 11, y, 15, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
 
-                fill(primer, 0, y, 4, 15, y, 11, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 0, y, 4, 4, y, 11, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 11, y, 4, 15, y, 11, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 5, y, 4, 10, y, 11, BlockInit.STONE_PAVING_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF,BlockSlab.EnumBlockHalf.TOP));
                 break;
             case BRIDGE_SN:
                 fill(primer, 0, y - 6, 5, 15, y - 3, 10, Blocks.WATER.getDefaultState());
@@ -107,7 +109,9 @@ public class Road {
                 fill(primer, 0, y, 4, 15, y, 4, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
                 fill(primer, 0, y, 11, 15, y, 11, Blocks.DOUBLE_STONE_SLAB.getDefaultState());
 
-                fill(primer, 4, y, 0, 11, y, 15, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 4, y, 0, 11, y, 4, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 4, y, 11, 11, y, 15, BlockInit.STONE_PAVING.getDefaultState());
+                fill(primer, 4, y, 5, 11, y, 10, BlockInit.STONE_PAVING_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF,BlockSlab.EnumBlockHalf.TOP));
                 break;
             case RIVER_SN:
                 fill(primer, 5, y - 6, 0, 10, y - 3, 15, Blocks.WATER.getDefaultState());

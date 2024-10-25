@@ -18,13 +18,6 @@ import java.util.Random;
 
 public class BiomeMetropolis extends Biome implements IBiomeCity {
 
-    //TODO tree generation test. Replace it by "silver tree"
-    private static final IBlockState JUNGLE_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-    private static final IBlockState JUNGLE_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-    /** The block state for the Oak leaf */
-    private static final IBlockState OAK_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-
-
     public BiomeMetropolis(){
 
         super(new BiomeProperties("overgrown_garden")
@@ -51,6 +44,11 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
     @Override
     public int getFoliageColorAtPos(BlockPos pos){
         return 0x7b8770;
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+        return new WorldGenGrassMTR();
     }
 
     @Override

@@ -45,10 +45,15 @@ public class BlockInit {
             "marble_pillar", Material.ROCK, MapColor.QUARTZ, "pickaxe", 0, 3.0F, 0
     ).setResistance(6.0F);
     public static final BlockCloud CLOUD = new BlockCloud();
+    /*
     public static final BlockMTR FIGURE = (BlockMTR) new BlockMTR(
             "figure", Material.ROCK, MapColor.STONE, "pickaxe", 0, 3.0F, 0
     ).setResistance(6.0F); //TODO Figure
-    public static final BlockVirtual HOLOGRAM = (BlockVirtual) new BlockVirtual("hologram", MapColor.STONE, 3.0F, 0, SoundType.STONE).setResistance(10.0F);
+    */
+
+    public static final BlockTrasnslucentVirtual HOLOGRAM_RED = (BlockTrasnslucentVirtual) new BlockTrasnslucentVirtual("hologram_red", MapColor.STONE, 3.0F, 4, SoundType.STONE).setResistance(10.0F);
+    public static final BlockTrasnslucentVirtual HOLOGRAM_GREEN = (BlockTrasnslucentVirtual) new BlockTrasnslucentVirtual("hologram_green", MapColor.STONE, 3.0F, 4, SoundType.STONE).setResistance(10.0F);
+    public static final BlockTrasnslucentVirtual HOLOGRAM_BLUE = (BlockTrasnslucentVirtual) new BlockTrasnslucentVirtual("hologram_blue", MapColor.STONE, 3.0F, 4, SoundType.STONE).setResistance(10.0F);
 
     //metal & ores
     public static final OreMTR IRON_ORE = new OreMTR("iron_ore", 1, 0);
@@ -69,6 +74,9 @@ public class BlockInit {
     public static final BlockSilverBookshelf SILVER_BOOKSHELF = new BlockSilverBookshelf();
     public static final BlockFenceMTR SILVER_WOOD_FENCE = new BlockFenceMTR("silver_wood_fence", 4.5F, 6.0F);
     public static final BlockFenceGateMTR SILVER_WOOD_FENCE_GATE = new BlockFenceGateMTR("silver_wood_fence_gate", 4.5F, 6.0F);
+
+    //plants
+    public static final BlockBushMTR GLOWING_HERBS = (BlockBushMTR) new BlockBushMTR().setLightLevel(0.067F);
 
     //decoration
     public static final BlockCloudGlass CLOUD_GLASS = new BlockCloudGlass();

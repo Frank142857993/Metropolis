@@ -2,13 +2,13 @@
   "forge_marker": 1,
   "defaults": {
     "model": "minecraft:cube_all",
-    "textures": {"all": "metropolis:blocks/place_holder"}
+    "textures": {"all": "metropolis:blocks/hologram_red"}
   },
   "variants": {
     "normal": [{}],
     "inventory": [{
       "transform":  "forge:default-block",
-      "textures": {"all": "metropolis:blocks/place_holder"}
+      "textures": {"all": "metropolis:blocks/hologram_red"}
     }]
   }
 }

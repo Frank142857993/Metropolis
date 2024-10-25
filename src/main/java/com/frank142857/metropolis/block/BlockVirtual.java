@@ -27,7 +27,7 @@ import java.util.Random;
 public class BlockVirtual extends BlockBreakable implements IHasModel {
 
     public BlockVirtual(String name, MapColor color, float hardness, float lightValue, SoundType soundType){
-        super(Material.STRUCTURE_VOID, true, color);
+        super(Material.REDSTONE_LIGHT, true, color);
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.setHardness(hardness);

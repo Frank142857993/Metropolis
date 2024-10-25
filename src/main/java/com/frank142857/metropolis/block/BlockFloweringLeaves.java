@@ -96,7 +96,9 @@ public class BlockFloweringLeaves extends BlockLeaves implements IHasModel{
     @Nonnull
     @Override
     public List<ItemStack> onSheared(@Nonnull ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-        return NonNullList.withSize(1, new ItemStack(this));
+        NonNullList<ItemStack> list = NonNullList.withSize(2, new ItemStack(BlockInit.SILVER_LEAVES));
+        list.set(1, new ItemStack(ItemInit.SILVER_BLOSSOM));
+        return list;
     }
 
     @Override

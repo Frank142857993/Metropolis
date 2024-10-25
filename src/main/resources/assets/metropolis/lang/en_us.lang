@@ -1,6 +1,7 @@
 item.shadow_metal_ingot.name=Ingot of Shadow Metal
 
 item.silver_wood_stick.name=Silver Wood Stick
+item.silver_blossom.name=Silver Blossom
 
 item.cloud_bottle.name=Cloud Bottle
 
@@ -19,6 +20,8 @@ tile.silver_leaves.name=Silver Leaves
 tile.flowering_silver_leaves.name=Flowering Silver Leaves
 tile.silver_sapling.name=Silver Sapling
 
+tile.glowing_herbs.name=Glowing Herbs
+
 tile.surface_grass.name=Surface Grass
 tile.upside_down_surface_grass.name=Upside Down Surface Grass
 tile.heavy_dirt.name=Heavy Dirt
@@ -34,7 +37,9 @@ tile.cloud.name=Cloud
 
 tile.figure.name=Figure
 
-tile.hologram.name=Hologram
+tile.hologram_red.name=Hologram
+tile.hologram_green.name=Hologram
+tile.hologram_blue.name=Hologram
 
 tile.foundation_stone_slab_half.name=Foundation Stone Slab
 tile.polished_foundation_stone_slab_half.name=Polished Foundation Stone Slab

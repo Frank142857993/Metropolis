@@ -96,8 +96,8 @@ public class BlockGrassMTR extends Block implements IHasModel, IGrowable, IPlant
                 if (random.nextInt(8) == 0) {
                     world.getBiome(blockpos1).plantFlower(world, random, blockpos1);
                 } else {
-                    IBlockState iblockstate1 = Blocks.TALLGRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
-                    if (Blocks.TALLGRASS.canBlockStay(world, blockpos1, iblockstate1)) {
+                    IBlockState iblockstate1 = BlockInit.GLOWING_HERBS.getDefaultState();
+                    if (BlockInit.GLOWING_HERBS.canBlockStay(world, blockpos1, iblockstate1)) {
                         world.setBlockState(blockpos1, iblockstate1, 3);
                     }
                 }

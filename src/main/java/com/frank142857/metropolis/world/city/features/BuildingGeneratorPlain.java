@@ -29,6 +29,7 @@ public class BuildingGeneratorPlain {
     protected final IBlockState air = Blocks.AIR.getDefaultState();
     protected final IBlockState glass = BlockInit.CLOUD_GLASS_PANE.getDefaultState();
     protected final IBlockState lamp = BlockInit.CEILING_LIGHT.getDefaultState();
+    protected IBlockState[] sq;
 
     public int getMinFloor() {
         return 3;
@@ -63,6 +64,7 @@ public class BuildingGeneratorPlain {
         for(int i2 = 1; i2 < sq.length; i2++){
             sq[i2] = fillerBlock;
         }
+        this.sq = sq;
 
         //FLOOR
         fillMargin(primer, 0, 0, 15, 15, y, this.baseBlock);
@@ -176,7 +178,11 @@ public class BuildingGeneratorPlain {
     public void makeRoof(ChunkPrimer primer, int height){
 
         switch (this.roofType){
-            case 0:
+            case 0: //TODO Garden
+                fillMarginPattern(primer, 1, height + 1, 1, sq);
+                fillLayer(primer, 2, 2, 13, 13, height + 1, BlockInit.SURFACE_GRASS.getDefaultState());
+                fillLayer(primer, 6, 6, 9, 9, height + 1, Blocks.AIR.getDefaultState());
+                fillMargin(primer, 5, 5, 10, 10, height + 1, fillerBlock);
                 break;
             case 1:
                 fillLayer(primer, 2, 2, 13, 13, height + 1, fillerBlock);
