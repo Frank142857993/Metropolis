@@ -77,6 +77,12 @@ public class BlockInit {
 
     //plants
     public static final BlockBushMTR GLOWING_HERBS = (BlockBushMTR) new BlockBushMTR().setLightLevel(0.067F);
+    public static final BlockFlowerMTR FLUORESCENT_FLOWER_RED = (BlockFlowerMTR) new BlockFlowerMTR("fluorescent_flower_red", MapColor.RED).setLightLevel(0.667F);
+    public static final BlockFlowerMTR FLUORESCENT_FLOWER_GREEN = (BlockFlowerMTR) new BlockFlowerMTR("fluorescent_flower_green", MapColor.GREEN).setLightLevel(0.667F);
+    public static final BlockFlowerMTR FLUORESCENT_FLOWER_BLUE = (BlockFlowerMTR) new BlockFlowerMTR("fluorescent_flower_blue", MapColor.BLUE).setLightLevel(0.667F);
+
+
+    public static final BlockFlowerPotMTR EVERGROWTH_FLOWER_POT = new BlockFlowerPotMTR();
 
     //decoration
     public static final BlockCloudGlass CLOUD_GLASS = new BlockCloudGlass();

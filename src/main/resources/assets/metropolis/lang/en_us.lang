@@ -21,6 +21,11 @@ tile.flowering_silver_leaves.name=Flowering Silver Leaves
 tile.silver_sapling.name=Silver Sapling
 
 tile.glowing_herbs.name=Glowing Herbs
+tile.fluorescent_flower_red.name=Fluorescent Flower
+tile.fluorescent_flower_green.name=Fluorescent Flower
+tile.fluorescent_flower_blue.name=Fluorescent Flower
+
+tile.evergrowth_flower_pot.name=Evergrowth Flower Pot
 
 tile.surface_grass.name=Surface Grass
 tile.upside_down_surface_grass.name=Upside Down Surface Grass

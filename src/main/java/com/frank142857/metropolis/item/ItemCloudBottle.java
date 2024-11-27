@@ -46,7 +46,7 @@ public class ItemCloudBottle extends Item implements IHasModel {
         if (raytraceresult == null) {
             return new ActionResult(EnumActionResult.PASS, stack);
         } else {
-            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
+            if (player.isSneaking() && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) { // Sneaking + right click
 
                 BlockPos pos = raytraceresult.getBlockPos();
 

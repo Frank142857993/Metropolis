@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "contents=empty,powered=false":            { "model": "metropolis:evergrowth_flower_pot" },
+    "contents=fluorescent_flower_red,powered=false":             { "model": "metropolis:evergrowth_flower_pot_fluorescent_flower_red" },
+    "contents=fluorescent_flower_green,powered=false":      { "model": "metropolis:evergrowth_flower_pot_fluorescent_flower_green" },
+    "contents=fluorescent_flower_blue,powered=false":           { "model": "metropolis:evergrowth_flower_pot_fluorescent_flower_blue" },
+    "contents=silver_sapling,powered=false":        { "model": "metropolis:evergrowth_flower_pot_silver_wood_sapling" },
+    "contents=empty,powered=true":            { "model": "metropolis:evergrowth_flower_pot" },
+    "contents=fluorescent_flower_red,powered=true":             { "model": "metropolis:evergrowth_flower_pot_fluorescent_flower_red" },
+    "contents=fluorescent_flower_green,powered=true":      { "model": "metropolis:evergrowth_flower_pot_fluorescent_flower_green" },
+    "contents=fluorescent_flower_blue,powered=true":           { "model": "metropolis:evergrowth_flower_pot_fluorescent_flower_blue" },
+    "contents=silver_sapling,powered=true":        { "model": "metropolis:evergrowth_flower_pot_silver_wood_sapling" }
+  }
+}

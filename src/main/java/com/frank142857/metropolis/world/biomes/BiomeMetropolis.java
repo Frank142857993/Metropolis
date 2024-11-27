@@ -83,49 +83,10 @@ public class BiomeMetropolis extends Biome implements IBiomeCity {
     }
 
     @Override
-    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos) { //TODO silver flower?
-        int i = rand.nextInt(10);
-
-        switch (i){
-            case 0:
-                return BlockFlower.EnumFlowerType.DANDELION;
-            case 1:
-                return BlockFlower.EnumFlowerType.POPPY;
-            case 2:
-                return BlockFlower.EnumFlowerType.ALLIUM;
-            case 3:
-                return BlockFlower.EnumFlowerType.BLUE_ORCHID;
-            case 4:
-                return BlockFlower.EnumFlowerType.HOUSTONIA;
-            case 5:
-                return BlockFlower.EnumFlowerType.RED_TULIP;
-            case 6:
-                return BlockFlower.EnumFlowerType.ORANGE_TULIP;
-            case 7:
-                return BlockFlower.EnumFlowerType.WHITE_TULIP;
-            case 8:
-                return BlockFlower.EnumFlowerType.PINK_TULIP;
-            default:
-                return BlockFlower.EnumFlowerType.OXEYE_DAISY;
-        }
-
-    }
-
-    @Override
     public void addDefaultFlowers()
     {
-        BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
-        BlockFlower yel = net.minecraft.init.Blocks.YELLOW_FLOWER;
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP), 15);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP), 15);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.PINK_TULIP), 15);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.WHITE_TULIP), 15);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.POPPY), 20);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.HOUSTONIA), 20);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.OXEYE_DAISY), 20);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ALLIUM), 20);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.BLUE_ORCHID), 20);
-        addFlower(yel.getDefaultState().withProperty(yel.getTypeProperty(), BlockFlower.EnumFlowerType.DANDELION), 30);
+        addFlower(BlockInit.FLUORESCENT_FLOWER_RED.getDefaultState(), 15);
+        addFlower(BlockInit.FLUORESCENT_FLOWER_BLUE.getDefaultState(), 15);
     }
 
     private void addSpawnables(){

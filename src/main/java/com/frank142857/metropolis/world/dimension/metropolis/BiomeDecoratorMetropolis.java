@@ -1,7 +1,12 @@
 package com.frank142857.metropolis.world.dimension.metropolis;
 
+import com.frank142857.metropolis.block.base.BlockFlowerMTR;
+import com.frank142857.metropolis.init.BlockInit;
+import com.frank142857.metropolis.world.gen.WorldGenFlowerMTR;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,6 +20,8 @@ import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import java.util.Random;
 
 public class BiomeDecoratorMetropolis extends BiomeDecorator {
+    public WorldGenFlowerMTR flowerGen = new WorldGenFlowerMTR(BlockInit.FLUORESCENT_FLOWER_RED);
+
     protected void genDecorations(Biome biomeIn, World worldIn, Random random)
     {
         net.minecraft.util.math.ChunkPos forgeChunkPos = new net.minecraft.util.math.ChunkPos(chunkPos); // actual ChunkPos instead of BlockPos, used for events
@@ -64,12 +71,23 @@ public class BiomeDecoratorMetropolis extends BiomeDecorator {
                 {
                     int k17 = random.nextInt(j14);
                     BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
-                    BlockFlower.EnumFlowerType blockflower$enumflowertype = biomeIn.pickRandomFlower(random, blockpos1);
-                    BlockFlower blockflower = blockflower$enumflowertype.getBlockType().getBlock();
 
-                    if (blockflower.getDefaultState().getMaterial() != Material.AIR)
+                    // Pick Random Flower
+                    BlockFlowerMTR flower = BlockInit.FLUORESCENT_FLOWER_RED;
+                    int z = random.nextInt(3); // TODO add more
+                    switch (z){
+                        case 1:
+                            flower = BlockInit.FLUORESCENT_FLOWER_GREEN;
+                            break;
+                        case 2:
+                            flower = BlockInit.FLUORESCENT_FLOWER_BLUE;
+                        default:
+                            break;
+                    }
+
+                    if (flower.getDefaultState().getMaterial() != Material.AIR)
                     {
-                        this.flowerGen.setGeneratedBlock(blockflower, blockflower$enumflowertype);
+                        this.flowerGen.setGeneratedBlock(flower);
                         this.flowerGen.generate(worldIn, random, blockpos1);
                     }
                 }

@@ -22,6 +22,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event){
         CapabilityManager.INSTANCE.register(ICapabilityPortal.class, new StoragePortal(), CapabilityPortal.class);
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
+        TileEntityInit.register();
         SoundsHandler.registerSounds();
         OreDictHandler.registerOreDict();
         RegistryHandler.registerSmeltingRecipe();

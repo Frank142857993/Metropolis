@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "metropolis:blocks/glowing_herbs"
+  }
+}
