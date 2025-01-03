@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "metropolis:items/door_cloud_glass"
+  }
+}

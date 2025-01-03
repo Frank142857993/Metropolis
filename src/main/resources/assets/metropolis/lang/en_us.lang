@@ -68,6 +68,7 @@ tile.ceiling_light.name=Ceiling Light
 tile.silver_bookshelf.name=Silver Bookshelf
 tile.cloud_glass.name=Cloud Glass
 tile.cloud_glass_pane.name=Cloud Glass Pane
+tile.cloud_glass_door.name=Cloud Glass Door
 
 tile.virtual_foundation_stone.name=Virtual Foundation Stone
 tile.virtual_polished_foundation_stone.name=Virtual Polished Foundation Stone

@@ -87,6 +87,7 @@ public class BlockInit {
     //decoration
     public static final BlockCloudGlass CLOUD_GLASS = new BlockCloudGlass();
     public static final BlockCloudGlassPane CLOUD_GLASS_PANE = new BlockCloudGlassPane();
+    public static final BlockDoorMTR CLOUD_GLASS_DOOR = new BlockDoorMTR("cloud_glass_door", Material.GLASS);
 
     //misc
     public static final BlockCeilingLight CEILING_LIGHT = new BlockCeilingLight();

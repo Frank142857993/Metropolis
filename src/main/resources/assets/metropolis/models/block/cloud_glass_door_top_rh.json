@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top_rh",
+    "textures": {
+        "bottom": "metropolis:blocks/door_cloud_glass_lower",
+        "top": "metropolis:blocks/door_cloud_glass_upper"
+    }
+}
